@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Senara | Pineapple-Powered Skincare</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&amp;family=Manrope:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at center, rgba(246, 243, 239, 0) 0%, rgba(246, 243, 239, 1) 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1c1c19",
+                        "on-primary-container": "#96a995",
+                        "outline-variant": "#c3c8c0",
+                        "on-tertiary-fixed-variant": "#474743",
+                        "on-primary-fixed-variant": "#3a4b3b",
+                        "secondary-fixed": "#ffddb7",
+                        "surface": "#fcf9f5",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#b8ccb7",
+                        "on-primary-fixed": "#0f1f12",
+                        "inverse-primary": "#b8ccb7",
+                        "surface-container": "#f0ede9",
+                        "surface-variant": "#e5e2de",
+                        "on-error-container": "#93000a",
+                        "primary-container": "#2d3e2f",
+                        "on-tertiary-fixed": "#1c1c19",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#d4e8d3",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#a5a49f",
+                        "surface-bright": "#fcf9f5",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "tertiary": "#242422",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#e5e2de",
+                        "surface-dim": "#dcdad6",
+                        "on-secondary-fixed": "#2a1700",
+                        "tertiary-container": "#3a3a37",
+                        "inverse-surface": "#31302e",
+                        "secondary": "#815513",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f3f0ec",
+                        "secondary-fixed-dim": "#f7bc71",
+                        "primary": "#18281a",
+                        "on-surface": "#1c1c19",
+                        "outline": "#747872",
+                        "on-secondary-container": "#784d09",
+                        "surface-container-low": "#f6f3ef",
+                        "surface-tint": "#516352",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "on-surface-variant": "#434842",
+                        "secondary-container": "#fdc175",
+                        "background": "#fcf9f5",
+                        "tertiary-fixed": "#e5e2dd",
+                        "surface-container-high": "#ebe8e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "container-max": "1280px",
+                        "margin-mobile": "20px",
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px",
+                        "section-gap": "120px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "label-sm": ["Manrope"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "label-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["36px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md">
+<div class="flex justify-between items-center w-full px-margin-desktop py-stack-md max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-lg">
+<a class="font-headline-md text-headline-md lowercase text-primary dark:text-primary-fixed-dim tracking-tighter" href="#">senara</a>
+<div class="hidden md:flex gap-stack-lg items-center ml-stack-lg">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b border-primary/20 pb-1 hover:text-secondary transition-colors duration-300" href="#">Shop</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors duration-300" href="#">Philosophy</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors duration-300" href="#">Science</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-secondary transition-colors duration-300" href="#">Stockists</a>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer transition-opacity active:opacity-70 p-2">search</button>
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer transition-opacity active:opacity-70 p-2">person</button>
+<button class="material-symbols-outlined text-on-surface-variant cursor-pointer transition-opacity active:opacity-70 p-2">shopping_bag</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-24 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Senara Product Showcase" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaCuRfA81UFTdtwsFEkHbTqK4xEXxoxBG1pV0KDqGnbGgJilBK9yTp5a_GF6bAkEmCERc4Se3dmT3XHLcghxmpHJLPJGakpH6LlW0jyv4JgkJYx8oojv-WGMDWboi6rsq9zLRBLqN37ver33HPxnE_NaNufnsuI01zaxr9Umc1LmrFrXE2sIhqnUJw99VmG5jElc4w8YvVW3H5Zq2JCZyLiNe4EtMVA5qt9sQyYkW2k7pEbOMeV5C1EEWVyOfcQLEmCHyn7eJspoE"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 w-full px-margin-desktop max-w-container-max mx-auto">
+<div class="max-w-[600px] space-y-stack-lg">
+<h1 class="font-display-lg text-display-lg md:text-display-lg leading-tight text-primary">
+                    Glow Gently With <br/>Pineapple-Powered <br/>Care
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[480px]">
+                    Nature's radiance meets clinical science for visibly healthy, glowing skin. Ethically sourced, scientifically refined.
+                </p>
+<div class="flex items-center gap-stack-lg pt-stack-md">
+<button class="bg-primary text-on-primary px-stack-lg py-4 font-label-md text-label-md transition-all hover:bg-secondary-container hover:text-on-secondary-container flex items-center gap-2 group">
+                        Discover Our Collection
+                        <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+<div class="flex gap-stack-lg pt-stack-lg border-t border-outline-variant/30 mt-stack-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">eco</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Pineapple Enzyme</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">science</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">Clinically Tested</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bestsellers Section -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">Our <span class="italic font-normal text-secondary">Best</span> Sellers</h2>
+</div>
+<a class="font-label-md text-label-md text-on-surface-variant border-b border-transparent hover:border-secondary transition-all flex items-center gap-1 group" href="#">
+                View All Products
+                <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative bg-surface-container aspect-[4/5] overflow-hidden mb-stack-md">
+<span class="absolute top-4 left-4 z-10 bg-surface px-3 py-1 font-label-sm text-label-sm text-on-surface uppercase tracking-tighter">New Arrival</span>
+<button class="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist studio shot of a Senara Pineapple Glow Essence bottle standing on a clean cream surface with a fresh pineapple slice as a natural prop. Soft editorial lighting, warm tones, high-end luxury skincare photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2cWeR6XRDRt3NQWGhEK9sDzovq0AIsokQqBud18TxXARx1oHaurgkTp6uEP8JaILRWBFGEQ3BpRNJ4ay7vvZgJ002lrI90imwe71CpigNycbuM4lXLrPhfzyLGOqha7Hf19mJB72SB7fXSv8F8re_d8385hTcI6g3m0elSKW5g8iS1qBGijC3zE7P4_mDgINp2UBJFcBazzrcF5Mv_cEoV153MMkhM9IKZ9SjvgbxQfVNjuZ0asEM01DOCq9ud7nZJT0Rre0bx9s"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[20px] text-primary">Pineapple Glow Essence</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">Brightening + Hydrating Serum</p>
+<p class="mt-2 font-label-md text-label-md text-primary">$58.00</p>
+</div>
+<button class="bg-primary text-on-primary w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative bg-surface-container aspect-[4/5] overflow-hidden mb-stack-md">
+<span class="absolute top-4 left-4 z-10 bg-primary text-on-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-tighter">Bestseller</span>
+<button class="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Clean clinical photography of Senara Brightening Dew Serum featuring glass droppers and translucent textures. Minimalist aesthetic with beige and white tones, focusing on purity and scientific formulation. Soft shadow play on a textured stone surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZpxslB5cKQ-YdmIhYKlQsQ0QOe3Q73CnIW-3U8DKf1kTJ2I6KNAUwZ8fiT72TU_ce9HYVMv9kQrjPaiW9lGj8S7RnvkoJ8YXtu9Npdpj8Dm7QKmHbHR7TO6KNYjoPLKKLO800K-wwrNXRdhddTyZiFekRavo0XuBwA2eoyJpeUtU138P-iYHLLlYogGhAvAUQ4_dWTaytPX6-eckpUObZEnkzBOCHApXPpe6DQ8b76sOJpF7BwV118AbdMx2S3whVklVT9BJWj88"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[20px] text-primary">Brightening Dew Serum</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">Pineapple Enzyme + Niacinamide</p>
+<p class="mt-2 font-label-md text-label-md text-primary">$48.00</p>
+</div>
+<button class="bg-primary text-on-primary w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative bg-surface-container aspect-[4/5] overflow-hidden mb-stack-md">
+<span class="absolute top-4 left-4 z-10 bg-surface px-3 py-1 font-label-sm text-label-sm text-on-surface uppercase tracking-tighter">New Arrival</span>
+<button class="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High-end studio photography of a Senara Gentle Cleanser tube with botanical leaves in the background. Calm, airy lighting emphasizing the natural ingredients. Minimalist white on cream palette, professional luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIPCAUONonm-FSDEjWGpjro8jAWPUq3VcOmFayN72hqSNP9-Ld2x3K4mweh_q7_-GYkovwUV_YTxA2j6FeDahU6L6gLOuSv3OynYAJWKXP-ZyWJpbXI1JXbQ3cj3pfN9az9zsGuggPmisAde3F1Pe1py_8L6VdLP4Hxt5BGB4nQsnxq84z3Vc9ArmBxhQndiSsYZrUBMXG_QrcDP66h10AJRv5ZFe7KH4wcNr7BVJfSMOsOcZY8dXtzUryGdnB6uzjnuWu9lXtBEo"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[20px] text-primary">Gentle Cleanser</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">Pineapple Enzyme + Botanical Blend</p>
+<p class="mt-2 font-label-md text-label-md text-primary">$38.00</p>
+</div>
+<button class="bg-primary text-on-primary w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative bg-surface-container aspect-[4/5] overflow-hidden mb-stack-md">
+<span class="absolute top-4 left-4 z-10 bg-primary text-on-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-tighter">Bestseller</span>
+<button class="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</button>
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Luxury skincare product photography of Senara Glow Cream jar resting on a marble surface. The lighting is soft and golden, suggesting radiance and nourishment. Minimalist background with subtle organic textures and neutral colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_pT-eJ4mo8qMlbSgcMCIhk3KodDLr7T8_M1wz8dT0RIs0q7dqvCgP9ORn7x8CCkmfEnh9WTLNIFrA3kVevRpOTpNp_QcHjEmtkFT3I4xUyEwOcDZHdkDJMccDDbR-SAJS9ZSxHgzOs5AStVqKPmOZNHemjm87AS7_X4J6f9m8-HR_4Vfmdnyd0f9_QIPrccakvQtJHGUhj8vU441zfUHPallQDB4yazXq1Abxyof5u2329s9NenWKm6HqwmEyU1m8ddGca1zWJrU"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[20px] text-primary">Glow Cream</h3>
+<p class="font-body-md text-label-sm text-on-surface-variant">Pineapple + Ceramide Moisturizer</p>
+<p class="mt-2 font-label-md text-label-md text-primary">$52.00</p>
+</div>
+<button class="bg-primary text-on-primary w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Brand Story Section -->
+<section class="bg-surface-container py-section-gap overflow-hidden">
+<div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-section-gap items-center">
+<div class="space-y-stack-lg">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Our Story</span>
+<h2 class="font-display-lg text-display-lg leading-tight text-primary">Rooted in Nature. <br/>Backed by Science.</h2>
+<div class="space-y-stack-md max-w-[500px]">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Senara is a premium skincare brand that harnesses the power of pineapple-derived actives and botanical extracts to deliver gentle yet effective care.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Every formula is thoughtfully crafted with clean, skin-loving ingredients, and clinically tested for visible results. We believe in the harmony of organic purity and clinical precision.
+                    </p>
+</div>
+<button class="inline-flex items-center gap-2 font-label-md text-label-md text-primary border-b border-primary/20 pb-1 hover:border-secondary transition-all group">
+                    Learn More About Us
+                    <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+<div class="relative group">
+<div class="aspect-square bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-700" data-alt="Scientific still life photography featuring fresh pineapple chunks, laboratory glassware with botanical extracts, and a lush green plant. The aesthetic is clean, professional, and clinical, using a neutral palette of whites and earth tones to convey the intersection of nature and science." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN8llhItjcglUYolRt0j-i1pODOnPAw5CKhbnJXN1_mo5PKpVZT1vfKD8nNJj6jq3f6ObWsGTAGYV9_GWu92Dcbn_TFdJJCvXQ0Sm0fb5DGEZNQiWNLTC4WHA2ithAHWSN6cw3OdNSsTtTJuHkjfntxjDDv5fjQIul1aLD_bq-vAP2Rzpug2xrc-q_EJ7DN3EyDf424ghfWtiJToSAs16TijKFPh7yAb6boY2iRfBmDMxCEOjaEc_Cno0q8RcMbXb3kgDc3z4D7VM"/>
+</div>
+<div class="absolute -bottom-10 -left-10 bg-surface p-8 shadow-xl max-w-[240px] hidden md:block">
+<p class="font-headline-sm text-headline-sm italic text-secondary leading-tight">Nature meets Science</p>
+<p class="mt-4 font-body-md text-label-sm text-on-surface-variant">Crafted with the highest quality pineapple enzymes.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Product Focus Section -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Focus Card 1 -->
+<div class="relative h-[500px] group overflow-hidden bg-surface-container flex items-end">
+<img alt="Glow Essence Detail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaCuRfA81UFTdtwsFEkHbTqK4xEXxoxBG1pV0KDqGnbGgJilBK9yTp5a_GF6bAkEmCERc4Se3dmT3XHLcghxmpHJLPJGakpH6LlW0jyv4JgkJYx8oojv-WGMDWboi6rsq9zLRBLqN37ver33HPxnE_NaNufnsuI01zaxr9Umc1LmrFrXE2sIhqnUJw99VmG5jElc4w8YvVW3H5Zq2JCZyLiNe4EtMVA5qt9sQyYkW2k7pEbOMeV5C1EEWVyOfcQLEmCHyn7eJspoE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="relative p-stack-lg w-full text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-widest opacity-80">Pineapple Glow Essence</span>
+<h3 class="font-headline-md text-headline-md mt-2">Illuminate. Hydrate. Revive.</h3>
+<p class="font-body-md text-body-md mt-4 opacity-90 max-w-[400px]">A lightweight essence powered by pineapple enzyme and niacinamide to visibly brighten, smooth, and deeply hydrate.</p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Boosts radiance &amp; skin clarity
+                        </li>
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Supports even tone
+                        </li>
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Lightweight &amp; fast-absorbing
+                        </li>
+</ul>
+<button class="mt-8 bg-secondary-fixed text-on-secondary-fixed px-stack-lg py-3 font-label-md text-label-md flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+                        Shop Now
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Focus Card 2 -->
+<div class="relative h-[500px] group overflow-hidden bg-surface-container flex items-end">
+<img alt="Glow Cream Detail" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaCuRfA81UFTdtwsFEkHbTqK4xEXxoxBG1pV0KDqGnbGgJilBK9yTp5a_GF6bAkEmCERc4Se3dmT3XHLcghxmpHJLPJGakpH6LlW0jyv4JgkJYx8oojv-WGMDWboi6rsq9zLRBLqN37ver33HPxnE_NaNufnsuI01zaxr9Umc1LmrFrXE2sIhqnUJw99VmG5jElc4w8YvVW3H5Zq2JCZyLiNe4EtMVA5qt9sQyYkW2k7pEbOMeV5C1EEWVyOfcQLEmCHyn7eJspoE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="relative p-stack-lg w-full text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-widest opacity-80">Glow Cream</span>
+<h3 class="font-headline-md text-headline-md mt-2">Nourish. Protect. Glow.</h3>
+<p class="font-body-md text-body-md mt-4 opacity-90 max-w-[400px]">A rich yet breathable moisturizer with pineapple and ceramides to lock moisture and restore a healthy, luminous glow.</p>
+<ul class="mt-6 space-y-2">
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Deep hydration for 24h
+                        </li>
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Strengthens skin barrier
+                        </li>
+<li class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">check_circle</span> Gentle for daily use
+                        </li>
+</ul>
+<button class="mt-8 bg-secondary-fixed text-on-secondary-fixed px-stack-lg py-3 font-label-md text-label-md flex items-center gap-2 transition-all hover:scale-105 active:scale-95">
+                        Shop Now
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonial Section -->
+<section class="py-section-gap px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant/30">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="High-end editorial close-up of a radiant woman with healthy, glowing skin looking serene. The lighting is soft and natural, emphasizing the product results. Minimalist and elegant composition, high-key light-mode aesthetic consistent with luxury skincare branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxv-VNmdVvgTMTdvaoyABpr9hKEpFKvyLKKhsitCS7opmYsnn7in6cGpJFdsQ8yzcNX8ytWbvmXYjIH4jl7nZAa-qeGX-Iz-XruI1P1hBH56FPTdAbtHHa5wSefh66SZfgnSHHWtlmYIxOfwPMkzGcmXDOW9l7zBXMQsB6-xbNn5j0ocBlJiVDodI6NOrkb6CBau5BqhdfICjLx6r-x-yvqcpP9ydAVx71mJW0YR6NZ3fBha1qiwxsYnRPSPFn79esw0AdbRVIQIg"/>
+</div>
+<div class="md:pl-stack-lg py-stack-lg">
+<span class="material-symbols-outlined text-[48px] text-secondary mb-stack-md" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-headline-md text-headline-md text-primary italic leading-snug">
+                    "My skin feels brighter, softer, and deeply hydrated after just a few days. I can actually see the glow coming back. It’s the perfect balance of science and nature."
+                </p>
+<div class="mt-stack-lg flex items-center gap-stack-md">
+<div class="space-y-1">
+<p class="font-label-md text-label-md text-primary">— Olivia Tan</p>
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<div class="mt-12 flex items-center gap-4">
+<div class="flex -space-x-4">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-primary-fixed-dim flex items-center justify-center text-[10px] font-bold">O</div>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-secondary-fixed-dim flex items-center justify-center text-[10px] font-bold">S</div>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-surface-container overflow-hidden">
+<div class="w-full h-full bg-tertiary-fixed-dim flex items-center justify-center text-[10px] font-bold">M</div>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1k+ happy customers and counting</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-tertiary dark:bg-tertiary-container w-full mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="space-y-stack-md">
+<p class="font-headline-sm text-headline-sm text-on-tertiary dark:text-on-tertiary-container">senara</p>
+<p class="font-body-md text-body-md text-on-tertiary/70 dark:text-on-tertiary-container/70 max-w-[240px]">
+                    Pineapple-powered skincare. Thoughtful formulas for a naturally radiant you.
+                </p>
+<div class="flex gap-stack-md pt-stack-sm">
+<a class="w-8 h-8 rounded-full border border-on-tertiary/20 flex items-center justify-center text-on-tertiary hover:bg-secondary-fixed transition-all" href="#"><span class="text-[16px] font-bold">ig</span></a>
+<a class="w-8 h-8 rounded-full border border-on-tertiary/20 flex items-center justify-center text-on-tertiary hover:bg-secondary-fixed transition-all" href="#"><span class="text-[16px] font-bold">fb</span></a>
+<a class="w-8 h-8 rounded-full border border-on-tertiary/20 flex items-center justify-center text-on-tertiary hover:bg-secondary-fixed transition-all" href="#"><span class="text-[16px] font-bold">tk</span></a>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-on-tertiary font-bold">Quick Links</p>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Home</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Our Story</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Products</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Science</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Contact</a>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-on-tertiary font-bold">Customer Care</p>
+<div class="flex flex-col gap-2">
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Shipping &amp; Delivery</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Returns &amp; Refunds</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Track Your Order</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-tertiary/70 hover:text-secondary-fixed transition-all" href="#">FAQ</a>
+</div>
+</div>
+<div class="space-y-4">
+<p class="font-label-md text-label-md text-on-tertiary font-bold">Join Our Community</p>
+<p class="font-body-md text-body-md text-on-tertiary/70">Get exclusive offers, skincare tips, and early access to new launches.</p>
+<div class="relative mt-4">
+<input class="w-full bg-transparent border-b border-on-tertiary/30 py-2 pr-10 text-on-tertiary placeholder:text-on-tertiary/40 focus:border-secondary-fixed focus:ring-0 outline-none transition-all" placeholder="Your email address" type="email"/>
+<button class="absolute right-0 top-1/2 -translate-y-1/2 text-on-tertiary hover:text-secondary-fixed transition-all">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-stack-lg border-t border-on-tertiary/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-[12px] text-on-tertiary/50">© 2024 Senara Skincare. Science-backed, nature-derived.</p>
+<div class="flex gap-stack-lg">
+<a class="font-body-md text-[12px] text-on-tertiary/50 hover:text-on-tertiary" href="#">Terms &amp; Conditions</a>
+<a class="font-body-md text-[12px] text-on-tertiary/50 hover:text-on-tertiary" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for the navbar on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-sm');
+            } else {
+                nav.classList.remove('shadow-sm');
+            }
+        });
+
+        // Add a subtle parallax effect to hero elements if needed
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 100;
+            const moveY = (e.clientY - window.innerHeight / 2) / 100;
+            const heroImage = document.querySelector('.hero-gradient');
+            if(heroImage) {
+               // Subtly shift backdrop or floating elements
+            }
+        });
+    </script>
+</body></html>

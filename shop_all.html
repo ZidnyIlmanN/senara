@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shop | SENARA Botanical Science</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "outline": "#747872",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e5e2de",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#b8ccb7",
+                        "secondary-fixed": "#ffddb7",
+                        "error": "#ba1a1a",
+                        "tertiary": "#242422",
+                        "surface-container-low": "#f6f3ef",
+                        "on-primary-fixed": "#0f1f12",
+                        "on-surface": "#1c1c19",
+                        "on-secondary-container": "#784d09",
+                        "primary-container": "#2d3e2f",
+                        "on-surface-variant": "#434842",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#e5e2dd",
+                        "on-tertiary-fixed-variant": "#474743",
+                        "surface-container-highest": "#e5e2de",
+                        "secondary": "#815513",
+                        "outline-variant": "#c3c8c0",
+                        "background": "#fcf9f5",
+                        "on-primary-container": "#96a995",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#3a3a37",
+                        "secondary-container": "#fdc175",
+                        "on-tertiary-container": "#a5a49f",
+                        "on-tertiary-fixed": "#1c1c19",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#b8ccb7",
+                        "secondary-fixed-dim": "#f7bc71",
+                        "on-secondary-fixed": "#2a1700",
+                        "surface-container": "#f0ede9",
+                        "primary-fixed": "#d4e8d3",
+                        "inverse-on-surface": "#f3f0ec",
+                        "surface": "#fcf9f5",
+                        "on-primary-fixed-variant": "#3a4b3b",
+                        "surface-tint": "#516352",
+                        "surface-bright": "#fcf9f5",
+                        "primary": "#18281a",
+                        "inverse-surface": "#31302e",
+                        "on-background": "#1c1c19",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#ebe8e4",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-dim": "#dcdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Manrope"],
+                        "headline-md": ["Playfair Display"],
+                        "headline-sm": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "body-lg": ["Manrope"],
+                        "label-sm": ["Manrope"],
+                        "display-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["36px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .filter-transition {
+            transition: max-height 0.3s ease-out, opacity 0.2s ease-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased">
+<!-- Top Navigation Bar -->
+<header class="bg-background/90 sticky top-0 z-50 backdrop-blur-sm border-b border-outline-variant/30">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="flex items-center gap-10">
+<a class="font-headline-md text-headline-md tracking-widest text-primary" href="#">SENARA</a>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-secondary border-b-2 border-secondary font-bold" href="#">Shop</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Philosophy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Science</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Stockists</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-low border-none rounded-full px-6 py-2 text-label-md focus:ring-1 focus:ring-primary w-64" placeholder="Search rituals..." type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+</div>
+<button class="hover:text-secondary transition-all active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="hover:text-secondary transition-all active:scale-95 duration-150 ease-in-out">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-stack-lg min-h-screen">
+<!-- Breadcrumbs & Header -->
+<nav class="mb-10">
+<ul class="flex items-center gap-2 font-label-sm text-label-sm text-outline">
+<li><a class="hover:text-primary" href="#">Home</a></li>
+<li class="flex items-center"><span class="material-symbols-outlined text-[14px]">chevron_right</span></li>
+<li class="text-primary font-bold">Shop</li>
+</ul>
+<h1 class="font-headline-md text-headline-md mt-4">Botanical Collections</h1>
+</nav>
+<div class="flex flex-col lg:flex-row gap-gutter">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-64 flex-shrink-0">
+<div class="sticky top-24 space-y-8">
+<!-- Filter Section: Product Type -->
+<div class="border-b border-outline-variant pb-6">
+<button class="flex justify-between items-center w-full group" onclick="toggleFilter('filter-type')">
+<span class="font-label-md text-label-md text-primary">Product Type</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-filter-type">expand_more</span>
+</button>
+<div class="mt-4 space-y-3 filter-transition overflow-hidden" id="filter-type">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Serums &amp; Essences</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Moisturizers</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Cleansers</span>
+</label>
+</div>
+</div>
+<!-- Filter Section: Skin Condition -->
+<div class="border-b border-outline-variant pb-6">
+<button class="flex justify-between items-center w-full group" onclick="toggleFilter('filter-condition')">
+<span class="font-label-md text-label-md text-primary">Skin Condition</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-filter-condition">expand_more</span>
+</button>
+<div class="mt-4 space-y-3 filter-transition overflow-hidden" id="filter-condition">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Hyperpigmentation</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Dullness</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Sensitivity</span>
+</label>
+</div>
+</div>
+<!-- Filter Section: Main Ingredients -->
+<div class="border-b border-outline-variant pb-6">
+<button class="flex justify-between items-center w-full group" onclick="toggleFilter('filter-ingredients')">
+<span class="font-label-md text-label-md text-primary">Main Ingredients</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="icon-filter-ingredients">expand_more</span>
+</button>
+<div class="mt-4 space-y-3 filter-transition overflow-hidden" id="filter-ingredients">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-primary">Pineapple Enzymes</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Hyaluronic Acid</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded-sm border-outline text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-primary">Vitamin C</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Canvas -->
+<div class="flex-1">
+<!-- Sorting & View Controls -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+<p class="font-label-sm text-label-sm text-outline">Showing 12 of 34 products</p>
+<div class="flex items-center gap-4">
+<select class="bg-transparent border-none font-label-md text-label-md text-primary focus:ring-0 cursor-pointer">
+<option>Sort by: Popularity</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Newest Rituals</option>
+</select>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="flex gap-2">
+<button class="text-primary"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="text-outline hover:text-primary"><span class="material-symbols-outlined">view_agenda</span></button>
+</div>
+</div>
+</div>
+<!-- Product Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-secondary text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Bestseller</span>
+</div>
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Pineapple Glow Essence" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="A minimalist luxury cosmetic glass bottle with gold pump dispenser, containing a bright pineapple-yellow glowing serum. The bottle is staged on a clean white surface with sharp shadows and bright studio lighting, reflecting a premium medical-grade botanical skincare aesthetic. High-end editorial photography with deep focus on textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDstlVNHcSK6Nm7oPM6snJCUNIihx1k0enwKwaXc_5nSwWdPh0UnX0vmBUj6zQFWZvAXNgAZQ-NCE1K-IXoQh4QcU5K6NVpbhBw1EmkV3cwPqEcL18wTLynL22U64lJGacJQuDUFD1pE2TdjvJnwpHJltdVsJ7ROLGuwvji2DzNNe64F-ahsmxHfiH6-m_BI03vRkg8J9yUJSUiYTGCPbx-UNGmdF64lro7jFzlXF1uxoXz3c13DOV0tGtVklmd5KHO-bD2FkrWfbA"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Pineapple Glow Essence</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Exfoliates gently with natural Bromelain for a radiant, glass-skin finish.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€58.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1 rounded-full">New Arrival</span>
+</div>
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Brightening Dew Serum" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Modern translucent dropper bottle containing a viscous, clear serum with tiny golden suspended particles. The lighting is soft and airy, highlighting the premium glass texture against a cream background. This image represents the pinnacle of botanical science luxury, clean and scientifically precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbrYlkMJOrUvGXjpkm6AUuWgVmlCdrwxMK_DpGoBZ7aMVLp8l5Bky5p3CURHLToqViDwmMklW-ZLUytTDjpOaWI1WZMqGwSI9RbwvKHUxt9iA5RqfcGwfBjaWiPGnwis1fDYOPM66mLu71RkB444_ltIdMKhaIg_alJvZ96KTjhs8dbooAg8EZQOktGg5lwwPMXmjU3rRVc61Z0XmbFgDoyQ2_wazkgSalNMk9-cNw7Jgz2trYwiTrELZIxMbMjH78Pk-Kg7Am5Bk"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Brightening Dew Serum</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Concentrated Vitamin C and Pineapple enzymes for brightening dark spots.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€72.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Enzyme Moisture Cloud" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Minimalist white ceramic tub with a gold lid, sitting on a marble slab. The lighting is warm and natural, creating a sense of luxury bathroom tranquility. Soft shadows emphasize the clean lines of the packaging. The scene feels serene and high-end skincare oriented." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnh4VP3K07hTTAxkUcpNabB1RTLJ0rJsK7B-Vv8tcz7q4Y5dQzKH84CrJk80c5JFA0lYamEentl7PyomMqwaXJRsA1JbFjC-8R8j-4wS4ogU_ZpAAPsbPaKPXzIETO6NPuvigCDwlXCjBoW6cEniqbgIjvnRaG40iqEFh-HrmUVi2iR3Ibpv1JpQRx6-lEE026NdgiD0Mcvou9ZilsapkZVy2hQtP1wPTy7tMRHR_ArJTG6dlDTLZ7Z_0E8fiYxKl2V-PVqPGYpCg"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Enzyme Moisture Cloud</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">A whipped cloud cream that locks in moisture while refining skin texture overnight.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€64.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-error text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Limited Edition</span>
+</div>
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Solar Shield SPF 50" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="A close up shot of a frosted glass bottle with a minimalist green leaf label. The product is surrounded by fresh pineapple slices and palm leaves, suggesting natural purity. The atmosphere is tropical luxury, bright and high-key with organic textures and professional botanical product lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtJJgQAWtvsY1mIywXl3RxaTiTAkoPAfu3yxsDfOurxw49jEuhT05Frzm-taA6kOxHa7ECB2EJnW2YnUEywkQ2padlUhgT3J9mR8jAX1AFR-LXCzu-ZvJ9ZxKqz0zUQ_30jN_Hq160H2c0av4hWsIgk1GMASBkrG0hZmdgva86qq4bV1oQc4IP18jT7HhSgm4x6K0cQNG0vrO8zudLPEISfLIv9ksXa4bnRi2aQ79aDmeFaYkyqA3reusoc1MnXDDzI-EynUy3yXI"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Solar Shield SPF 50</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Mineral sunscreen infused with pineapple antioxidants for cellular protection.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€42.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Bromelain Cleansing Balm" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Professional flat lay of high-end skincare serums in frosted green glass. The scene is illuminated by soft, diffused daylight through a window, casting gentle shadows. The palette is dominated by sage greens, creams, and whites, conveying a calm, science-backed botanical skincare vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdrVOYfCFBvjXw_jZv3s_uoSpiJNidbOid3UlbXau9xd042OnSu3iakD0ibMUelSUbX3covcq0f13HSr7ANawldgtfGONnLJSvhXam3idWbvHhnmNj2DAr3ksJ5xGCvY1i02fCLvP6HdNtNctM0slrojCIS_gxXm_ScO5UZVR8iGf42m_Nh3bYjdkXbCxVHd6pUhxA174q-rCAQ_CI8AS_cAnbCZXNh5DZ7jMbJt77lK152qgxQKNlcFrzWifYFAgVZ2wgOxO8COQ"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Bromelain Cleansing Balm</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">Melts makeup and impurities while gently resurfacing the skin with enzymes.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€38.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+<div class="absolute top-4 left-4 z-10">
+<span class="bg-secondary text-white font-label-sm text-label-sm px-3 py-1 rounded-full">Bestseller</span>
+</div>
+<div class="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+<img alt="Regenerative Night Oil" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" data-alt="Elegant tall glass vial containing a golden-yellow oil-based serum. A single drop is caught falling from the dropper, frozen in mid-air. The background is a soft, out-of-focus botanical garden. High-speed luxury photography, emphasizing the purity and organic origin of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx6v8Jt2gj0KWmJXBB_hnrnAjczdmW9gd0Uu_tqkCTKc4oAXQWewaLBeryShu45bl5ca3BLsu_-YkdvzCaRjWmK7i8WsbvyHlcEOsr_p2tp8VaTU5XvDr4FtHngZFgVDW-TBPs_-cwUNgOzj2MXicdczK8ZVp28ce9eNJKdgTeHwYmNiFBowNsbx2v5PXRhX8Ld9pmiQNIBnc3b-mYi7sEWIt5T0YdVuwbbUSI5UL3bvBmhZuOCrlSOglH502THMuEbVFccM4ADiY"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-sm text-headline-sm text-primary">Regenerative Night Oil</h3>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">favorite</span></button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">A potent blend of cold-pressed pineapple seed oil and Bakuchiol for deep repair.</p>
+<div class="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
+<span class="font-label-md text-label-md text-primary font-bold">€85.00</span>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                                    Add
+                                </button>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-section-gap flex justify-center">
+<nav class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-outline hover:border-primary hover:text-primary transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-primary hover:bg-surface-container font-label-md text-label-md transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-primary hover:bg-surface-container font-label-md text-label-md transition-colors">3</button>
+<span class="text-outline mx-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center border border-outline-variant text-outline hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary text-on-secondary mt-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="space-y-6">
+<span class="font-headline-sm text-headline-sm text-on-secondary">SENARA</span>
+<p class="font-body-md text-body-md text-on-secondary/80">Defining the future of luxury skincare through the lens of botanical molecular science.</p>
+<div class="flex gap-4">
+<a class="hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">share</span></a>
+<a class="hover:text-secondary-container transition-colors" href="#"><span class="material-symbols-outlined">mail</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold mb-6">Collections</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-secondary/80">
+<li><a class="hover:text-secondary-container transition-colors" href="#">Pineapple Glow</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Marine Bio-Repair</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Solar Protection</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Limited Editions</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold mb-6">Support</h4>
+<ul class="space-y-4 font-body-md text-body-md text-on-secondary/80">
+<li><a class="hover:text-secondary-container transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Skin Concierge</a></li>
+<li><a class="hover:text-secondary-container transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-md text-label-md font-bold mb-6">Newsletter</h4>
+<p class="font-body-md text-body-md text-on-secondary/80 mb-6">Join the SENARA circle for exclusive early access to new rituals.</p>
+<div class="relative">
+<input class="w-full bg-on-secondary/10 border-b border-on-secondary/30 text-on-secondary placeholder:text-on-secondary/50 focus:border-on-secondary focus:ring-0 py-2" placeholder="Your email" type="email"/>
+<button class="absolute right-0 bottom-2 text-on-secondary hover:text-secondary-container"><span class="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+</div>
+<div class="border-t border-on-secondary/10 px-margin-desktop py-8 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-sm text-label-sm text-on-secondary/60">© 2024 Senara Botanical Science. All rights reserved.</p>
+<div class="flex gap-8 font-label-sm text-label-sm text-on-secondary/60">
+<a class="hover:text-on-secondary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-on-secondary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+<script>
+        function toggleFilter(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                content.style.opacity = '0';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                content.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Initialize filters as open
+        document.addEventListener('DOMContentLoaded', () => {
+            const filters = ['filter-type', 'filter-condition', 'filter-ingredients'];
+            filters.forEach(id => {
+                const el = document.getElementById(id);
+                const icon = document.getElementById('icon-' + id);
+                el.style.maxHeight = el.scrollHeight + "px";
+                el.style.opacity = '1';
+                icon.style.transform = 'rotate(180deg)';
+            });
+        });
+    </script>
+</body></html>

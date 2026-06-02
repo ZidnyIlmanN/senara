@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AETHERIA | Your Ritual Bag</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#2a1700",
+                    "surface-container": "#f0ede9",
+                    "primary-fixed": "#d4e8d3",
+                    "inverse-on-surface": "#f3f0ec",
+                    "surface": "#fcf9f5",
+                    "on-primary-fixed-variant": "#3a4b3b",
+                    "surface-tint": "#516352",
+                    "secondary-container": "#fdc175",
+                    "on-tertiary-container": "#a5a49f",
+                    "on-tertiary-fixed": "#1c1c19",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-primary": "#b8ccb7",
+                    "secondary-fixed-dim": "#f7bc71",
+                    "on-background": "#1c1c19",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#ebe8e4",
+                    "on-secondary-fixed-variant": "#653e00",
+                    "surface-dim": "#dcdad6",
+                    "surface-bright": "#fcf9f5",
+                    "primary": "#18281a",
+                    "inverse-surface": "#31302e",
+                    "secondary-fixed": "#ffddb7",
+                    "error": "#ba1a1a",
+                    "tertiary": "#242422",
+                    "surface-container-low": "#f6f3ef",
+                    "on-primary-fixed": "#0f1f12",
+                    "on-surface": "#1c1c19",
+                    "on-secondary-container": "#784d09",
+                    "primary-container": "#2d3e2f",
+                    "on-surface-variant": "#434842",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#747872",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e5e2de",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#b8ccb7",
+                    "surface-container-highest": "#e5e2de",
+                    "secondary": "#815513",
+                    "outline-variant": "#c3c8c0",
+                    "background": "#fcf9f5",
+                    "on-primary-container": "#96a995",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#3a3a37",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#e5e2dd",
+                    "on-tertiary-fixed-variant": "#474743"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "stack-md": "16px",
+                    "section-gap": "120px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Playfair Display"],
+                    "label-md": ["Manrope"],
+                    "headline-md": ["Playfair Display"],
+                    "label-sm": ["Manrope"],
+                    "display-lg-mobile": ["Playfair Display"],
+                    "body-md": ["Manrope"],
+                    "display-lg": ["Playfair Display"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["36px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .overlay-active {
+            filter: grayscale(20%) brightness(50%) blur(2px);
+            pointer-events: none;
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary/30">
+<!-- BACKGROUND CONTENT (Shop All Page) -->
+<div class="fixed inset-0 z-0 overflow-hidden overlay-active">
+<!-- TopNavBar Mockup -->
+<header class="bg-surface border-b border-outline-variant/30 px-margin-desktop py-6 w-full flex justify-between items-center">
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary">AETHERIA</h1>
+<nav class="hidden md:flex gap-10">
+<a class="font-label-md text-label-md text-secondary border-b border-secondary" href="#">Shop</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Rituals</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Science</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-opacity duration-300" href="#">Journal</a>
+</nav>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-primary cursor-pointer">search</span>
+<span class="material-symbols-outlined text-primary cursor-pointer">shopping_bag</span>
+</div>
+</header>
+<!-- Main Product Grid Mockup (Shop All) -->
+<main class="max-w-container-max mx-auto px-margin-desktop py-16">
+<div class="flex justify-between items-end mb-12">
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-2">The Collection</p>
+<h2 class="font-display-lg text-display-lg text-primary">Shop All</h2>
+</div>
+<div class="flex gap-4 font-label-md text-label-md text-on-surface-variant">
+<span>Filter</span>
+<span>/</span>
+<span>Sort By</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-gutter">
+<!-- Background items -->
+<div class="bg-surface-container-low border border-outline-variant/20 p-8 flex flex-col items-center">
+<div class="w-full aspect-[3/4] mb-6 bg-white overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-80" data-alt="A luxury skincare bottle made of frosted heavy glass, featuring a minimalist white label with elegant black serif typography. The bottle is positioned centrally against a soft, creamy background with gentle, diffuse natural sunlight and subtle leaf shadows dancing across the surface. The aesthetic is extremely high-end, clean, and botanical-science focused." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1 text-center">Glow Serum</h3>
+<p class="font-label-md text-label-md text-secondary">€72.00</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/20 p-8 flex flex-col items-center">
+<div class="w-full aspect-[3/4] mb-6 bg-white overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-80" data-alt="A premium glass dispenser bottle filled with a translucent, golden liquid skincare essence. The bottle sits on a piece of rough, light-colored travertine stone, surrounded by delicate white flower petals. High-key lighting creates a bright, airy, and clinical-yet-organic atmosphere that feels expensive and efficacious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1 text-center">Night Recovery</h3>
+<p class="font-label-md text-label-md text-secondary">€85.00</p>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/20 p-8 flex flex-col items-center">
+<div class="w-full aspect-[3/4] mb-6 bg-white overflow-hidden">
+<img alt="" class="w-full h-full object-cover opacity-80" data-alt="A high-quality botanical skincare product in a sleek, emerald green glass jar with a gold metallic lid. The jar is set against a pure white background with a soft gradient shadow beneath it. The scene captures the intersection of natural purity and laboratory-grade scientific precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary mb-1 text-center">Hydrating Mist</h3>
+<p class="font-label-md text-label-md text-secondary">€45.00</p>
+</div>
+</div>
+</main>
+</div>
+<!-- SIDE DRAWER / CART MODAL -->
+<div class="fixed inset-0 z-50 flex justify-end">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-primary/20 backdrop-blur-sm cursor-pointer transition-opacity" onclick="window.history.back()"></div>
+<!-- Drawer Container -->
+<aside class="relative w-full max-w-md h-full bg-surface-container-low dark:bg-surface-container shadow-2xl flex flex-col transform transition-transform duration-500 ease-out translate-x-0">
+<!-- Header -->
+<div class="flex justify-between items-center px-8 py-8 border-b border-outline-variant/20">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary">Your Ritual Bag</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">2 Items Selected</p>
+</div>
+<button aria-label="Close cart" class="p-2 hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Cart Items List -->
+<div class="flex-1 overflow-y-auto scroll-hide px-8 py-6 space-y-8">
+<!-- Item 1: Pineapple Glow Essence -->
+<div class="flex gap-6 group">
+<div class="w-28 h-36 bg-white overflow-hidden flex-shrink-0 border border-outline-variant/10">
+<img alt="Pineapple Glow Essence" class="w-full h-full object-cover mix-blend-multiply scale-110" data-alt="Close up detail of a minimalist skincare bottle label with clear typography stating ingredients like pineapple enzymes and botanical extracts. The shot is high-key and bright with soft focus on the edges, emphasizing the luxurious and scientific nature of the product." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<div class="flex flex-col justify-between flex-1 py-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Pineapple Glow Essence</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">100ml / 3.4 fl oz</p>
+</div>
+<p class="font-label-md text-label-md text-primary">€58.00</p>
+</div>
+<div class="flex justify-between items-center">
+<!-- Quantity Stepper -->
+<div class="flex items-center border border-outline-variant/40 rounded-full h-9 px-1">
+<button class="w-8 h-8 flex items-center justify-center hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="w-8 text-center font-label-md text-label-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-colors uppercase tracking-widest border-b border-transparent hover:border-error">Remove</button>
+</div>
+</div>
+</div>
+<!-- Item 2: Brightening Dew Serum -->
+<div class="flex gap-6 group">
+<div class="w-28 h-36 bg-white overflow-hidden flex-shrink-0 border border-outline-variant/10">
+<img alt="Brightening Dew Serum" class="w-full h-full object-cover mix-blend-multiply scale-110" data-alt="Minimalist luxury skincare serum bottle featuring a glass dropper. The liquid inside is crystalline and clear, reflecting soft studio lighting. Set against a background of delicate cream linen fabric, suggesting a breathable and gentle morning ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<div class="flex flex-col justify-between flex-1 py-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-sm text-[18px] text-primary mb-1">Brightening Dew Serum</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">30ml / 1.0 fl oz</p>
+</div>
+<p class="font-label-md text-label-md text-primary">€72.00</p>
+</div>
+<div class="flex justify-between items-center">
+<!-- Quantity Stepper -->
+<div class="flex items-center border border-outline-variant/40 rounded-full h-9 px-1">
+<button class="w-8 h-8 flex items-center justify-center hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="w-8 text-center font-label-md text-label-md">1</span>
+<button class="w-8 h-8 flex items-center justify-center hover:text-secondary transition-colors"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-error transition-colors uppercase tracking-widest border-b border-transparent hover:border-error">Remove</button>
+</div>
+</div>
+</div>
+<!-- Suggested Addition (Micro-Interaction) -->
+<div class="mt-12 bg-surface-container p-6 border border-primary/5 rounded-lg">
+<p class="font-label-sm text-label-sm text-secondary uppercase tracking-widest mb-3">Complete the Ritual</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-white rounded-full flex-shrink-0 flex items-center justify-center border border-outline-variant/20">
+<img alt="Mini Mist" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-primary">Sample: Mineral Suncreen</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">+€0.00 (Gift)</p>
+</div>
+<button class="font-label-md text-label-md text-primary underline underline-offset-4 hover:text-secondary transition-colors">Add</button>
+</div>
+</div>
+</div>
+<!-- Summary Section -->
+<div class="bg-surface-container-high dark:bg-surface-container px-8 py-10 space-y-6">
+<div class="space-y-3">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Subtotal</span>
+<span>€130.00</span>
+</div>
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Shipping</span>
+<span class="italic text-on-tertiary-fixed-variant">Calculated at checkout</span>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-between items-center">
+<span class="font-headline-sm text-headline-sm text-primary">Total</span>
+<span class="font-headline-sm text-headline-sm text-primary">€130.00</span>
+</div>
+</div>
+<div class="space-y-4">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-5 tracking-widest uppercase hover:bg-primary/90 transition-all active:scale-[0.98] shadow-sm">
+                        Proceed to Checkout
+                    </button>
+<button class="w-full text-center py-2 group">
+<a class="font-label-md text-label-md text-on-surface-variant group-hover:text-secondary transition-colors inline-flex items-center gap-2" href="#">
+                            Continue Shopping
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</button>
+</div>
+<!-- Payment Trust Symbols -->
+<div class="flex justify-center gap-6 opacity-40 grayscale pt-2">
+<span class="material-symbols-outlined">payments</span>
+<span class="material-symbols-outlined">credit_card</span>
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        // Simple logic for quantity buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const icon = btn.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    if (icon.innerText === 'add' || icon.innerText === 'remove') {
+                        // Just a visual hint for now
+                        btn.classList.add('scale-90');
+                        setTimeout(() => btn.classList.remove('scale-90'), 100);
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

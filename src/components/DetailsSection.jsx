@@ -1,16 +1,19 @@
 "use client";
 
 import React from 'react'
+import { useLanguage } from '../context/LanguageContext'
 
 function DetailsSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="py-[80px] md:py-[120px] container">
       <div className="text-center mb-12">
         <h2 className="font-['Playfair_Display'] text-[36px] md:text-[42px] text-[#18281a] font-normal leading-[1.3] mb-4">
-          Harga & <span className="italic text-[#815513]">Kemitraan</span> Senara
+          {t('details.title')} <span className="italic text-[#815513]">{t('details.titleHighlight')}</span> {t('details.titleSuffix')}
         </h2>
         <p className="font-['Manrope'] text-[14px] text-[#434842] max-w-2xl mx-auto">
-          Pilih paket terbaik untuk kebutuhan kulitmu, atau bergabunglah menjadi mitra Senara dan dapatkan keuntungan berlipat.
+          {t('details.subtitle')}
         </p>
       </div>
 
@@ -21,23 +24,23 @@ function DetailsSection() {
           <div className="bg-[#fcf9f5] border border-[#e7dcc6] rounded-[20px] p-8 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a] mb-6 flex items-center gap-3">
               <span className="material-symbols-outlined text-[#bd8033]">sell</span>
-              Promo Bundling
+              {t('details.promo.title')}
             </h3>
             <ul className="space-y-4 font-['Manrope'] text-[14px] text-[#434842]">
               <li className="flex justify-between items-center border-b border-[#e7dcc6]/50 pb-3">
-                <span>Harga Eceran PAKET (5 item)</span>
+                <span>{t('details.promo.retail')}</span>
                 <strong className="text-[#18281a] font-semibold text-[15px]">Rp 495.000,-</strong>
               </li>
               <li className="flex justify-between items-center border-b border-[#e7dcc6]/50 pb-3">
-                <span>Harga DISTRIBUTOR / paket</span>
+                <span>{t('details.promo.distributor')}</span>
                 <strong className="text-[#18281a] font-semibold text-[15px]">Rp 322.000,-</strong>
               </li>
               <li className="flex justify-between items-center border-b border-[#e7dcc6]/50 pb-3">
-                <span>Harga AGEN / paket</span>
+                <span>{t('details.promo.agent')}</span>
                 <strong className="text-[#18281a] font-semibold text-[15px]">Rp 396.000,-</strong>
               </li>
               <li className="flex justify-between items-center pb-1">
-                <span>Harga RESELLER / paket</span>
+                <span>{t('details.promo.reseller')}</span>
                 <strong className="text-[#18281a] font-semibold text-[15px]">Rp 445.500,-</strong>
               </li>
             </ul>
@@ -47,7 +50,7 @@ function DetailsSection() {
           <div className="bg-[#fcf9f5] border border-[#e7dcc6] rounded-[20px] p-8 shadow-sm hover:shadow-md transition-shadow">
             <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a] mb-6 flex items-center gap-3">
               <span className="material-symbols-outlined text-[#bd8033]">shopping_bag</span>
-              Harga Satuan
+              {t('details.unit.title')}
             </h3>
             <ul className="space-y-4 font-['Manrope'] text-[14px] text-[#434842]">
               <li className="flex justify-between items-center border-b border-[#e7dcc6]/50 pb-3">
@@ -80,10 +83,10 @@ function DetailsSection() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#bd8033] rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/3"></div>
           
           <h3 className="font-['Playfair_Display'] text-[28px] md:text-[32px] mb-3 relative z-10">
-            Leveling & Ketentuan <br className="hidden md:block"/><span className="italic text-[#d7a357]">Kemitraan Senara</span>
+            {t('details.partnership.title')} <br className="hidden md:block"/><span className="italic text-[#d7a357]">{t('details.partnership.titleHighlight')}</span>
           </h3>
           <p className="font-['Manrope'] text-[14px] text-gray-300 mb-10 relative z-10 max-w-[90%] leading-[1.6]">
-            Bergabunglah bersama keluarga besar Senara dan dapatkan margin keuntungan spesial khusus untuk mitra kami.
+            {t('details.partnership.subtitle')}
           </p>
 
           <div className="flex-1 flex flex-col justify-center space-y-5 relative z-10">
@@ -124,10 +127,10 @@ function DetailsSection() {
           <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
             <div className="font-['Manrope'] text-[12px] text-gray-400 flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">support_agent</span>
-              Hubungi admin untuk pendaftaran kemitraan
+              {t('details.partnership.contactAdmin')}
             </div>
             <a href="https://wa.me/6281318141050" target="_blank" rel="noreferrer" className="bg-[#bd8033] hover:bg-[#a66c28] text-white px-6 py-3 rounded-full font-['Manrope'] text-[13px] font-semibold tracking-wide transition-colors flex items-center gap-2 w-full sm:w-auto justify-center">
-              Daftar Sekarang
+              {t('details.partnership.register')}
               <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
             </a>
           </div>

@@ -1,19 +1,24 @@
+"use client";
+
 import React from 'react'
 import { Button } from './ui'
+import { useLanguage } from '../context/LanguageContext'
 
 function StorySection() {
+  const { t } = useLanguage()
+
   return <section className="story">
     <div className="story-copy">
-      <small>OUR STORY</small>
-      <h2>Rooted in Nature.<br/>Backed by Science.</h2>
+      <small>{t('story.label')}</small>
+      <h2>{t('story.headline1')}<br/>{t('story.headline2')}</h2>
       <div className="gold-line"/>
-      <p>Senara is a premium skincare brand that harnesses the power of pineapple-derived actives and botanical extracts to deliver gentle yet effective care.</p>
-      <p>Every formula is thoughtfully crafted with clean, skin-loving ingredients, and clinically tested for visible results.</p>
-      <Button outline>Learn More About Us</Button>
+      <p>{t('story.p1')}</p>
+      <p>{t('story.p2')}</p>
+      <Button outline>{t('story.cta')}</Button>
     </div>
     <div className="story-visual">
       <img src="/images/senara-story.png" alt="Pineapple and clinical glassware"/>
-      <div className="seal">NATURE MEETS<br/><b>{'\u2727'}</b><br/>SCIENCE</div>
+      <div className="seal">{t('story.seal1')}<br/><b>{'\u2727'}</b><br/>{t('story.seal2')}</div>
     </div>
   </section>
 }

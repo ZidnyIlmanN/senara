@@ -4,19 +4,23 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Icon, Logo } from './ui'
 import { useCart } from './CartContext'
-
-const navLinks = [
-  { name: 'Shop', href: '/shop' },
-  { name: 'Our Story', href: '#' },
-  { name: 'Ingredients', href: '#' },
-  { name: 'Science', href: '#' },
-  { name: 'Contact', href: '#' }
-]
+import { useLanguage } from '../context/LanguageContext'
+import SearchModal from './SearchModal'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { totalItems, openCart } = useCart()
+  const { language, setLanguage, t } = useLanguage()
+
+  const navLinks = [
+    { name: t('nav.shop'), href: '/shop' },
+    { name: t('nav.about'), href: '/about' },
+    { name: t('nav.ingredients'), href: '#' },
+    { name: t('nav.science'), href: '#' },
+    { name: t('nav.contact'), href: '#' }
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +40,22 @@ function Navbar() {
             {navLinks.map(link => <Link key={link.name} href={link.href}>{link.name}</Link>)}
           </div>
           <div className="nav-actions">
-            <Icon name="search"/>
+            {/* Language Switcher */}
+            <div className="flex items-center gap-0.5 bg-[#f0ede9] rounded-full p-[3px] border border-[#c3c8c0]/30">
+              <button
+                onClick={() => setLanguage('id')}
+                className={`px-2.5 py-1 rounded-full text-[11px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'id' ? 'bg-[#18281a] text-white shadow-sm' : 'text-[#434842] hover:text-[#18281a]'}`}
+              >
+                ID
+              </button>
+              <button
+                onClick={() => setLanguage('en')}
+                className={`px-2.5 py-1 rounded-full text-[11px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'en' ? 'bg-[#18281a] text-white shadow-sm' : 'text-[#434842] hover:text-[#18281a]'}`}
+              >
+                EN
+              </button>
+            </div>
+            <span className="cursor-pointer" onClick={() => setIsSearchOpen(true)}><Icon name="search"/></span>
             <Icon name="user"/>
             <span className="cart cursor-pointer" onClick={openCart}><Icon name="bag"/><i>{totalItems}</i></span>
             <span className="hamb cursor-pointer z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
@@ -48,6 +67,21 @@ function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div className={`fixed inset-0 bg-[#fffdf7] z-[45] transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center gap-8 ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
+        {/* Mobile Language Switcher */}
+        <div className="flex items-center gap-1 bg-[#f0ede9] rounded-full p-[3px] border border-[#c3c8c0]/30 mb-4">
+          <button
+            onClick={() => setLanguage('id')}
+            className={`px-4 py-2 rounded-full text-[13px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'id' ? 'bg-[#18281a] text-white shadow-sm' : 'text-[#434842] hover:text-[#18281a]'}`}
+          >
+            ID
+          </button>
+          <button
+            onClick={() => setLanguage('en')}
+            className={`px-4 py-2 rounded-full text-[13px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'en' ? 'bg-[#18281a] text-white shadow-sm' : 'text-[#434842] hover:text-[#18281a]'}`}
+          >
+            EN
+          </button>
+        </div>
         {navLinks.map(link => (
           <Link 
             key={link.name} 
@@ -59,6 +93,9 @@ function Navbar() {
           </Link>
         ))}
       </div>
+
+      {/* Search Modal */}
+      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
     </>
   )
 }

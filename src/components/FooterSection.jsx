@@ -1,37 +1,39 @@
+"use client";
+
 import React from 'react'
 import { Logo } from './ui'
-
-const quickLinks = ['Home', 'Our Story', 'Products', 'Ingredients', 'Science', 'Contact']
-const careLinks = ['Shipping & Delivery', 'Returns & Refunds', 'Track Your Order', 'Privacy Policy', 'Terms & Conditions', 'FAQ']
-const socials = ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'Email']
-
 import Link from 'next/link'
+import { useLanguage } from '../context/LanguageContext'
 
 function FooterList({ title, links }) {
   return <div className="footer-list"><h4>{title}</h4>{links.map(link => <Link key={link} href={link === 'Products' ? '/shop' : '#'}>{link}</Link>)}</div>
 }
 
 function FooterSection() {
+  const { t } = useLanguage()
+
+  const socials = ['Instagram', 'Facebook', 'TikTok', 'YouTube', 'Email']
+
   return <footer>
     <div className="footer-watermark">SENARA</div>
     <div className="container footer-grid">
       <div className="brand-col">
         <Logo light/>
-        <p>Pineapple-powered skincare.<br/>Thoughtful formulas for a<br/>naturally radiant you.</p>
+        <p>{t('footer.tagline').split('\n')[0]}<br/>{t('footer.tagline').split('\n')[1]}<br/>{t('footer.tagline').split('\n')[2]}</p>
         <div className="social-round"><span>ig</span><span>f</span><span>tk</span><span>yt</span></div>
       </div>
-      <FooterList title="Quick Links" links={quickLinks}/>
-      <FooterList title="Customer Care" links={careLinks}/>
-      <FooterList title="Follow Us" links={socials}/>
+      <FooterList title={t('footer.quickLinks')} links={t('footer.quickLinksItems')}/>
+      <FooterList title={t('footer.customerCare')} links={t('footer.customerCareItems')}/>
+      <FooterList title={t('footer.followUs')} links={socials}/>
       <div className="newsletter">
-        <h4>Join Our Community</h4>
-        <p>Get exclusive offers, skincare tips,<br/>and early access to new launches.</p>
-        <label><input placeholder="Your email address"/><button>{'\u2192'}</button></label>
+        <h4>{t('footer.newsletter')}</h4>
+        <p>{t('footer.newsletterDesc').split('\n')[0]}<br/>{t('footer.newsletterDesc').split('\n')[1]}</p>
+        <label><input placeholder={t('footer.emailPlaceholder')}/><button>{'\u2192'}</button></label>
       </div>
     </div>
     <div className="container footer-bottom">
-      <span>{'\u00a9'} 2026 Senara. All rights reserved.</span>
-      <span>Terms & Conditions&nbsp;&nbsp;&nbsp;&nbsp;Privacy Policy</span>
+      <span>{t('footer.copyright')}</span>
+      <span>{t('footer.terms')}&nbsp;&nbsp;&nbsp;&nbsp;{t('footer.privacy')}</span>
     </div>
   </footer>
 }

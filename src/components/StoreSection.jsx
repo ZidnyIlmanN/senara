@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useCart } from './CartContext'
+import { useLanguage } from '../context/LanguageContext'
 
 const products = [
   {
@@ -11,7 +12,7 @@ const products = [
     name: 'Brightening Face Wash',
     desc: 'Pineapple Enzyme Cleanser',
     price: 87000,
-    image: '/images/Product/senara-facewash.png'
+    image: '/images/Product/senara-facewash.webp'
   },
   {
     id: 'ananas-glow-whitening-serum',
@@ -19,7 +20,7 @@ const products = [
     name: 'Ananas Glow Serum',
     desc: 'Whitening + Vitamin C Booster',
     price: 127000,
-    image: '/images/Product/senara-serum.png'
+    image: '/images/Product/senara-serum.webp'
   },
   {
     id: 'glow-toner',
@@ -27,7 +28,7 @@ const products = [
     name: 'Glow Toner',
     desc: 'AHA + Pineapple Exfoliant',
     price: 87000,
-    image: '/images/Product/senara-toner.png'
+    image: '/images/Product/senara-toner.webp'
   },
   {
     id: 'lightening-day-cream',
@@ -35,7 +36,7 @@ const products = [
     name: 'Lightening Day Cream',
     desc: 'SPF Brightening Moisturizer',
     price: 109000,
-    image: '/images/Product/senara-daycream.png'
+    image: '/images/Product/senara-daycream.webp'
   }
 ]
 
@@ -50,7 +51,7 @@ function ProductCard({ product }) {
           </span>
         )}
         <button className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-          <span className="material-symbols-outlined text-[#18281a]" style={{fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24"}}>favorite</span>
+          <span className="material-symbols-outlined text-[#18281a]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>favorite</span>
         </button>
         <img src={product.image} alt={product.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
       </div>
@@ -60,11 +61,11 @@ function ProductCard({ product }) {
           <p className="font-['Manrope'] text-[12px] text-[#434842] leading-[1.2] tracking-[0.02em] font-medium">{product.desc}</p>
           <p className="mt-2 font-['Manrope'] text-[14px] text-[#18281a] leading-[1.2] tracking-[0.05em] font-semibold">Rp {product.price.toLocaleString('id-ID')}</p>
         </div>
-        <button 
+        <button
           onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}
           className="bg-[#18281a] text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#815513] transition-colors flex-shrink-0"
         >
-          <span className="material-symbols-outlined" style={{fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24"}}>add</span>
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>add</span>
         </button>
       </div>
     </div>
@@ -72,16 +73,18 @@ function ProductCard({ product }) {
 }
 
 function StoreSection() {
+  const { t } = useLanguage()
+
   return (
     <section className="py-[80px] md:py-[120px] container">
       <div className="flex justify-between items-end mb-8">
         <div>
           <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] font-normal leading-[1.3]">
-            Our <span className="italic text-[#815513]">Best</span> Sellers
+            {t('store.title_prefix')} <span className="italic text-[#815513]">{t('store.title_highlight')}</span> {t('store.title_suffix')}
           </h2>
         </div>
         <Link href="/shop" className="font-['Manrope'] text-[14px] font-semibold tracking-[0.05em] text-[#434842] border-b border-transparent hover:border-[#815513] transition-all flex items-center gap-1 group">
-          View All Products
+          {t('store.viewAll')}
           <span className="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
         </Link>
       </div>

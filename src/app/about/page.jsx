@@ -580,16 +580,17 @@ export default function AboutPage() {
                                                 {/* Mobile Inline Gallery (visible only on mobile) */}
                                                 {pointMedia.length > 0 && (
                                                     <div className="mt-5 lg:hidden">
+                                                        {/* Konteks Dokumentasi (Luar Gambar) */}
+                                                        {currentMobileMedia?.caption && (
+                                                            <div className="bg-[#f8e8d5] px-4 py-3 rounded-t-xl w-full border-b border-[#e1d2bc]">
+                                                                <p className="font-['Manrope'] text-[13px] font-medium text-[#2a1700] text-center leading-relaxed">
+                                                                    {currentMobileMedia.caption}
+                                                                </p>
+                                                            </div>
+                                                        )}
+
                                                         {/* Main media viewer */}
-                                                        <div className="relative rounded-xl overflow-hidden bg-[#f0ede9] aspect-[4/3] shadow-sm group">
-                                                            {/* Konteks Dokumentasi (Overlay) */}
-                                                            {currentMobileMedia?.caption && (
-                                                                <div className="absolute top-0 inset-x-0 z-10 bg-gradient-to-b from-black/60 to-transparent pt-3 pb-6 px-4 pointer-events-none flex justify-center">
-                                                                    <p className="font-['Manrope'] text-[13px] font-medium text-[#f6f3ef] drop-shadow-md text-center line-clamp-2">
-                                                                        {currentMobileMedia.caption}
-                                                                    </p>
-                                                                </div>
-                                                            )}
+                                                        <div className={`relative overflow-hidden bg-[#f0ede9] aspect-[4/3] shadow-sm group ${currentMobileMedia?.caption ? 'rounded-b-xl' : 'rounded-xl'}`}>
 
                                                             {currentMobileMedia && (
                                                                 currentMobileMedia.type === 'video' ? (

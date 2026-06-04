@@ -23,8 +23,8 @@ const id = {
   store: {
     title_prefix: 'Koleksi',
     title_highlight: 'Terlaris',
-    title_suffix: 'SENARA',
-    viewAll: 'Lihat Seluruh Produk',
+    title_suffix: 'Kami',
+    viewAll: 'Lihat Semua Produk',
   },
 
   // ============ STORY SECTION (Landing) ============

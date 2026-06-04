@@ -317,6 +317,7 @@ export default function AboutPage() {
                             setScrollLeftState(carouselRef.current.scrollLeft);
                         }}
                         onTouchEnd={() => setIsDragging(false)}
+                        onTouchCancel={() => setIsDragging(false)}
                         onTouchMove={(e) => {
                             if (!isDragging) return;
                             const x = e.touches[0].pageX - carouselRef.current.offsetLeft;
@@ -794,13 +795,13 @@ export default function AboutPage() {
                 </section>
 
                 {/* CTA Newsletter */}
-                <section className="bg-[#815513]/5 py-[32px] border-y border-[#c3c8c0]/30">
-                    <div className="px-[64px] max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                        <div>
+                <section className="bg-[#815513]/5 py-[32px] border-y border-[#c3c8c0]/30 overflow-hidden">
+                    <div className="px-6 md:px-[64px] max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                        <div className="w-full">
                             <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{t('aboutPage.newsletter.title')}</h3>
                             <p className="font-['Manrope'] text-[14px] text-[#747872]">{t('aboutPage.newsletter.desc')}</p>
                         </div>
-                        <form className="flex w-full md:w-auto gap-2" onSubmit={(e) => e.preventDefault()}>
+                        <form className="flex flex-col sm:flex-row w-full md:w-auto gap-2" onSubmit={(e) => e.preventDefault()}>
                             <input className="bg-white border-[#c3c8c0] focus:border-[#815513] focus:ring-[#815513] rounded-sm px-4 py-3 flex-grow md:w-80 font-['Manrope'] text-[16px]" placeholder={t('aboutPage.newsletter.placeholder')} type="email" />
                             <button className="bg-[#18281a] text-white px-6 py-3 font-['Manrope'] text-[14px] font-semibold hover:bg-[#815513] transition-colors uppercase tracking-wider" type="submit">{t('aboutPage.newsletter.subscribe')}</button>
                         </form>

@@ -150,18 +150,25 @@ export default function AboutPage() {
 
     // Initial center position for carousel
     useEffect(() => {
+        let lastWidth = window.innerWidth;
         const initScroll = () => {
             if (carouselRef.current) {
                 carouselRef.current.scrollLeft = carouselRef.current.scrollWidth / 3;
             }
         };
+        const handleResize = () => {
+            if (window.innerWidth !== lastWidth) {
+                lastWidth = window.innerWidth;
+                initScroll();
+            }
+        };
         // Wait briefly for layout and images to paint
         const timer = setTimeout(initScroll, 150);
-        window.addEventListener('resize', initScroll);
+        window.addEventListener('resize', handleResize);
         
         return () => {
             clearTimeout(timer);
-            window.removeEventListener('resize', initScroll);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -320,8 +327,8 @@ export default function AboutPage() {
                             const walk = (x - startX) * 2;
                             carouselRef.current.scrollLeft = scrollLeftState - walk;
                             
-                            if (walk > 0) directionRef.current = -1; // Dragged right -> auto move right
-                            else if (walk < 0) directionRef.current = 1; // Dragged left -> auto move left
+                            if (walk > 5) directionRef.current = -1; // Dragged right -> auto move right
+                            else if (walk < -5) directionRef.current = 1; // Dragged left -> auto move left
                         }}
                         onTouchStart={(e) => {
                             setIsDragging(true);
@@ -336,8 +343,8 @@ export default function AboutPage() {
                             const walk = (x - startX) * 2;
                             carouselRef.current.scrollLeft = scrollLeftState - walk;
                             
-                            if (walk > 0) directionRef.current = -1;
-                            else if (walk < 0) directionRef.current = 1;
+                            if (walk > 5) directionRef.current = -1;
+                            else if (walk < -5) directionRef.current = 1;
                         }}
                     >
                         <div className="flex gap-6 w-max mx-auto items-center pointer-events-none">

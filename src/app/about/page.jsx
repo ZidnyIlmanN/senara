@@ -127,18 +127,25 @@ export default function AboutPage() {
     const requestRef = useRef(null);
 
     // Auto-scroll animation loop for the carousel
+    const fractionalAccumulator = useRef(0);
+
     useEffect(() => {
         const animate = () => {
             if (carouselRef.current && !isDragging) {
-                carouselRef.current.scrollLeft += directionRef.current * 0.5;
-                
-                // Infinite loop handling (assuming 3 sets of images)
-                const singleSetWidth = carouselRef.current.scrollWidth / 3;
-                if (singleSetWidth > 0) {
-                    if (directionRef.current === 1 && carouselRef.current.scrollLeft >= singleSetWidth * 2) {
-                        carouselRef.current.scrollLeft -= singleSetWidth;
-                    } else if (directionRef.current === -1 && carouselRef.current.scrollLeft <= 0) {
-                        carouselRef.current.scrollLeft += singleSetWidth;
+                fractionalAccumulator.current += 0.5;
+                if (fractionalAccumulator.current >= 1) {
+                    const pixels = Math.floor(fractionalAccumulator.current);
+                    fractionalAccumulator.current -= pixels;
+                    carouselRef.current.scrollLeft += directionRef.current * pixels;
+                    
+                    // Infinite loop handling (assuming 3 sets of images)
+                    const singleSetWidth = carouselRef.current.scrollWidth / 3;
+                    if (singleSetWidth > 0) {
+                        if (directionRef.current === 1 && carouselRef.current.scrollLeft >= singleSetWidth * 2) {
+                            carouselRef.current.scrollLeft -= singleSetWidth;
+                        } else if (directionRef.current === -1 && carouselRef.current.scrollLeft <= 0) {
+                            carouselRef.current.scrollLeft += singleSetWidth;
+                        }
                     }
                 }
             }

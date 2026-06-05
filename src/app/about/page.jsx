@@ -134,10 +134,12 @@ export default function AboutPage() {
                 
                 // Infinite loop handling (assuming 3 sets of images)
                 const singleSetWidth = carouselRef.current.scrollWidth / 3;
-                if (directionRef.current === 1 && carouselRef.current.scrollLeft >= singleSetWidth * 2) {
-                    carouselRef.current.scrollLeft -= singleSetWidth;
-                } else if (directionRef.current === -1 && carouselRef.current.scrollLeft <= 0) {
-                    carouselRef.current.scrollLeft += singleSetWidth;
+                if (singleSetWidth > 0) {
+                    if (directionRef.current === 1 && carouselRef.current.scrollLeft >= singleSetWidth * 2) {
+                        carouselRef.current.scrollLeft -= singleSetWidth;
+                    } else if (directionRef.current === -1 && carouselRef.current.scrollLeft <= 0) {
+                        carouselRef.current.scrollLeft += singleSetWidth;
+                    }
                 }
             }
             requestRef.current = requestAnimationFrame(animate);
@@ -148,9 +150,19 @@ export default function AboutPage() {
 
     // Initial center position for carousel
     useEffect(() => {
-        if (carouselRef.current) {
-            carouselRef.current.scrollLeft = carouselRef.current.scrollWidth / 3;
-        }
+        const initScroll = () => {
+            if (carouselRef.current) {
+                carouselRef.current.scrollLeft = carouselRef.current.scrollWidth / 3;
+            }
+        };
+        // Wait briefly for layout and images to paint
+        const timer = setTimeout(initScroll, 150);
+        window.addEventListener('resize', initScroll);
+        
+        return () => {
+            clearTimeout(timer);
+            window.removeEventListener('resize', initScroll);
+        };
     }, []);
 
     useEffect(() => {
@@ -251,7 +263,7 @@ export default function AboutPage() {
             <main>
                 {/* Hero Section */}
                 <section className="relative bg-[#fcf9f5] pt-24 pb-32 overflow-hidden">
-                    <div className="max-w-[1280px] mx-auto px-[64px] relative z-10 flex flex-col items-center text-center">
+                    <div className="container relative z-10 flex flex-col items-center text-center">
                         {/* Badge */}
                         <div className="inline-block bg-[#f8e8d5] text-[#2a1700] px-6 py-2 rounded-full font-['Manrope'] text-[14px] font-semibold tracking-wider mb-8">
                             {t('aboutPage.badge')}
@@ -367,7 +379,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* Our Roots Section */}
-                <section className="py-[120px] px-[64px] max-w-[1280px] mx-auto" id="roots">
+                <section className="py-[120px] container" id="roots">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[120px] items-center">
                         <div className="reveal-on-scroll">
                             <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 uppercase tracking-wider">{t('aboutPage.roots.label')}</span>
@@ -403,7 +415,7 @@ export default function AboutPage() {
 
                 {/* Our Process (Bento Grid Style) */}
                 <section className="bg-[#f6f3ef] py-[120px]">
-                    <div className="px-[64px] max-w-[1280px] mx-auto">
+                    <div className="container">
                         <div className="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
                             <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{t('aboutPage.process.label')}</span>
                             <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{t('aboutPage.process.title')}</h2>
@@ -482,10 +494,10 @@ export default function AboutPage() {
                         <img className="w-full h-full object-cover" alt="Sustainability Landscape" src="/images/About/senara-sustainability.webp" />
                         <div className="absolute inset-0 bg-[#18281a]/70 mix-blend-multiply"></div>
                     </div>
-                    <div className="relative z-10 px-[64px] max-w-[1280px] mx-auto text-white">
+                    <div className="relative z-10 container text-white">
                         <div className="max-w-3xl">
                             <span className="font-['Manrope'] text-[14px] font-semibold text-white block mb-4 tracking-wider">{t('aboutPage.sustainability.label')}</span>
-                            <h2 className="font-['Playfair_Display'] text-[64px] leading-tight mb-8">{t('aboutPage.sustainability.title')}</h2>
+                            <h2 className="font-['Playfair_Display'] text-[36px] md:text-[64px] leading-tight mb-8">{t('aboutPage.sustainability.title')}</h2>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
                                 <div className="reveal-on-scroll">
                                     <h4 className="font-['Playfair_Display'] text-[24px] mb-2 text-white">{t('aboutPage.sustainability.feature1_title')}</h4>
@@ -501,7 +513,7 @@ export default function AboutPage() {
                 </section>
 
                 {/* Meet the Founders */}
-                <section className="py-[120px] px-[64px] max-w-[1280px] mx-auto">
+                <section className="py-[120px] container">
                     <div className="flex flex-col md:flex-row gap-[120px] items-center">
                         <div className="w-full md:w-1/2 reveal-on-scroll">
                             <div className="aspect-[4/5] bg-[#f0ede9] overflow-hidden rounded-sm relative group">
@@ -526,7 +538,7 @@ export default function AboutPage() {
 
                 {/* Our Story Line Section (Scroll Spy) */}
                 <section className="py-[120px] bg-[#f6f3ef]" id="evolution">
-                    <div className="px-[64px] max-w-[1280px] mx-auto">
+                    <div className="container">
                         <div className="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
                             <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 uppercase tracking-wider">{t('aboutPage.timeline.label')}</span>
                             <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{t('aboutPage.timeline.title')}</h2>
@@ -797,7 +809,7 @@ export default function AboutPage() {
 
                 {/* CTA Newsletter */}
                 <section className="bg-[#815513]/5 py-[32px] border-y border-[#c3c8c0]/30 overflow-hidden">
-                    <div className="px-6 md:px-[64px] max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+                    <div className="container flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
                         <div className="w-full">
                             <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{t('aboutPage.newsletter.title')}</h3>
                             <p className="font-['Manrope'] text-[14px] text-[#747872]">{t('aboutPage.newsletter.desc')}</p>

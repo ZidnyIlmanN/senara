@@ -9,6 +9,19 @@ export default function CartModal() {
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
+  const handleCheckout = () => {
+    if (cartItems.length === 0) return;
+    
+    let message = "Halo SENARA, saya ingin melakukan pemesanan untuk produk berikut:\n\n";
+    cartItems.forEach(item => {
+      message += `- ${item.name} (x${item.qty})\n`;
+    });
+    message += `\nTotal Pesanan: Rp ${totalPrice.toLocaleString('id-ID')}\n\nMohon informasi selanjutnya untuk proses pembayaran dan pengiriman. Terima kasih.`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/6282129226886?text=${encodedMessage}`, '_blank');
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -101,7 +114,7 @@ export default function CartModal() {
             </div>
           </div>
           <div className="space-y-4">
-            <button className="w-full bg-[#18281a] text-white text-sm font-semibold py-5 tracking-widest uppercase hover:bg-[#18281a]/90 transition-all active:scale-[0.98] shadow-sm">
+            <button onClick={handleCheckout} className="w-full bg-[#18281a] text-white text-sm font-semibold py-5 tracking-widest uppercase hover:bg-[#18281a]/90 transition-all active:scale-[0.98] shadow-sm">
                 {t('cart.checkout')}
             </button>
             <button onClick={closeCart} className="w-full text-center py-2 group">

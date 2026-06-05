@@ -1,10 +1,10 @@
 const en = {
   // ============ NAVBAR ============
   nav: {
+    home: 'Home',
     shop: 'Shop',
     about: 'About Us',
     ingredients: 'Ingredients',
-    science: 'Science',
     contact: 'Contact',
   },
 

@@ -1,10 +1,10 @@
 const id = {
   // ============ NAVBAR ============
   nav: {
+    home: 'Beranda',
     shop: 'Belanja',
     about: 'Tentang Kami',
     ingredients: 'Bahan',
-    science: 'Sains',
     contact: 'Kontak',
   },
 

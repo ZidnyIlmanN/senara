@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Icon, Logo } from './ui'
 import { useCart } from './CartContext'
 import { useLanguage } from '../context/LanguageContext'
@@ -14,11 +15,13 @@ function Navbar() {
   const { totalItems, openCart } = useCart()
   const { language, setLanguage, t } = useLanguage()
 
+  const pathname = usePathname()
+
   const navLinks = [
+    { name: t('nav.home'), href: '/' },
     { name: t('nav.shop'), href: '/shop' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.ingredients'), href: '#' },
-    { name: t('nav.science'), href: '#' },
     { name: t('nav.contact'), href: '#' }
   ]
 
@@ -37,7 +40,15 @@ function Navbar() {
         <div className="container navbar-inner">
           <Link href="/" onClick={() => setMobileMenuOpen(false)}><Logo /></Link>
           <div className="nav-links">
-            {navLinks.map(link => <Link key={link.name} href={link.href}>{link.name}</Link>)}
+            {navLinks.map(link => (
+              <Link 
+                key={link.name} 
+                href={link.href}
+                className={pathname === link.href ? 'active' : ''}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
           <div className="nav-actions">
             {/* Language Switcher */}
@@ -86,7 +97,7 @@ function Navbar() {
           <Link 
             key={link.name} 
             href={link.href}
-            className="font-['Playfair_Display'] text-[32px] text-[#18281a] hover:text-[#bd8033] transition-colors"
+            className={`font-['Playfair_Display'] text-[32px] hover:text-[#bd8033] transition-colors ${pathname === link.href ? 'text-[#bd8033]' : 'text-[#18281a]'}`}
             onClick={() => setMobileMenuOpen(false)}
           >
             {link.name}

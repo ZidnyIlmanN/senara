@@ -93,6 +93,7 @@ export default function ShopPage() {
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [sortBy, setSortBy] = useState('popularity');
+  const [viewMode, setViewMode] = useState('grid');
 
   const toggleFilter = (id) => {
     setOpenFilters(prev => ({ ...prev, [id]: !prev[id] }));
@@ -235,24 +236,34 @@ export default function ShopPage() {
           </aside>
           {/* Product Canvas */}
           <div className="flex-1">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-              <p className="font-label-sm text-label-sm text-outline">{t('shop.showing')} {filteredProducts.length} {t('shop.products')}</p>
-              <div className="flex items-center gap-4">
-                <select className="bg-transparent border-none font-label-md text-label-md text-primary focus:ring-0 cursor-pointer" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 w-full">
+              <p className="font-label-sm text-label-sm text-outline shrink-0">{t('shop.showing')} {filteredProducts.length} {t('shop.products')}</p>
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
+                <select className="bg-transparent border-none font-label-md text-label-md text-primary focus:ring-0 cursor-pointer min-w-0 flex-1 sm:flex-none" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                   <option value="popularity">{t('shop.sortPopularity')}</option>
                   <option value="priceLow">{t('shop.sortPriceLow')}</option>
                   <option value="priceHigh">{t('shop.sortPriceHigh')}</option>
                   <option value="newest">{t('shop.sortNewest')}</option>
                 </select>
-                <div className="h-4 w-[1px] bg-outline-variant"></div>
-                <div className="flex gap-2">
-                  <button className="text-primary"><span className="material-symbols-outlined">grid_view</span></button>
-                  <button className="text-outline hover:text-primary"><span className="material-symbols-outlined">view_agenda</span></button>
+                <div className="h-4 w-[1px] bg-outline-variant hidden sm:block"></div>
+                <div className="flex gap-2 shrink-0">
+                  <button 
+                    className={`${viewMode === 'grid' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                    onClick={() => setViewMode('grid')}
+                  >
+                    <span className="material-symbols-outlined">grid_view</span>
+                  </button>
+                  <button 
+                    className={`${viewMode === 'list' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                    onClick={() => setViewMode('list')}
+                  >
+                    <span className="material-symbols-outlined">view_agenda</span>
+                  </button>
                 </div>
               </div>
             </div>
-            {/* Product Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter">
+            {/* Product Grid / List */}
+            <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter" : "flex flex-col gap-6"}>
               {filteredProducts.length === 0 ? (
                 <div className="col-span-full text-center py-20">
                   <span className="material-symbols-outlined text-[56px] text-outline/40 block mb-4" style={{ fontVariationSettings: "'FILL' 0, 'wght' 200" }}>filter_alt_off</span>
@@ -263,26 +274,26 @@ export default function ShopPage() {
                 filteredProducts.map(product => {
                   const badgeLabel = product.badge === 'Bestseller' ? t('store.title_highlight') : (product.badge === 'New Arrival' ? 'New' : product.badge);
                   return (
-                    <article key={product.id} className="group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden">
+                    <article key={product.id} className={`group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden ${viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'}`}>
                       {product.badge && (
-                        <div className="absolute top-4 left-4 z-10">
-                          <span className={`${product.badgeStyle} font-label-sm text-label-sm px-3 py-1 rounded-full uppercase`}>{badgeLabel}</span>
+                        <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10">
+                          <span className={`${product.badgeStyle} font-label-sm text-[10px] sm:text-label-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase`}>{badgeLabel}</span>
                         </div>
                       )}
-                      <div className="aspect-[4/5] bg-white overflow-hidden p-8 flex items-center justify-center">
+                      <div className={`${viewMode === 'list' ? 'w-28 sm:w-64 shrink-0 aspect-[3/4] sm:aspect-square' : 'w-full aspect-[4/5]'} bg-white overflow-hidden p-4 sm:p-8 flex items-center justify-center`}>
                         <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" src={product.image} />
                       </div>
-                      <div className="p-6">
-                        <div className="flex justify-between items-start mb-2">
-                          <h3 className="font-headline-sm text-headline-sm text-primary">{product.name}</h3>
-                          <button className="text-outline hover:text-error transition-colors"><span className="material-symbols-outlined">favorite</span></button>
+                      <div className={`flex flex-col flex-1 ${viewMode === 'list' ? 'p-4 sm:p-6 justify-center' : 'p-6'}`}>
+                        <div className="flex justify-between items-start mb-1 sm:mb-2 gap-2">
+                          <h3 className={`font-headline-sm text-primary ${viewMode === 'list' ? 'text-[14px] sm:text-[20px] leading-tight' : 'text-headline-sm'}`}>{product.name}</h3>
+                          <button className="text-outline hover:text-error transition-colors shrink-0"><span className="material-symbols-outlined text-[20px] sm:text-[24px]">favorite</span></button>
                         </div>
-                        <p className="font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2">{t(`featured.products.${product.id}.description`) || product.desc}</p>
-                        <div className="flex items-center justify-between mt-auto pt-4 border-t border-outline-variant/20">
-                          <span className="font-label-md text-label-md text-primary font-bold">Rp {product.price.toLocaleString('id-ID')}</span>
-                          <button onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })} className="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-2">
-                            <span className="material-symbols-outlined text-[18px]">add_shopping_cart</span>
-                            {t('shop.addBtn')}
+                        <p className={`font-body-md text-on-surface-variant mb-2 sm:mb-4 ${viewMode === 'list' ? 'text-[12px] sm:text-[14px] line-clamp-2' : 'text-body-md line-clamp-2'}`}>{t(`featured.products.${product.id}.description`) || product.desc}</p>
+                        <div className="flex items-center justify-between mt-auto pt-3 border-t border-outline-variant/20">
+                          <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {product.price.toLocaleString('id-ID')}</span>
+                          <button onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })} className="bg-primary text-on-primary font-label-md px-3 sm:px-4 py-1.5 sm:py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-1 sm:gap-2">
+                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
+                            <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{t('shop.addBtn')}</span>
                           </button>
                         </div>
                       </div>

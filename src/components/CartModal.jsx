@@ -11,15 +11,15 @@ export default function CartModal() {
 
   const handleCheckout = () => {
     if (cartItems.length === 0) return;
-    
+
     let message = "Halo SENARA, saya ingin melakukan pemesanan untuk produk berikut:\n\n";
     cartItems.forEach(item => {
       message += `- ${item.name} (x${item.qty})\n`;
     });
     message += `\nTotal Pesanan: Rp ${totalPrice.toLocaleString('id-ID')}\n\nMohon informasi selanjutnya untuk proses pembayaran dan pengiriman. Terima kasih.`;
-    
+
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/6282129226886?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/6281318141050?text=${encodedMessage}`, '_blank');
   };
 
   useEffect(() => {
@@ -32,8 +32,8 @@ export default function CartModal() {
   return (
     <div className="fixed inset-0 z-[100] flex justify-end">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-[#18281a]/20 backdrop-blur-sm cursor-pointer transition-opacity" 
+      <div
+        className="absolute inset-0 bg-[#18281a]/20 backdrop-blur-sm cursor-pointer transition-opacity"
         onClick={closeCart}
       />
       {/* Drawer Container */}
@@ -48,7 +48,7 @@ export default function CartModal() {
             <span className="material-symbols-outlined text-[#434842]">close</span>
           </button>
         </div>
-        
+
         {/* Cart Items List */}
         <div className="flex-1 overflow-y-auto px-8 py-6 space-y-8" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           {cartItems.length === 0 ? (
@@ -86,7 +86,7 @@ export default function CartModal() {
             <p className="text-xs text-[#815513] uppercase tracking-widest mb-3 font-semibold">{t('cart.completeRitual')}</p>
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 bg-white rounded-full flex-shrink-0 flex items-center justify-center border border-[#c3c8c0]/20">
-                <img alt="Mini Mist" className="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY"/>
+                <img alt="Mini Mist" className="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY" />
               </div>
               <div className="flex-1">
                 <p className="text-sm font-semibold text-[#18281a]">{t('cart.sampleProduct')}</p>
@@ -115,12 +115,12 @@ export default function CartModal() {
           </div>
           <div className="space-y-4">
             <button onClick={handleCheckout} className="w-full bg-[#18281a] text-white text-sm font-semibold py-5 tracking-widest uppercase hover:bg-[#18281a]/90 transition-all active:scale-[0.98] shadow-sm">
-                {t('cart.checkout')}
+              {t('cart.checkout')}
             </button>
             <button onClick={closeCart} className="w-full text-center py-2 group">
               <span className="text-sm font-semibold text-[#434842] group-hover:text-[#815513] transition-colors inline-flex items-center gap-2 cursor-pointer">
-                  {t('cart.continueShopping')}
-                  <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                {t('cart.continueShopping')}
+                <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </span>
             </button>
           </div>

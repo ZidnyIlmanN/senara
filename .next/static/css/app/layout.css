@@ -660,6 +660,10 @@ input:where([type='file']):focus{
   left: 0px;
   right: 0px;
 }
+.inset-y-0{
+  top: 0px;
+  bottom: 0px;
+}
 .-bottom-6{
   bottom: -1.5rem;
 }
@@ -804,6 +808,12 @@ input:where([type='file']):focus{
 .z-\[60\]{
   z-index: 60;
 }
+.z-\[1\]{
+  z-index: 1;
+}
+.z-\[2\]{
+  z-index: 2;
+}
 .order-1{
   order: 1;
 }
@@ -910,6 +920,15 @@ input:where([type='file']):focus{
 .mt-section-gap{
   margin-top: 120px;
 }
+.-mt-12{
+  margin-top: -3rem;
+}
+.-mt-24{
+  margin-top: -6rem;
+}
+.-mt-40{
+  margin-top: -10rem;
+}
 .line-clamp-1{
   overflow: hidden;
   display: -webkit-box;
@@ -1006,6 +1025,9 @@ input:where([type='file']):focus{
 .h-\[340px\]{
   height: 340px;
 }
+.h-\[400px\]{
+  height: 400px;
+}
 .h-\[450px\]{
   height: 450px;
 }
@@ -1017,6 +1039,9 @@ input:where([type='file']):focus{
 }
 .h-full{
   height: 100%;
+}
+.h-\[80vh\]{
+  height: 80vh;
 }
 .max-h-0{
   max-height: 0px;
@@ -1035,6 +1060,9 @@ input:where([type='file']):focus{
 }
 .min-h-screen{
   min-height: 100vh;
+}
+.min-h-\[500px\]{
+  min-height: 500px;
 }
 .w-0{
   width: 0px;
@@ -1127,8 +1155,14 @@ input:where([type='file']):focus{
 .max-w-4xl{
   max-width: 56rem;
 }
+.max-w-\[1200px\]{
+  max-width: 1200px;
+}
 .max-w-\[1280px\]{
   max-width: 1280px;
+}
+.max-w-\[200px\]{
+  max-width: 200px;
 }
 .max-w-\[480px\]{
   max-width: 480px;
@@ -1153,6 +1187,18 @@ input:where([type='file']):focus{
 }
 .max-w-xl{
   max-width: 36rem;
+}
+.max-w-\[600px\]{
+  max-width: 600px;
+}
+.max-w-\[800px\]{
+  max-width: 800px;
+}
+.max-w-\[1000px\]{
+  max-width: 1000px;
+}
+.max-w-\[700px\]{
+  max-width: 700px;
 }
 .flex-1{
   flex: 1 1 0%;
@@ -1282,8 +1328,16 @@ input:where([type='file']):focus{
      -moz-user-select: none;
           user-select: none;
 }
+.resize-none{
+  resize: none;
+}
 .resize{
   resize: both;
+}
+.appearance-none{
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -1305,6 +1359,9 @@ input:where([type='file']):focus{
 }
 .items-baseline{
   align-items: baseline;
+}
+.justify-start{
+  justify-content: flex-start;
 }
 .justify-end{
   justify-content: flex-end;
@@ -1415,6 +1472,9 @@ input:where([type='file']):focus{
 .rounded{
   border-radius: 0.125rem;
 }
+.rounded-2xl{
+  border-radius: 1rem;
+}
 .rounded-\[20px\]{
   border-radius: 20px;
 }
@@ -1503,6 +1563,9 @@ input:where([type='file']):focus{
 }
 .border-\[\#c3c8c0\]\/40{
   border-color: rgb(195 200 192 / 0.4);
+}
+.border-\[\#c3c8c0\]\/50{
+  border-color: rgb(195 200 192 / 0.5);
 }
 .border-\[\#d7a357\]\/40{
   border-color: rgb(215 163 87 / 0.4);
@@ -1730,6 +1793,9 @@ input:where([type='file']):focus{
 .to-white\/5{
   --tw-gradient-to: rgb(255 255 255 / 0.05) var(--tw-gradient-to-position);
 }
+.fill-current{
+  fill: currentColor;
+}
 .object-contain{
   -o-object-fit: contain;
      object-fit: contain;
@@ -1890,6 +1956,9 @@ input:where([type='file']):focus{
 .pb-2{
   padding-bottom: 0.5rem;
 }
+.pb-20{
+  padding-bottom: 5rem;
+}
 .pb-3{
   padding-bottom: 0.75rem;
 }
@@ -1928,6 +1997,15 @@ input:where([type='file']):focus{
 }
 .pt-\[96px\]{
   padding-top: 96px;
+}
+.pb-16{
+  padding-bottom: 4rem;
+}
+.pt-32{
+  padding-top: 8rem;
+}
+.pb-24{
+  padding-bottom: 6rem;
 }
 .text-left{
   text-align: left;
@@ -2704,6 +2782,10 @@ input:where([type='file']):focus{
   --tw-border-opacity: 1;
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
+.focus\:outline-none:focus{
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
 .focus\:ring-0:focus{
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2795,6 +2877,9 @@ input:where([type='file']):focus{
   .sm\:grid-cols-2{
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .sm\:grid-cols-3{
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
   .sm\:grid-cols-5{
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
@@ -2803,6 +2888,9 @@ input:where([type='file']):focus{
   }
   .sm\:items-center{
     align-items: center;
+  }
+  .sm\:gap-8{
+    gap: 2rem;
   }
 }
 @media (min-width: 768px){
@@ -2821,8 +2909,23 @@ input:where([type='file']):focus{
   .md\:top-12{
     top: 3rem;
   }
+  .md\:col-span-2{
+    grid-column: span 2 / span 2;
+  }
   .md\:mb-16{
     margin-bottom: 4rem;
+  }
+  .md\:mt-4{
+    margin-top: 1rem;
+  }
+  .md\:-mt-20{
+    margin-top: -5rem;
+  }
+  .md\:-mt-40{
+    margin-top: -10rem;
+  }
+  .md\:-mt-\[40vh\]{
+    margin-top: -40vh;
   }
   .md\:block{
     display: block;
@@ -2844,6 +2947,9 @@ input:where([type='file']):focus{
   }
   .md\:h-\[550px\]{
     height: 550px;
+  }
+  .md\:h-screen{
+    height: 100vh;
   }
   .md\:max-h-\[75vh\]{
     max-height: 75vh;
@@ -2885,6 +2991,12 @@ input:where([type='file']):focus{
   .md\:flex-row{
     flex-direction: row;
   }
+  .md\:items-start{
+    align-items: flex-start;
+  }
+  .md\:justify-between{
+    justify-content: space-between;
+  }
   .md\:gap-12{
     gap: 3rem;
   }
@@ -2901,6 +3013,10 @@ input:where([type='file']):focus{
     padding-left: 0px;
     padding-right: 0px;
   }
+  .md\:px-8{
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
   .md\:py-4{
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -2908,6 +3024,21 @@ input:where([type='file']):focus{
   .md\:py-\[120px\]{
     padding-top: 120px;
     padding-bottom: 120px;
+  }
+  .md\:pt-32{
+    padding-top: 8rem;
+  }
+  .md\:pb-24{
+    padding-bottom: 6rem;
+  }
+  .md\:pt-40{
+    padding-top: 10rem;
+  }
+  .md\:pb-32{
+    padding-bottom: 8rem;
+  }
+  .md\:pb-56{
+    padding-bottom: 14rem;
   }
   .md\:text-left{
     text-align: left;
@@ -2927,6 +3058,9 @@ input:where([type='file']):focus{
   }
   .md\:text-\[16px\]{
     font-size: 16px;
+  }
+  .md\:text-\[18px\]{
+    font-size: 18px;
   }
   .md\:text-\[20px\]{
     font-size: 20px;
@@ -2951,6 +3085,9 @@ input:where([type='file']):focus{
   }
   .md\:text-\[64px\]{
     font-size: 64px;
+  }
+  .md\:text-\[17px\]{
+    font-size: 17px;
   }
   .md\:leading-\[1\.1\]{
     line-height: 1.1;

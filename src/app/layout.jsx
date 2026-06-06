@@ -4,8 +4,8 @@ import { LanguageProvider } from '../context/LanguageContext'
 import CartModal from '../components/CartModal'
 
 export const metadata = {
-  title: 'SENARA Botanical Science',
-  description: 'Defining the future of luxury skincare through the lens of botanical molecular science.',
+  title: 'SENARA Natural Cosmetics',
+  description: 'Defining the future of luxury skincare through the lens of natural cosmetics Pharmacognosy.',
 }
 
 export default function RootLayout({ children }) {

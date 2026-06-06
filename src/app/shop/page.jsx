@@ -71,7 +71,7 @@ const allProducts = [
     id: 'scamona',
     name: 'Scamona',
     desc: 'Salep untuk mengatasi scabies, ruam atau kemerahan pada kulit, alergi pada kulit dan kulit sensitif.',
-    price: 150000,
+    price: 65000,
     image: '/images/senara-scamona.webp',
     badge: 'Special',
     badgeStyle: 'bg-primary-container text-on-primary-container',

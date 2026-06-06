@@ -22,7 +22,7 @@ function Navbar() {
     { name: t('nav.shop'), href: '/shop' },
     { name: t('nav.about'), href: '/about' },
     { name: t('nav.ingredients'), href: '#' },
-    { name: t('nav.contact'), href: '#' }
+    { name: t('nav.contact'), href: '/contact' }
   ]
 
   useEffect(() => {

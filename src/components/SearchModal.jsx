@@ -8,7 +8,7 @@ const allProducts = [
   {
     id: 'brightening-face-wash',
     name: 'Brightening Face Wash',
-    subtitle: 'Pineapple Enzyme + AHA',
+    subtitle: 'Pineapple Extract + AHA',
     price: 87000,
     image: '/images/Product/senara-facewash.webp',
     badge: 'Best Seller',
@@ -64,7 +64,7 @@ const allProducts = [
     id: 'scamona',
     name: 'Scamona',
     subtitle: 'Moringa + Nigella Sativa',
-    price: 150000,
+    price: 65000,
     image: '/images/senara-scamona.webp',
     badge: 'Special',
     badgeType: 'special',
@@ -88,14 +88,14 @@ export default function SearchModal({ isOpen, onClose }) {
   // Filter products based on search query
   const filteredProducts = query.trim()
     ? allProducts.filter(p => {
-        const q = query.toLowerCase();
-        return (
-          p.name.toLowerCase().includes(q) ||
-          p.subtitle.toLowerCase().includes(q) ||
-          p.keywords.some(k => k.includes(q)) ||
-          p.category.toLowerCase().includes(q)
-        );
-      })
+      const q = query.toLowerCase();
+      return (
+        p.name.toLowerCase().includes(q) ||
+        p.subtitle.toLowerCase().includes(q) ||
+        p.keywords.some(k => k.includes(q)) ||
+        p.category.toLowerCase().includes(q)
+      );
+    })
     : allProducts;
 
   // Open animation
@@ -149,7 +149,7 @@ export default function SearchModal({ isOpen, onClose }) {
     { id: 'treatment', name: language === 'id' ? 'Perawatan Khusus' : 'Special Treatment' },
   ];
   const ingredientsData = [
-    { id: 'bromelain', name: 'Bromelain', desc: language === 'id' ? 'Enzim proteolitik alami' : 'Natural proteolytic enzyme' },
+    { id: 'bromelain', name: 'Bromelain', desc: language === 'id' ? 'Ekstrak nanas alami' : 'Natural pineapple extract' },
     { id: 'niacinamide', name: 'Niacinamide', desc: language === 'id' ? 'Vitamin B3' : 'Vitamin B3' },
     { id: 'vitaminc', name: 'Vitamin C', desc: 'Vitamin C' },
     { id: 'aha', name: 'AHA', desc: 'AHA' },
@@ -222,11 +222,10 @@ export default function SearchModal({ isOpen, onClose }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-['Manrope'] text-[14px] font-semibold pb-2 transition-colors duration-300 ${
-                  activeTab === tab.id
+                className={`font-['Manrope'] text-[14px] font-semibold pb-2 transition-colors duration-300 ${activeTab === tab.id
                     ? 'text-[#18281a] border-b-2 border-[#18281a]'
                     : 'text-[#747872] hover:text-[#18281a]'
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
@@ -284,13 +283,12 @@ export default function SearchModal({ isOpen, onClose }) {
                               {formatPrice(product.price)}
                             </span>
                             {product.badge && (
-                              <span className={`px-2 py-0.5 text-[11px] font-['Manrope'] font-semibold rounded-full ${
-                                product.badgeType === 'bestseller'
+                              <span className={`px-2 py-0.5 text-[11px] font-['Manrope'] font-semibold rounded-full ${product.badgeType === 'bestseller'
                                   ? 'bg-[#fdc175] text-[#653e00]'
                                   : product.badgeType === 'new'
                                     ? 'bg-[#d4e8d3] text-[#3a4b3b]'
                                     : 'bg-[#e5e2dd] text-[#474743]'
-                              }`}>
+                                }`}>
                                 {product.badge}
                               </span>
                             )}
@@ -326,7 +324,7 @@ export default function SearchModal({ isOpen, onClose }) {
 
           {activeTab === 'collections' && (() => {
             const collections = [
-              { id: 'skincare', name: language === 'id' ? 'Perawatan Kulit' : 'Skincare', icon: 'spa', count: 5, desc: language === 'id' ? 'Rangkaian lengkap perawatan wajah berbasis enzim nanas' : 'Complete pineapple enzyme-based facial care range' },
+              { id: 'skincare', name: language === 'id' ? 'Perawatan Kulit' : 'Skincare', icon: 'spa', count: 5, desc: language === 'id' ? 'Rangkaian lengkap kosmetik bahan alam berbasis ekstrak nanas' : 'Complete natural cosmetics pineapple extract-based facial care range' },
               { id: 'brightening', name: language === 'id' ? 'Pencerah Kulit' : 'Brightening', icon: 'light_mode', count: 3, desc: language === 'id' ? 'Koleksi untuk mencerahkan dan meratakan warna kulit' : 'Collection to brighten and even out skin tone' },
               { id: 'treatment', name: language === 'id' ? 'Perawatan Khusus' : 'Special Treatment', icon: 'healing', count: 1, desc: language === 'id' ? 'Produk obat dan perawatan intensif' : 'Medicinal products and intensive care' },
             ];
@@ -364,7 +362,7 @@ export default function SearchModal({ isOpen, onClose }) {
 
           {activeTab === 'ingredients' && (() => {
             const ingredientsList = [
-              { id: 'bromelain', name: 'Bromelain', desc: language === 'id' ? 'Enzim proteolitik alami dari nanas untuk eksfoliasi lembut' : 'Natural proteolytic enzyme from pineapple for gentle exfoliation', products: 5 },
+              { id: 'bromelain', name: 'Bromelain', desc: language === 'id' ? 'Ekstrak nanas alami untuk eksfoliasi lembut' : 'Natural pineapple extract for gentle exfoliation', products: 5 },
               { id: 'niacinamide', name: 'Niacinamide', desc: language === 'id' ? 'Vitamin B3 untuk mencerahkan dan memperkuat skin barrier' : 'Vitamin B3 to brighten and strengthen skin barrier', products: 4 },
               { id: 'vitaminc', name: 'Vitamin C', desc: language === 'id' ? 'Antioksidan kuat untuk melawan radikal bebas dan mencerahkan' : 'Powerful antioxidant to fight free radicals and brighten skin', products: 2 },
               { id: 'aha', name: 'AHA (Alpha Hydroxy Acid)', desc: language === 'id' ? 'Eksfolian kimia untuk mengangkat sel kulit mati' : 'Chemical exfoliant to remove dead skin cells', products: 2 },

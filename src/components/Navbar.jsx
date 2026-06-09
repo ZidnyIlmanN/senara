@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Icon, Logo } from './ui'
 import { useCart } from './CartContext'
 import { useLanguage } from '../context/LanguageContext'
+import { useAuth } from '../context/AuthContext'
 import SearchModal from './SearchModal'
 
 function Navbar() {
@@ -14,6 +15,7 @@ function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { totalItems, openCart } = useCart()
   const { language, setLanguage, t } = useLanguage()
+  const { user, signOut } = useAuth()
 
   const pathname = usePathname()
 
@@ -67,7 +69,23 @@ function Navbar() {
               </button>
             </div>
             <span className="cursor-pointer" onClick={() => setIsSearchOpen(true)}><Icon name="search"/></span>
-            <Icon name="user"/>
+            <span className="cursor-pointer flex items-center group relative h-full">
+              <Icon name="user"/>
+              {user ? (
+                <div className="absolute right-0 top-full w-32 pt-2 hidden group-hover:block z-50">
+                  <div className="bg-white shadow-lg rounded-md overflow-hidden border border-gray-100">
+                    <button onClick={() => signOut()} className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope']">Logout</button>
+                  </div>
+                </div>
+              ) : (
+                <div className="absolute right-0 top-full w-40 pt-2 hidden group-hover:block z-50">
+                  <div className="bg-white shadow-lg rounded-md overflow-hidden border border-gray-100 flex flex-col">
+                    <Link href="/login" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope'] border-b border-gray-50">{t('auth.login')}</Link>
+                    <Link href="/register" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope']">{t('auth.register')}</Link>
+                  </div>
+                </div>
+              )}
+            </span>
             <span className="cart cursor-pointer" onClick={openCart}><Icon name="bag"/><i>{totalItems}</i></span>
             <span className="hamb cursor-pointer z-50" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               {mobileMenuOpen ? <span className="material-symbols-outlined" style={{fontSize: '24px'}}>close</span> : <Icon name="menu"/>}
@@ -103,6 +121,33 @@ function Navbar() {
             {link.name}
           </Link>
         ))}
+        <div className="mt-4 flex flex-col items-center gap-4">
+          {user ? (
+            <button 
+              onClick={() => { signOut(); setMobileMenuOpen(false); }}
+              className="font-['Manrope'] text-sm tracking-widest text-[#18281a] border border-[#18281a] rounded-full px-6 py-2 hover:bg-[#18281a] hover:text-white transition-colors"
+            >
+              LOGOUT
+            </button>
+          ) : (
+            <>
+              <Link 
+                href="/login" 
+                className="font-['Manrope'] text-sm tracking-widest text-[#18281a] border border-[#18281a] rounded-full px-8 py-2 hover:bg-[#18281a] hover:text-white transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('auth.loginBtn')}
+              </Link>
+              <Link 
+                href="/register" 
+                className="font-['Manrope'] text-sm tracking-widest text-gray-500 hover:text-[#bd8033] transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {t('auth.register')}
+              </Link>
+            </>
+          )}
+        </div>
       </div>
 
       {/* Search Modal */}

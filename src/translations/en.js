@@ -36,7 +36,7 @@ const en = {
     p2: 'Every SENARA formula is meticulously crafted with skin-loving natural ingredients and undergoes rigorous clinical testing to ensure visible, long-lasting results you can trust.',
     cta: 'Learn More About Our Philosophy',
     seal1: 'NATURE MEETS',
-    seal2: 'CLINICAL SCIENCE',
+    seal2: 'CLINICAL\nSCIENCE',
   },
 
   // ============ ABOUT SECTION (Landing) ============
@@ -368,6 +368,23 @@ const en = {
       sunday: 'SUNDAY',
       sundayValue: '9:00 am - 5:00 pm',
     }
+  },
+
+  // ============ AUTH PAGES ============
+  auth: {
+    login: 'Login',
+    register: 'Create an account',
+    email: 'E-mail',
+    password: 'Password',
+    loginSubtitle: 'Please enter your e-mail and password:',
+    registerSubtitle: 'Please fill in your details to create an account:',
+    forgotPassword: 'Forgot password?',
+    loginBtn: 'LOGIN',
+    registerBtn: 'REGISTER',
+    newCustomer: 'New customer?',
+    alreadyHaveAccount: 'Already have an account?',
+    loginWithGoogle: 'Continue with Google',
+    checkEmail: 'Please check your email to verify your account.',
   },
 };
 

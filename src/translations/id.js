@@ -369,6 +369,23 @@ const id = {
       sundayValue: '09:00 - 17:00',
     }
   },
+
+  // ============ AUTH PAGES ============
+  auth: {
+    login: 'Masuk',
+    register: 'Buat akun baru',
+    email: 'Alamat Email',
+    password: 'Kata Sandi',
+    loginSubtitle: 'Silakan masukkan alamat email dan kata sandi Anda:',
+    registerSubtitle: 'Silakan isi data diri Anda untuk membuat akun baru:',
+    forgotPassword: 'Lupa kata sandi?',
+    loginBtn: 'MASUK',
+    registerBtn: 'DAFTAR',
+    newCustomer: 'Pelanggan baru?',
+    alreadyHaveAccount: 'Sudah memiliki akun?',
+    loginWithGoogle: 'Lanjutkan dengan Google',
+    checkEmail: 'Silakan periksa email Anda untuk memverifikasi akun.',
+  },
 };
 
 export default id;

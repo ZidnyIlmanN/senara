@@ -1,6 +1,7 @@
 import './globals.css'
 import { CartProvider } from '../components/CartContext'
 import { LanguageProvider } from '../context/LanguageContext'
+import { AuthProvider } from '../context/AuthContext'
 import CartModal from '../components/CartModal'
 
 export const metadata = {
@@ -16,12 +17,14 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <LanguageProvider>
-          <CartProvider>
-            {children}
-            <CartModal />
-          </CartProvider>
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <CartProvider>
+              {children}
+              <CartModal />
+            </CartProvider>
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   )

@@ -1,18 +1,27 @@
 "use client";
 
 import React, { createContext, useContext, useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { user } = useAuth();
+  const router = useRouter();
 
   const toggleCart = () => setIsCartOpen(prev => !prev);
   const openCart = () => setIsCartOpen(true);
   const closeCart = () => setIsCartOpen(false);
 
   const addToCart = (product) => {
+    if (!user) {
+      router.push('/login');
+      return;
+    }
+
     setCartItems(prev => {
       const existing = prev.find(item => item.id === product.id);
       if (existing) {

@@ -3,3 +3,5 @@ dist/
 .npm-cache/
 .vite.log
 .preview.log
+
+.env.local

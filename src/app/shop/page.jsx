@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Icon } from '../../components/ui';
 import { useCart } from '../../components/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
+import Navbar from '../../components/Navbar';
 
 const allProducts = [
   {
@@ -142,32 +143,8 @@ export default function ShopPage() {
 
   return (
     <div className="bg-background text-on-background font-body-md antialiased">
-      <header className="bg-background/90 sticky top-0 z-50 backdrop-blur-sm border-b border-outline-variant/30">
-        <div className="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
-          <div className="flex items-center gap-10">
-            <Link href="/">
-              <img src="/images/senara-logo.png" alt="SENARA Logo" className="h-8 md:h-10 w-auto object-contain mix-blend-multiply" />
-            </Link>
-            <nav className="hidden md:flex gap-8 items-center">
-              <Link className="font-label-md text-label-md text-secondary border-b-2 border-secondary font-bold" href="#">{t('shop.navShop')}</Link>
-              <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">{t('shop.navPhilosophy')}</Link>
-              <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">{t('shop.navScience')}</Link>
-              <Link className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">{t('shop.navStockists')}</Link>
-            </nav>
-          </div>
-          <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-0.5 bg-surface-container-low rounded-full p-[3px] border border-outline-variant/30">
-              <button onClick={() => setLanguage('id')} className={`px-2.5 py-1 rounded-full text-[11px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'id' ? 'bg-secondary text-on-secondary shadow-sm' : 'text-on-surface-variant hover:text-secondary'}`}>ID</button>
-              <button onClick={() => setLanguage('en')} className={`px-2.5 py-1 rounded-full text-[11px] font-['Manrope'] font-bold tracking-wider transition-all duration-300 ${language === 'en' ? 'bg-secondary text-on-secondary shadow-sm' : 'text-on-surface-variant hover:text-secondary'}`}>EN</button>
-            </div>
-            <button className="hover:text-secondary transition-all active:scale-95 duration-150 ease-in-out"><Icon name="user" size={24} /></button>
-            <button className="relative hover:text-secondary transition-all active:scale-95 duration-150 ease-in-out" onClick={openCart}>
-              <Icon name="bag" size={24} />
-              {totalItems > 0 && (<span className="absolute -top-1 -right-2 bg-secondary text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">{totalItems}</span>)}
-            </button>
-          </div>
-        </div>
-      </header>
+      <Navbar />
+      <div style={{ height: '96px' }} />
       <main className="max-w-container-max mx-auto px-margin-desktop py-stack-lg min-h-screen">
         <nav className="mb-10">
           <ul className="flex items-center gap-2 font-label-sm text-label-sm text-outline">

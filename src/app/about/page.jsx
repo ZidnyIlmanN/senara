@@ -420,8 +420,8 @@ export default function AboutPage() {
                         </div>
                         <div className="relative reveal-on-scroll">
                             <img className="w-full h-auto object-cover rounded-sm" alt="Pineapple Enzymes" src="/images/About/senara-core.webp" />
-                            <div className="absolute -bottom-6 -left-6 bg-[#815513] text-white p-8 rounded-lg shadow-xl hidden lg:block">
-                                <p className="font-['Playfair_Display'] text-[24px] italic">{t('aboutPage.roots.quote')}</p>
+                            <div className="mt-4 lg:mt-0 lg:absolute lg:-bottom-6 lg:-left-6 bg-[#815513] text-white p-6 lg:p-8 rounded-lg shadow-xl">
+                                <p className="font-['Playfair_Display'] text-[20px] lg:text-[24px] italic">{t('aboutPage.roots.quote')}</p>
                             </div>
                         </div>
                     </div>

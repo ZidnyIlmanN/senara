@@ -1,86 +1,14 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { Icon } from '../../components/ui';
 import { useCart } from '../../components/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
 import Navbar from '../../components/Navbar';
 
-const allProducts = [
-  {
-    id: 'brightening-face-wash',
-    name: 'Brightening Face Wash',
-    desc: 'Gently removes impurities while brightening and evening out skin tone with pineapple enzyme.',
-    price: 87000,
-    image: '/images/Product/senara-facewash.webp',
-    badge: 'Bestseller',
-    badgeStyle: 'bg-secondary text-white',
-    type: 'faceWash',
-    conditions: ['hyperpigmentation', 'dullness'],
-    ingredients: ['pineappleEnzymes', 'niacinamide'],
-  },
-  {
-    id: 'ananas-glow-whitening-serum',
-    name: 'Ananas Glow Whitening Serum',
-    desc: 'Concentrated pineapple enzymes and Vitamin C to visibly brighten dark spots and uneven skin tone.',
-    price: 127000,
-    image: '/images/Product/senara-serum.webp',
-    badge: 'Bestseller',
-    badgeStyle: 'bg-secondary text-white',
-    type: 'serums',
-    conditions: ['hyperpigmentation', 'dullness'],
-    ingredients: ['pineappleEnzymes', 'vitaminC'],
-  },
-  {
-    id: 'glow-toner',
-    name: 'Glow Toner',
-    desc: 'A refreshing exfoliating toner with AHA and pineapple extract to refine pores and reveal radiance.',
-    price: 87000,
-    image: '/images/Product/senara-toner.webp',
-    badge: 'New Arrival',
-    badgeStyle: 'bg-primary-container text-on-primary-container',
-    type: 'toners',
-    conditions: ['dullness'],
-    ingredients: ['pineappleEnzymes'],
-  },
-  {
-    id: 'lightening-day-cream',
-    name: 'Lightening Day Cream',
-    desc: 'Lightweight day moisturizer with SPF protection that brightens and shields skin from environmental damage.',
-    price: 109000,
-    image: '/images/Product/senara-daycream.webp',
-    badge: null,
-    badgeStyle: '',
-    type: 'moisturizers',
-    conditions: ['hyperpigmentation', 'dullness'],
-    ingredients: ['niacinamide', 'pineappleEnzymes'],
-  },
-  {
-    id: 'luminous-night-cream',
-    name: 'Luminous Night Cream',
-    desc: 'Rich overnight treatment cream that deeply nourishes, repairs, and regenerates skin while you sleep.',
-    price: 119000,
-    image: '/images/Product/senara-nightcream.webp',
-    badge: 'New Arrival',
-    badgeStyle: 'bg-primary-container text-on-primary-container',
-    type: 'moisturizers',
-    conditions: ['dullness', 'sensitivity'],
-    ingredients: ['pineappleEnzymes', 'niacinamide'],
-  },
-  {
-    id: 'scamona',
-    name: 'Scamona',
-    desc: 'Salep untuk mengatasi scabies, ruam atau kemerahan pada kulit, alergi pada kulit dan kulit sensitif.',
-    price: 65000,
-    image: '/images/senara-scamona.webp',
-    badge: 'Special',
-    badgeStyle: 'bg-primary-container text-on-primary-container',
-    type: 'treatment',
-    conditions: ['sensitivity'],
-    ingredients: [],
-  }
-];
+import { supabase } from '../../lib/supabaseClient';
+import { allProducts as localProducts } from '../../data/products';
 
 export default function ShopPage() {
   const { totalItems, openCart, addToCart } = useCart();
@@ -90,11 +18,31 @@ export default function ShopPage() {
     'filter-condition': true,
     'filter-ingredients': true
   });
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedConditions, setSelectedConditions] = useState([]);
   const [selectedIngredients, setSelectedIngredients] = useState([]);
   const [sortBy, setSortBy] = useState('popularity');
   const [viewMode, setViewMode] = useState('grid');
+  
+  const [allProducts, setAllProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const { data, error } = await supabase.from('products').select('*');
+        if (error) throw error;
+        setAllProducts(data && data.length > 0 ? data : localProducts);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setAllProducts(localProducts); // Fallback on error
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProducts();
+  }, []);
 
   const toggleFilter = (id) => {
     setOpenFilters(prev => ({ ...prev, [id]: !prev[id] }));
@@ -120,7 +68,7 @@ export default function ShopPage() {
     else if (sortBy === 'priceHigh') result.sort((a, b) => b.price - a.price);
     else if (sortBy === 'newest') result.sort((a, b) => (b.badge === 'New Arrival' ? 1 : 0) - (a.badge === 'New Arrival' ? 1 : 0));
     return result;
-  }, [selectedTypes, selectedConditions, selectedIngredients, sortBy]);
+  }, [allProducts, selectedTypes, selectedConditions, selectedIngredients, sortBy]);
 
   const typeOptions = [
     { value: 'faceWash', label: t('shop.filters.faceWash') },
@@ -156,8 +104,35 @@ export default function ShopPage() {
         </nav>
         <div className="flex flex-col lg:flex-row gap-gutter">
           {/* Sidebar Filters */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
-            <div className="sticky top-24 space-y-8">
+          <aside className={`fixed inset-0 z-50 lg:static lg:z-auto w-full lg:w-64 flex-shrink-0 ${isMobileFilterOpen ? 'flex' : 'hidden lg:block'}`}>
+            {/* Overlay for mobile */}
+            <div className="absolute inset-0 bg-black/50 lg:hidden transition-opacity" onClick={() => setIsMobileFilterOpen(false)}></div>
+            
+            {/* Drawer Content */}
+            <div className="absolute top-0 right-0 h-full w-4/5 max-w-sm bg-background p-6 overflow-y-auto lg:static lg:w-auto lg:h-auto lg:p-0 lg:overflow-visible lg:bg-transparent shadow-xl lg:shadow-none">
+              <div className="flex justify-between items-center mb-8 border-b border-outline-variant pb-4 lg:hidden">
+                <h2 className="font-headline-sm text-primary">{language === 'id' ? 'Filter & Urutkan' : 'Filter & Sort'}</h2>
+                <button onClick={() => setIsMobileFilterOpen(false)} className="text-outline hover:text-primary">
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+              </div>
+
+              {/* Sort By inside Drawer (Mobile Only) */}
+              <div className="mb-8 border-b border-outline-variant pb-6 lg:hidden">
+                <h3 className="font-label-md text-label-md text-primary mb-4">{language === 'id' ? 'Urutkan Berdasarkan' : 'Sort By'}</h3>
+                <select 
+                  className="w-full bg-surface-container border border-outline rounded-md p-2 font-body-md text-primary focus:ring-primary focus:border-primary" 
+                  value={sortBy} 
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="popularity">{t('shop.sortPopularity')}</option>
+                  <option value="priceLow">{t('shop.sortPriceLow')}</option>
+                  <option value="priceHigh">{t('shop.sortPriceHigh')}</option>
+                  <option value="newest">{t('shop.sortNewest')}</option>
+                </select>
+              </div>
+
+              <div className="sticky top-24 space-y-8">
               {/* Reset Filters */}
               {hasActiveFilters && (
                 <button onClick={() => { setSelectedTypes([]); setSelectedConditions([]); setSelectedIngredients([]); }} className="text-secondary font-label-sm text-label-sm underline mb-2">
@@ -210,37 +185,75 @@ export default function ShopPage() {
                 </div>
               </div>
             </div>
+            </div>
           </aside>
           {/* Product Canvas */}
           <div className="flex-1">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 w-full">
-              <p className="font-label-sm text-label-sm text-outline shrink-0">{t('shop.showing')} {filteredProducts.length} {t('shop.products')}</p>
-              <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
-                <select className="bg-transparent border-none font-label-md text-label-md text-primary focus:ring-0 cursor-pointer min-w-0 flex-1 sm:flex-none" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                  <option value="popularity">{t('shop.sortPopularity')}</option>
-                  <option value="priceLow">{t('shop.sortPriceLow')}</option>
-                  <option value="priceHigh">{t('shop.sortPriceHigh')}</option>
-                  <option value="newest">{t('shop.sortNewest')}</option>
-                </select>
-                <div className="h-4 w-[1px] bg-outline-variant hidden sm:block"></div>
-                <div className="flex gap-2 shrink-0">
-                  <button 
-                    className={`${viewMode === 'grid' ? 'text-primary' : 'text-outline hover:text-primary'}`}
-                    onClick={() => setViewMode('grid')}
-                  >
-                    <span className="material-symbols-outlined">grid_view</span>
-                  </button>
-                  <button 
-                    className={`${viewMode === 'list' ? 'text-primary' : 'text-outline hover:text-primary'}`}
-                    onClick={() => setViewMode('list')}
-                  >
-                    <span className="material-symbols-outlined">view_agenda</span>
-                  </button>
+            <div className="flex flex-col gap-4 mb-8 w-full">
+              {/* Desktop Header Row */}
+              <div className="hidden lg:flex items-center justify-between w-full">
+                <p className="font-label-sm text-label-sm text-outline shrink-0">{t('shop.showing')} {filteredProducts.length} {t('shop.products')}</p>
+                <div className="flex items-center gap-4">
+                  <select className="bg-transparent border-none font-label-md text-label-md text-primary focus:ring-0 cursor-pointer min-w-0 flex-none" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                    <option value="popularity">{t('shop.sortPopularity')}</option>
+                    <option value="priceLow">{t('shop.sortPriceLow')}</option>
+                    <option value="priceHigh">{t('shop.sortPriceHigh')}</option>
+                    <option value="newest">{t('shop.sortNewest')}</option>
+                  </select>
+                  <div className="h-4 w-[1px] bg-outline-variant"></div>
+                  <div className="flex gap-2 shrink-0">
+                    <button 
+                      className={`${viewMode === 'grid' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                      onClick={() => setViewMode('grid')}
+                    >
+                      <span className="material-symbols-outlined">grid_view</span>
+                    </button>
+                    <button 
+                      className={`${viewMode === 'list' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                      onClick={() => setViewMode('list')}
+                    >
+                      <span className="material-symbols-outlined">view_agenda</span>
+                    </button>
+                  </div>
                 </div>
+              </div>
+
+              {/* Mobile / Tablet Header Row */}
+              <div className="flex lg:hidden flex-col gap-4 w-full">
+                <div className="flex items-center justify-between w-full">
+                  <button 
+                    onClick={() => setIsMobileFilterOpen(true)}
+                    className="flex items-center justify-center gap-2 border border-outline-variant text-primary font-label-md transition-colors hover:bg-outline-variant/10 px-4 py-2"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">tune</span>
+                    {language === 'id' ? 'Filter & Urutkan' : 'Filter & Sort'}
+                  </button>
+
+                  <div className="flex gap-2 shrink-0">
+                    <button 
+                      className={`${viewMode === 'grid' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                      onClick={() => setViewMode('grid')}
+                    >
+                      <span className="material-symbols-outlined">grid_view</span>
+                    </button>
+                    <button 
+                      className={`${viewMode === 'list' ? 'text-primary' : 'text-outline hover:text-primary'}`}
+                      onClick={() => setViewMode('list')}
+                    >
+                      <span className="material-symbols-outlined">view_agenda</span>
+                    </button>
+                  </div>
+                </div>
+                <p className="font-label-sm text-label-sm text-outline">{t('shop.showing')} {filteredProducts.length} {t('shop.products')}</p>
               </div>
             </div>
             {/* Product Grid / List */}
-            <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter" : "flex flex-col gap-6"}>
+            {loading ? (
+              <div className="flex justify-center items-center py-20 text-primary">
+                <span className="material-symbols-outlined animate-spin text-[40px]">progress_activity</span>
+              </div>
+            ) : (
+              <div className={viewMode === 'grid' ? "grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-gutter" : "flex flex-col gap-6"}>
               {filteredProducts.length === 0 ? (
                 <div className="col-span-full text-center py-20">
                   <span className="material-symbols-outlined text-[56px] text-outline/40 block mb-4" style={{ fontVariationSettings: "'FILL' 0, 'wght' 200" }}>filter_alt_off</span>
@@ -257,28 +270,36 @@ export default function ShopPage() {
                           <span className={`${product.badgeStyle} font-label-sm text-[10px] sm:text-label-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase`}>{badgeLabel}</span>
                         </div>
                       )}
-                      <div className={`${viewMode === 'list' ? 'w-28 sm:w-64 shrink-0 aspect-[3/4] sm:aspect-square' : 'w-full aspect-[4/5]'} bg-white overflow-hidden p-4 sm:p-8 flex items-center justify-center`}>
+                      <Link href={`/product/${product.id}`} className={`${viewMode === 'list' ? 'w-28 sm:w-64 shrink-0 aspect-[3/4] sm:aspect-square' : 'w-full aspect-[4/5]'} bg-white overflow-hidden p-4 sm:p-8 flex items-center justify-center`}>
                         <img alt={product.name} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" src={product.image} />
-                      </div>
+                      </Link>
                       <div className={`flex flex-col flex-1 ${viewMode === 'list' ? 'p-4 sm:p-6 justify-center' : 'p-6'}`}>
                         <div className="flex justify-between items-start mb-1 sm:mb-2 gap-2">
-                          <h3 className={`font-headline-sm text-primary ${viewMode === 'list' ? 'text-[14px] sm:text-[20px] leading-tight' : 'text-headline-sm'}`}>{product.name}</h3>
+                          <Link href={`/product/${product.id}`} className={`font-headline-sm text-primary hover:text-secondary transition-colors ${viewMode === 'list' ? 'text-[14px] sm:text-[20px] leading-tight' : 'text-headline-sm'}`}>{product.name}</Link>
                           <button className="text-outline hover:text-error transition-colors shrink-0"><span className="material-symbols-outlined text-[20px] sm:text-[24px]">favorite</span></button>
                         </div>
                         <p className={`font-body-md text-on-surface-variant mb-2 sm:mb-4 ${viewMode === 'list' ? 'text-[12px] sm:text-[14px] line-clamp-2' : 'text-body-md line-clamp-2'}`}>{t(`featured.products.${product.id}.description`) || product.desc}</p>
                         <div className="flex items-center justify-between mt-auto pt-3 border-t border-outline-variant/20">
                           <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {product.price.toLocaleString('id-ID')}</span>
-                          <button onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })} className="bg-primary text-on-primary font-label-md px-3 sm:px-4 py-1.5 sm:py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-1 sm:gap-2">
-                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
-                            <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{t('shop.addBtn')}</span>
-                          </button>
+                          {product.stock > 0 ? (
+                            <button onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, stock: product.stock })} className="bg-primary text-on-primary font-label-md px-3 sm:px-4 py-1.5 sm:py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-1 sm:gap-2">
+                              <span className="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
+                              <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{t('shop.addBtn')}</span>
+                            </button>
+                          ) : (
+                            <button disabled className="bg-gray-300 text-gray-500 font-label-md px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1 sm:gap-2 cursor-not-allowed">
+                              <span className="material-symbols-outlined text-[16px] sm:text-[18px]">remove_shopping_cart</span>
+                              <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{language === 'id' ? 'Stok Habis' : 'Out of Stock'}</span>
+                            </button>
+                          )}
                         </div>
                       </div>
                     </article>
                   );
                 })
               )}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </main>

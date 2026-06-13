@@ -4,116 +4,95 @@ import Navbar from '../../components/Navbar';
 import FooterSection from '../../components/FooterSection';
 import { useLanguage } from '../../context/LanguageContext';
 
-const storyPoints = [
-    {
-        id: 'p1', year: '2024', month: 'Januari', date: 'Januari 2024',
-        title: 'Awal Produksi',
-        desc: '<strong>SENARA</strong> memulai langkah pertamanya dalam dunia skincare — proses produksi pertama dimulai, menandai lahirnya brand skincare berbasis sains dan kearifan lokal Indonesia.',
-        media: [
-            { type: 'image', src: '/images/About/activities/produksi-awal/produksi-awal-1.webp', caption: '' },
-        ]
-    },
-    {
-        id: 'p2', year: '2024', month: 'Mei', date: '21 Mei 2024',
-        title: 'Wisuda Magister Owner',
-        desc: 'Owner <strong>SENARA</strong>, <strong>apt. Ramna Ningsih, S.Si., C.Herbs., M.Farm</strong>, menyelesaikan pendidikan Magister Farmasi — memperkuat fondasi ilmiah di balik setiap produk <strong>SENARA</strong>.',
-        media: [
-            { type: 'image', src: '/images/About/activities/wisuda/wisuda-1.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/wisuda/wisuda-2.webp', caption: '' },
-        ]
-    },
-    {
-        id: 'p3', year: '2024', month: 'Agustus', date: '16 Agustus 2024',
-        title: 'Penghargaan KEMENKUMHAM',
-        desc: 'Owner <strong>SENARA</strong> mendapatkan penghargaan dari <strong>KEMENKUMHAM</strong> atas capaiannya dalam menciptakan produk berbasis sains dan kearifan lokal, sebuah pengakuan nasional yang membanggakan.',
-        media: [
-            { type: 'image', src: '/images/About/activities/penghargaan-kemenkumham/penghargaan-kemenkumham-1.webp', caption: '' },
-        ]
-    },
-    {
-        id: 'p4', year: '2025', month: 'Maret', date: '18 Maret 2025',
-        title: 'Wawancara TV Lokal',
-        desc: '<strong>SENARA</strong> tampil di layar kaca melalui wawancara di TV lokal Bekasi, memperkenalkan brand skincare lokal berbasis sains kepada audiens yang lebih luas.',
-        media: [
-            { type: 'video', src: '/images/About/activities/wawancara-tv/wawancara-tv-1.mp4', caption: '' },
-        ]
-    },
-    {
-        id: 'p5', year: '2025', month: 'Juni', date: '22 Juni 2025',
-        title: 'Aksi Bela Palestina',
-        desc: '<strong>SENARA</strong> berpartisipasi dalam kegiatan aksi bela Palestina. Antusiasme peserta aksi yang membeli produk <strong>SKINCARE SENARA</strong> menunjukkan dukungan nyata. Sekretaris <strong>APDESI</strong> turut mendukung produk dalam negeri <strong>SKINCARE SENARA</strong>.',
-        media: [
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-1.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-2.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-3.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-4.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-5.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-6.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-7.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-8.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-9.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-10.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-11.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-12.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/aksi-palestina/aksi-palestina-13.webp', caption: '' },
-            { type: 'video', src: '/images/About/activities/aksi-palestina/aksi-palestina-1.mp4', caption: 'Sekretaris APDESI dukung produk dalam negeri SKINCARE SENARA' },
-            { type: 'video', src: '/images/About/activities/aksi-palestina/aksi-palestina-2.mp4', caption: '' },
-            { type: 'video', src: '/images/About/activities/aksi-palestina/aksi-palestina-3.mp4', caption: '' },
-        ]
-    },
-    {
-        id: 'p6', year: '2025', month: 'September', date: '4 September 2025',
-        title: 'Bersama Ivan Gunawan',
-        desc: 'Owner <strong>SENARA</strong> bersama <strong>Ivan Gunawan</strong> di studio <strong>Kompas TV</strong>, memperluas jangkauan dan brand awareness di tingkat nasional.',
-        media: [
-            { type: 'image', src: '/images/About/activities/ivan-gunawan-kompas/ivan-gunawan-kompas-1.webp', caption: '' },
-        ]
-    },
-    {
-        id: 'p7', year: '2025', month: 'September', date: '4–6 September 2025',
-        title: 'International EXPO di JCC',
-        desc: '<strong>SENARA</strong> hadir di kegiatan <strong>International EXPO</strong> di <strong>Jakarta Convention Center (JCC)</strong> dan menjadi sponsor resmi dalam acara internasional tersebut. Dalam acara bergengsi ini, <strong>SENARA</strong> mendapatkan kehormatan dan apresiasi dari <strong>Bpk. Rachmat Gobel</strong> (Anggota DPR RI, Wakil Ketua KADIN), <strong>Prof. Dr. Hamdan Zulfa</strong> (Mantan Hakim MK), serta mendapatkan kunjungan dari <strong>Duta Besar Rusia untuk Indonesia</strong> — membawa produk lokal ke panggung global.',
-        media: [
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-1.webp', caption: 'Mendapatkan kehormatan dan apresiasi dari Mantan Hakim MK Prof. Dr. Hamdan Zulfa' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-2.webp', caption: 'Mendapatkan kehormatan dan apresiasi dari Bpk. Rachmat Gobel Anggota DPR RI, Wakil Ketua KADIN' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-3.webp', caption: 'Mendapatkan kunjungan dari Duta Rusia untuk Indonesia' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-4.webp', caption: 'Menjadi sponsor dalam Internasional expo di JCC' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-5.webp', caption: 'Menteri KOMDIGI Mutia Hafidz berkunjung ke stand SENARA' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-6.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-7.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-8.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-9.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-10.webp', caption: '' },
-            { type: 'image', src: '/images/About/activities/jcc-expo/jcc-expo-11.webp', caption: '' },
-        ]
-    },
-];
-
-// Generate carousel images from all activity photos in storyPoints
-const carouselImages = storyPoints
-    .flatMap(point => point.media)
-    .filter(item => item.type === 'image')
-    .map(item => item.src);
+import { supabase } from '../../lib/supabaseClient';
 
 export default function AboutPage() {
-    const { t } = useLanguage();
-    
+    const { t, language } = useLanguage();
+    const [dbStoryPoints, setDbStoryPoints] = useState([]);
+    const [dbAboutContent, setDbAboutContent] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const [timelineRes, contentRes] = await Promise.all([
+                    supabase.from('timeline_events').select('*').order('order_index'),
+                    supabase.from('about_content').select('*')
+                ]);
+                
+                if (timelineRes.data) {
+                    setDbStoryPoints(timelineRes.data);
+                }
+                
+                if (contentRes.data) {
+                    const contentMap = {};
+                    contentRes.data.forEach(item => {
+                        contentMap[item.id] = item;
+                    });
+                    setDbAboutContent(contentMap);
+                }
+            } catch (err) {
+                console.error("Error fetching about page data:", err);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchData();
+    }, []);
+
     // Localize storyPoints
-    const localizedStoryPoints = storyPoints.map(point => {
+    const localizedStoryPoints = dbStoryPoints.map(point => {
         const translatedPoints = t('aboutPage.storyPoints') || [];
         const translatedPoint = translatedPoints.find(p => p.id === point.id) || {};
+        
+        // Use DB content for current language, fallback to translation
+        const dbTitle = language === 'id' ? point.title : (point.content?.en_title || point.title);
+        const dbDesc = language === 'id' ? point.desc : (point.content?.en_desc || point.desc);
+        
+        // Merge image captions
+        const mergedMedia = Array.isArray(point.content?.media) ? point.content.media : [];
+        if (point.image_captions) {
+            mergedMedia.forEach((m, idx) => {
+                m.caption = point.image_captions[`caption${idx + 1}`] || m.caption || '';
+            });
+        }
+        
         return {
             ...point,
             ...translatedPoint,
-            media: point.media.map((m, idx) => ({
-                ...m,
-                caption: translatedPoint[`caption${idx + 1}`] || m.caption || ''
-            }))
+            title: dbTitle || translatedPoint.title,
+            desc: dbDesc || translatedPoint.desc,
+            media: mergedMedia
         };
     });
 
+    const getAboutText = useCallback((section, field) => {
+        const data = dbAboutContent[section];
+        const defaultText = t(`aboutPage.${section}.${field}`);
+        if (!data) return defaultText;
+
+        if (language === 'id') {
+            if (field === 'title') return data.title || defaultText;
+            if (field === 'desc') return data.desc || defaultText;
+            if (field === 'name') return data.title || defaultText; // name is stored in title for founder
+            if (field === 'role') return data.content?.role || defaultText;
+            return data.content?.[field] || defaultText;
+        } else {
+            if (field === 'title') return data.content?.en_title || defaultText;
+            if (field === 'desc') return data.content?.en_desc || defaultText;
+            if (field === 'name') return data.content?.en_title || defaultText;
+            if (field === 'role') return data.content?.en_role || defaultText;
+            return data.content?.[`en_${field}`] || defaultText;
+        }
+    }, [dbAboutContent, language, t]);
+
+    const carouselImages = dbStoryPoints
+        .flatMap(point => Array.isArray(point.content?.media) ? point.content.media : [])
+        .filter(item => item.type === 'image')
+        .map(item => item.src);
+
     const [scrolled, setScrolled] = useState(0);
-    const [activePoint, setActivePoint] = useState(localizedStoryPoints[0]);
+    const [activePoint, setActivePoint] = useState(null);
     const [mediaIndex, setMediaIndex] = useState(0);
     const [mobileMediaIndices, setMobileMediaIndices] = useState({});
     const pointRefs = useRef([]);
@@ -180,6 +159,8 @@ export default function AboutPage() {
     }, []);
 
     useEffect(() => {
+        if (loading) return;
+
         // Intersection Observer for scroll animations (reveal-on-scroll)
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -224,15 +205,17 @@ export default function AboutPage() {
             revealObserver.disconnect();
             storyObserver.disconnect();
         };
-    }, []);
+    }, [loading, localizedStoryPoints]);
 
     // Reset media index when active point changes
     useEffect(() => {
-        setMediaIndex(0);
-    }, [activePoint.id]);
+        if (activePoint && activePoint.id) {
+            setMediaIndex(0);
+        }
+    }, [activePoint?.id]);
 
     // Gallery navigation (desktop sticky)
-    const activeMedia = activePoint.media || [];
+    const activeMedia = activePoint?.media || [];
     const handlePrevMedia = useCallback(() => {
         setMediaIndex(prev => (prev - 1 + activeMedia.length) % activeMedia.length);
     }, [activeMedia.length]);
@@ -269,6 +252,20 @@ export default function AboutPage() {
             setActivePoint(localizedStoryPoints[firstPointIndex]);
         }
     };
+
+    useEffect(() => {
+        if (!loading && localizedStoryPoints.length > 0 && !activePoint) {
+            setActivePoint(localizedStoryPoints[0]);
+        }
+    }, [loading, localizedStoryPoints, activePoint]);
+
+    if (loading) {
+        return (
+            <div className="bg-[#fcf9f5] min-h-screen text-[#1c1c19] flex items-center justify-center">
+                <span className="material-symbols-outlined animate-spin text-[40px] text-[#56b4a2]">progress_activity</span>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-[#fcf9f5] text-[#1c1c19] selection:bg-[#ffddb7] selection:text-[#2a1700]">
@@ -396,24 +393,26 @@ export default function AboutPage() {
                 <section className="py-[120px] container" id="roots">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[120px] items-center">
                         <div className="reveal-on-scroll">
-                            <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 uppercase tracking-wider">{t('aboutPage.roots.label')}</span>
-                            <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{t('aboutPage.roots.title')}</h2>
-                            <p className="font-['Manrope'] text-[16px] text-[#434842] mb-6 leading-relaxed">
-                                {t('aboutPage.roots.desc')}
-                            </p>
+                            <div className="text-center lg:text-left max-w-3xl mx-auto lg:mx-0 mb-16 reveal-on-scroll">
+                                <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{getAboutText('roots', 'label')}</span>
+                                <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{getAboutText('roots', 'title')}</h2>
+                                <p className="font-['Manrope'] text-[16px] text-[#747872] leading-relaxed">
+                                    {getAboutText('roots', 'desc')}
+                                </p>
+                            </div>
                             <div className="space-y-4">
                                 <div className="flex items-start gap-4">
                                     <span className="material-symbols-outlined text-[#815513]" style={{ fontVariationSettings: "'FILL' 1" }}>eco</span>
                                     <div>
-                                        <h4 className="font-['Manrope'] text-[14px] font-semibold text-[#18281a]">{t('aboutPage.roots.feature1_title')}</h4>
-                                        <p className="font-['Manrope'] text-sm text-[#747872]">{t('aboutPage.roots.feature1_desc')}</p>
+                                        <h4 className="font-['Manrope'] text-[14px] font-semibold text-[#18281a]">{getAboutText('roots', 'feature1_title')}</h4>
+                                        <p className="font-['Manrope'] text-sm text-[#747872]">{getAboutText('roots', 'feature1_desc')}</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
                                     <span className="material-symbols-outlined text-[#815513]" style={{ fontVariationSettings: "'FILL' 1" }}>science</span>
                                     <div>
-                                        <h4 className="font-['Manrope'] text-[14px] font-semibold text-[#18281a]">{t('aboutPage.roots.feature2_title')}</h4>
-                                        <p className="font-['Manrope'] text-sm text-[#747872]">{t('aboutPage.roots.feature2_desc')}</p>
+                                        <h4 className="font-['Manrope'] text-[14px] font-semibold text-[#18281a]">{getAboutText('roots', 'feature2_title')}</h4>
+                                        <p className="font-['Manrope'] text-sm text-[#747872]">{getAboutText('roots', 'feature2_desc')}</p>
                                     </div>
                                 </div>
                             </div>
@@ -431,9 +430,9 @@ export default function AboutPage() {
                 <section className="bg-[#f6f3ef] py-[120px]">
                     <div className="container">
                         <div className="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
-                            <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{t('aboutPage.process.label')}</span>
-                            <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{t('aboutPage.process.title')}</h2>
-                            <p className="font-['Manrope'] text-[16px] text-[#747872]">{t('aboutPage.process.desc')}</p>
+                            <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{getAboutText('process', 'label')}</span>
+                            <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{getAboutText('process', 'headline')}</h2>
+                            <p className="font-['Manrope'] text-[16px] text-[#747872]">{getAboutText('process', 'desc')}</p>
                         </div>
                         
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[24px]">
@@ -451,9 +450,9 @@ export default function AboutPage() {
                                 </div>
                                 <div className="p-8 lg:p-10 flex flex-col justify-between flex-grow gap-6">
                                     <div>
-                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a] mb-4">{t('aboutPage.process.step1_title')}</h3>
+                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a] mb-4">{getAboutText('process', 'step1_title')}</h3>
                                         <p className="font-['Manrope'] text-[16px] text-[#747872] leading-relaxed">
-                                            {t('aboutPage.process.step1_desc')}
+                                            {getAboutText('process', 'step1_desc')}
                                         </p>
                                     </div>
                                     <div className="w-12 h-1 bg-[#815513] rounded-full"></div>
@@ -466,9 +465,9 @@ export default function AboutPage() {
                                 <div className="bg-white border border-[#c3c8c0]/30 rounded-xl overflow-hidden shadow-sm reveal-on-scroll grid grid-cols-1 sm:grid-cols-5 h-full group" style={{ transitionDelay: '100ms' }}>
                                     <div className="p-8 lg:p-10 space-y-4 sm:col-span-3 flex flex-col justify-center">
                                         <span className="font-['Manrope'] text-[12px] font-semibold text-[#815513] uppercase tracking-widest">Step 02</span>
-                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{t('aboutPage.process.step2_title')}</h3>
+                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{getAboutText('process', 'step2_title')}</h3>
                                         <p className="font-['Manrope'] text-[16px] text-[#747872] leading-relaxed">
-                                            {t('aboutPage.process.step2_desc')}
+                                            {getAboutText('process', 'step2_desc')}
                                         </p>
                                     </div>
                                     <div className="sm:col-span-2 h-48 sm:h-full overflow-hidden">
@@ -491,9 +490,9 @@ export default function AboutPage() {
                                     </div>
                                     <div className="p-8 lg:p-10 space-y-4 sm:col-span-3 flex flex-col justify-center order-1 sm:order-2">
                                         <span className="font-['Manrope'] text-[12px] font-semibold text-[#815513] uppercase tracking-widest">Step 03</span>
-                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{t('aboutPage.process.step3_title')}</h3>
+                                        <h3 className="font-['Playfair_Display'] text-[24px] text-[#18281a]">{getAboutText('process', 'step3_title')}</h3>
                                         <p className="font-['Manrope'] text-[16px] text-[#747872] leading-relaxed">
-                                            {t('aboutPage.process.step3_desc')}
+                                            {getAboutText('process', 'step3_desc')}
                                         </p>
                                     </div>
                                 </div>
@@ -510,16 +509,19 @@ export default function AboutPage() {
                     </div>
                     <div className="relative z-10 container text-white">
                         <div className="max-w-3xl">
-                            <span className="font-['Manrope'] text-[14px] font-semibold text-white block mb-4 tracking-wider">{t('aboutPage.sustainability.label')}</span>
-                            <h2 className="font-['Playfair_Display'] text-[36px] md:text-[64px] leading-tight mb-8">{t('aboutPage.sustainability.title')}</h2>
+                            <span className="font-['Manrope'] text-[14px] font-semibold text-white block mb-4 tracking-wider uppercase">{getAboutText('sustainability', 'label')}</span>
+                            <h2 className="font-['Playfair_Display'] text-[36px] md:text-[64px] leading-tight mb-8 text-white">{getAboutText('sustainability', 'title')}</h2>
+                            <p className="font-['Manrope'] text-[16px] text-white/80 leading-relaxed mb-12">
+                                {getAboutText('sustainability', 'desc')}
+                            </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-[32px]">
                                 <div className="reveal-on-scroll">
-                                    <h4 className="font-['Playfair_Display'] text-[24px] mb-2 text-white">{t('aboutPage.sustainability.feature1_title')}</h4>
-                                    <p className="font-['Manrope'] text-[16px] text-white/80">{t('aboutPage.sustainability.feature1_desc')}</p>
+                                    <h4 className="font-['Playfair_Display'] text-[24px] mb-2 text-white">{getAboutText('sustainability', 'feature1_title')}</h4>
+                                    <p className="font-['Manrope'] text-[16px] text-white/80">{getAboutText('sustainability', 'feature1_desc')}</p>
                                 </div>
                                 <div className="reveal-on-scroll">
-                                    <h4 className="font-['Playfair_Display'] text-[24px] mb-2 text-white">{t('aboutPage.sustainability.feature2_title')}</h4>
-                                    <p className="font-['Manrope'] text-[16px] text-white/80">{t('aboutPage.sustainability.feature2_desc')}</p>
+                                    <h4 className="font-['Playfair_Display'] text-[24px] mb-2 text-white">{getAboutText('sustainability', 'feature2_title')}</h4>
+                                    <p className="font-['Manrope'] text-[16px] text-white/80">{getAboutText('sustainability', 'feature2_desc')}</p>
                                 </div>
                             </div>
                         </div>
@@ -531,20 +533,29 @@ export default function AboutPage() {
                     <div className="flex flex-col md:flex-row gap-[120px] items-center">
                         <div className="w-full md:w-1/2 reveal-on-scroll">
                             <div className="aspect-[4/5] bg-[#f0ede9] overflow-hidden rounded-sm relative group">
-                                <img className="w-full h-full object-cover" alt="Founders Portrait" src="/images/About/senara-owner.webp" />
+                                <img className="w-full h-full object-cover" alt="Founders Portrait" src={dbAboutContent['founder']?.content?.image || "/images/About/senara-owner.webp"} />
                                 <div className="absolute inset-0 border-[24px] border-white/10 pointer-events-none"></div>
                             </div>
                         </div>
                         <div className="w-full md:w-1/2 reveal-on-scroll">
-                            <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{t('aboutPage.founder.label')}</span>
-                            <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-6">{t('aboutPage.founder.name')}</h2>
-                            <p className="font-['Manrope'] text-[18px] text-[#434842] mb-6 italic">{t('aboutPage.founder.quote')}</p>
-                            <p className="font-['Manrope'] text-[16px] text-[#747872] mb-8 leading-relaxed">
-                                {t('aboutPage.founder.desc')}
-                            </p>
-                            <div className="flex items-center gap-4">
-                                <div className="h-[1px] w-12 bg-[#815513]"></div>
-                                <span className="font-['Manrope'] text-[14px] font-semibold text-[#18281a] uppercase tracking-widest">{t('aboutPage.founder.title')}</span>
+                            <div className="w-full flex flex-col justify-center space-y-8">
+                                <div>
+                                    <span className="font-['Manrope'] text-[14px] font-semibold text-[#815513] block mb-4 tracking-wider uppercase">{getAboutText('founder', 'label')}</span>
+                                    <h2 className="font-['Playfair_Display'] text-[36px] text-[#18281a] mb-2">{getAboutText('founder', 'name')}</h2>
+                                </div>
+                                <div className="w-12 h-1 bg-[#815513]"></div>
+                                <div className="space-y-6">
+                                    <p className="font-['Playfair_Display'] text-[24px] leading-snug italic text-[#18281a]">
+                                        {getAboutText('founder', 'quote')}
+                                    </p>
+                                    <p className="font-['Manrope'] text-[16px] text-[#747872] leading-relaxed">
+                                        {getAboutText('founder', 'desc')}
+                                    </p>
+                                    <div className="flex items-center gap-4 pt-4">
+                                        <div className="h-[1px] w-12 bg-[#815513]"></div>
+                                        <span className="font-['Manrope'] text-[14px] font-semibold text-[#18281a] uppercase tracking-widest">{getAboutText('founder', 'role')}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -560,19 +571,21 @@ export default function AboutPage() {
                         </div>
 
                         {/* Year Navigation Indicators */}
-                        <div className="flex justify-center gap-4 lg:gap-8 border-b border-[#c3c8c0]/30 mb-8 lg:mb-10 max-w-sm mx-auto overflow-x-auto sticky top-[90px] lg:top-[96px] z-40 bg-[#f6f3ef]/90 backdrop-blur-sm py-3 lg:py-3">
-                            {uniqueYears.map((year) => (
-                                <button
-                                    key={year}
-                                    onClick={() => handleYearClick(year)}
-                                    className={`px-3 lg:px-4 font-['Manrope'] text-[14px] font-semibold transition-all duration-300 ${activePoint.year === year ? 'text-[#815513]' : 'text-[#747872] hover:text-[#18281a]'}`}
-                                >
-                                    {year}
-                                    {/* Active underline indicator */}
-                                    <div className={`h-[2px] mt-1.5 lg:mt-2 transition-all duration-300 ${activePoint.year === year ? 'bg-[#815513] w-full' : 'bg-transparent w-0'}`}></div>
-                                </button>
-                            ))}
-                        </div>
+                        {activePoint && (
+                            <div className="flex justify-center gap-4 lg:gap-8 border-b border-[#c3c8c0]/30 mb-8 lg:mb-10 max-w-sm mx-auto overflow-x-auto sticky top-[90px] lg:top-[96px] z-40 bg-[#f6f3ef]/90 backdrop-blur-sm py-3 lg:py-3">
+                                {uniqueYears.map((year) => (
+                                    <button
+                                        key={year}
+                                        onClick={() => handleYearClick(year)}
+                                        className={`px-3 lg:px-4 font-['Manrope'] text-[14px] font-semibold transition-all duration-300 ${activePoint.year === year ? 'text-[#815513]' : 'text-[#747872] hover:text-[#18281a]'}`}
+                                    >
+                                        {year}
+                                        {/* Active underline indicator */}
+                                        <div className={`h-[2px] mt-1.5 lg:mt-2 transition-all duration-300 ${activePoint.year === year ? 'bg-[#815513] w-full' : 'bg-transparent w-0'}`}></div>
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-[48px] items-start relative">
                             {/* Left: Scrolling Activities */}
@@ -591,10 +604,10 @@ export default function AboutPage() {
                                                 data-id={point.id}
                                                 data-year={point.year}
                                                 ref={el => pointRefs.current[idx] = el}
-                                                className={`transition-opacity duration-500 relative lg:${activePoint.id === point.id ? 'opacity-100' : 'opacity-30'}`}
+                                                className={`transition-opacity duration-500 relative lg:${activePoint?.id === point.id ? 'opacity-100' : 'opacity-30'}`}
                                             >
                                                 {/* Timeline dot */}
-                                                <div className={`absolute -left-[26px] lg:-left-[35px] top-2 w-3 h-3 rounded-full border-4 border-[#f6f3ef] transition-all duration-300 ${activePoint.id === point.id ? 'bg-[#815513] outline outline-1 outline-[#815513] z-10 scale-125' : 'bg-[#c3c8c0] scale-100'}`}></div>
+                                                <div className={`absolute -left-[26px] lg:-left-[35px] top-2 w-3 h-3 rounded-full border-4 border-[#f6f3ef] transition-all duration-300 ${activePoint?.id === point.id ? 'bg-[#815513] outline outline-1 outline-[#815513] z-10 scale-125' : 'bg-[#c3c8c0] scale-100'}`}></div>
 
                                                 <span className="inline-block px-3 py-1 bg-[#815513]/10 text-[#815513] font-['Manrope'] text-[11px] lg:text-[12px] font-bold rounded-full mb-3 lg:mb-4">{point.date}</span>
                                                 <h3 className="font-['Playfair_Display'] text-[24px] lg:text-[32px] text-[#18281a] mb-3 lg:mb-4">{point.title}</h3>
@@ -729,7 +742,7 @@ export default function AboutPage() {
                                     {activeMedia.length > 0 && activeMedia[mediaIndex] && (
                                         activeMedia[mediaIndex].type === 'video' ? (
                                             <video
-                                                key={`${activePoint.id}-${mediaIndex}`}
+                                                key={`${activePoint?.id}-${mediaIndex}`}
                                                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                                                 src={activeMedia[mediaIndex].src}
                                                 controls
@@ -738,7 +751,7 @@ export default function AboutPage() {
                                             />
                                         ) : (
                                             <img
-                                                key={`${activePoint.id}-${mediaIndex}`}
+                                                key={`${activePoint?.id}-${mediaIndex}`}
                                                 className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
                                                 alt={`${activePoint.title} - ${mediaIndex + 1}`}
                                                 src={activeMedia[mediaIndex].src}

@@ -7,7 +7,7 @@ function TestimonialSection() {
   const { t } = useLanguage()
 
   return <section className="testimonial container">
-    <img className="portrait" src="/images/Testimonial/senara-testimonial1.png" alt="Testimonial"/>
+    <img className="portrait" src="/images/Testimonial/senara-testimonial1-baru.png" alt="Testimonial"/>
     <div className="quote">
       <div className="quote-mark">{'\u201c'}</div>
       <blockquote>

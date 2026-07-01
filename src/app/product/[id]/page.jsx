@@ -115,10 +115,14 @@ export default function ProductDetailPage({ params }) {
               {product.name.toUpperCase()} {product.volume}
             </h1>
 
-            {/* Price */}
-            <p className="text-xl font-semibold text-[#bd8033] mb-6">
-              Rp {product.price.toLocaleString('id-ID')}
-            </p>
+            <div className="flex items-baseline gap-3 mb-6">
+              <p className="text-xl font-semibold text-[#bd8033]">
+                Rp {product.price.toLocaleString('id-ID')}
+              </p>
+              <p className="text-[14px] text-gray-400 line-through">
+                Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}
+              </p>
+            </div>
 
             {/* Logos: BPOM and Halal */}
             <div className="flex items-center gap-4 mb-10">
@@ -267,7 +271,10 @@ export default function ProductDetailPage({ params }) {
                   <Link href={`/product/${rel.id}`}>
                     <h3 className="font-['Playfair_Display'] text-lg text-[#18281a] mb-1 hover:text-[#bd8033] transition-colors">{rel.name}</h3>
                   </Link>
-                  <p className="text-sm font-semibold text-[#18281a] mb-3">Rp {rel.price.toLocaleString('id-ID')}</p>
+                  <div className="flex items-baseline gap-2 mb-3">
+                    <p className="text-sm font-semibold text-[#18281a]">Rp {rel.price.toLocaleString('id-ID')}</p>
+                    <p className="text-[11px] text-gray-400 line-through">Rp {(rel.price + Math.floor(rel.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</p>
+                  </div>
                   {rel.stock > 0 ? (
                     <button 
                       onClick={(e) => { e.preventDefault(); addToCart({ id: rel.id, name: rel.name, price: rel.price, image: rel.image })}}

@@ -280,16 +280,17 @@ export default function ShopPage() {
                         </div>
                         <p className={`font-body-md text-on-surface-variant mb-2 sm:mb-4 ${viewMode === 'list' ? 'text-[12px] sm:text-[14px] line-clamp-2' : 'text-body-md line-clamp-2'}`}>{t(`featured.products.${product.id}.description`) || product.desc}</p>
                         <div className="flex items-center justify-between mt-auto pt-3 border-t border-outline-variant/20">
-                          <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {product.price.toLocaleString('id-ID')}</span>
+                          <div className="flex items-baseline gap-2">
+                            <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {product.price.toLocaleString('id-ID')}</span>
+                            <span className={`font-label-sm text-outline line-through ${viewMode === 'list' ? 'text-[11px] sm:text-[13px]' : 'text-[12px]'}`}>Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>
+                          </div>
                           {product.stock > 0 ? (
-                            <button onClick={() => addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, stock: product.stock })} className="bg-primary text-on-primary font-label-md px-3 sm:px-4 py-1.5 sm:py-2 hover:bg-secondary transition-all active:scale-95 flex items-center gap-1 sm:gap-2">
-                              <span className="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
-                              <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{t('shop.addBtn')}</span>
+                            <button onClick={(e) => { e.preventDefault(); addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, stock: product.stock }); }} className="bg-[#18281a] text-white w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-[#815513] transition-colors flex-shrink-0 ml-4">
+                              <span className="material-symbols-outlined text-[20px] sm:text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>add</span>
                             </button>
                           ) : (
-                            <button disabled className="bg-gray-300 text-gray-500 font-label-md px-3 sm:px-4 py-1.5 sm:py-2 flex items-center gap-1 sm:gap-2 cursor-not-allowed">
-                              <span className="material-symbols-outlined text-[16px] sm:text-[18px]">remove_shopping_cart</span>
-                              <span className={viewMode === 'list' ? 'text-[11px] sm:text-[14px] hidden min-[400px]:inline' : 'text-[14px]'}>{language === 'id' ? 'Stok Habis' : 'Out of Stock'}</span>
+                            <button disabled className="bg-gray-300 text-gray-500 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full cursor-not-allowed flex-shrink-0 ml-4" title={language === 'id' ? 'Stok Habis' : 'Out of Stock'}>
+                              <span className="material-symbols-outlined text-[18px] sm:text-[20px]">block</span>
                             </button>
                           )}
                         </div>

@@ -246,7 +246,7 @@ function FeaturedProductSection() {
 
             <div className="flex items-baseline gap-3 mb-3">
               <span className="font-['Manrope'] font-bold text-[22px] md:text-[24px] text-[#18281a]">Rp {product.price.toLocaleString('id-ID')}</span>
-              <span className="font-['Manrope'] text-[14px] md:text-[16px] text-gray-400 line-through">Rp {product.oldPrice.toLocaleString('id-ID')}</span>
+              <span className="font-['Manrope'] text-[14px] md:text-[16px] text-gray-400 line-through">Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>
             </div>
 
             <p className="font-['Manrope'] text-[12px] md:text-[13px] text-[#434842] leading-[1.6] mb-5">

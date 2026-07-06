@@ -33,7 +33,7 @@ function ProductCard({ product }) {
           <Link href={`/product/${product.id}`} className="block group-hover:text-[#815513] transition-colors">
             <h3 className="font-['Playfair_Display'] text-[20px] text-inherit leading-[1.4]">{product.name}</h3>
           </Link>
-          <p className="font-['Manrope'] text-[12px] text-[#434842] leading-[1.2] tracking-[0.02em] font-medium mt-1">{product.shortDesc}</p>
+          <p className="font-['Manrope'] text-[12px] text-[#434842] leading-[1.2] tracking-[0.02em] font-medium mt-1">{product.short_desc || product.shortDesc}</p>
           <div className="mt-2 flex items-baseline gap-2">
             <span className="font-['Manrope'] text-[14px] text-[#18281a] leading-[1.2] tracking-[0.05em] font-semibold">Rp {product.price.toLocaleString('id-ID')}</span>
             <span className="font-['Manrope'] text-[12px] text-gray-400 line-through">Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>

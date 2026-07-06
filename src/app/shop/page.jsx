@@ -278,7 +278,7 @@ export default function ShopPage() {
                           <Link href={`/product/${product.id}`} className={`font-headline-sm text-primary hover:text-secondary transition-colors ${viewMode === 'list' ? 'text-[14px] sm:text-[20px] leading-tight' : 'text-headline-sm'}`}>{product.name}</Link>
                           <button className="text-outline hover:text-error transition-colors shrink-0"><span className="material-symbols-outlined text-[20px] sm:text-[24px]">favorite</span></button>
                         </div>
-                        <p className={`font-body-md text-on-surface-variant mb-2 sm:mb-2 ${viewMode === 'list' ? 'text-[12px] sm:text-[14px] line-clamp-2' : 'text-body-md line-clamp-2'}`}>{t(`featured.products.${product.id}.description`) || product.desc}</p>
+                        <p className={`font-body-md text-on-surface-variant mb-2 sm:mb-2 ${viewMode === 'list' ? 'text-[12px] sm:text-[14px] line-clamp-2' : 'text-body-md line-clamp-2'}`}>{product.desc || t(`featured.products.${product.id}.description`)}</p>
                         <p className={`font-label-sm text-[#bd8033] font-semibold mb-3 ${viewMode === 'list' ? 'text-[11px] sm:text-[12px]' : 'text-[12px]'}`}>
                           {t('admin.products.stock') || 'Stok'}: {product.stock > 0 ? product.stock : (t('outOfStock') || 'Habis')}
                         </p>

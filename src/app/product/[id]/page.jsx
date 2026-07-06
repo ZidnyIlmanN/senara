@@ -123,6 +123,10 @@ export default function ProductDetailPage({ params }) {
                 Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}
               </p>
             </div>
+            
+            <p className="text-[13px] text-[#bd8033] font-semibold mb-6">
+              {t('admin.products.stock') || 'Stok'}: {product.stock > 0 ? product.stock : (t('outOfStock') || 'Habis')}
+            </p>
 
             {/* Logos: BPOM and Halal */}
             <div className="flex items-center gap-4 mb-10">
@@ -271,10 +275,13 @@ export default function ProductDetailPage({ params }) {
                   <Link href={`/product/${rel.id}`}>
                     <h3 className="font-['Playfair_Display'] text-lg text-[#18281a] mb-1 hover:text-[#bd8033] transition-colors">{rel.name}</h3>
                   </Link>
-                  <div className="flex items-baseline gap-2 mb-3">
+                  <div className="flex items-baseline gap-2 mb-1">
                     <p className="text-sm font-semibold text-[#18281a]">Rp {rel.price.toLocaleString('id-ID')}</p>
                     <p className="text-[11px] text-gray-400 line-through">Rp {(rel.price + Math.floor(rel.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</p>
                   </div>
+                  <p className="text-[11px] text-[#bd8033] font-semibold mb-3">
+                    {t('admin.products.stock') || 'Stok'}: {rel.stock > 0 ? rel.stock : (t('outOfStock') || 'Habis')}
+                  </p>
                   {rel.stock > 0 ? (
                     <button 
                       onClick={(e) => { e.preventDefault(); addToCart({ id: rel.id, name: rel.name, price: rel.price, image: rel.image })}}

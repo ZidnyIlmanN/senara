@@ -38,6 +38,9 @@ function ProductCard({ product }) {
             <span className="font-['Manrope'] text-[14px] text-[#18281a] leading-[1.2] tracking-[0.05em] font-semibold">Rp {product.price.toLocaleString('id-ID')}</span>
             <span className="font-['Manrope'] text-[12px] text-gray-400 line-through">Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>
           </div>
+          <p className="font-['Manrope'] text-[11px] text-[#bd8033] mt-2 font-semibold">
+            {t('admin.products.stock') || 'Stok'}: {product.stock > 0 ? product.stock : (t('outOfStock') || 'Habis')}
+          </p>
         </div>
         <button
           onClick={(e) => { e.preventDefault(); addToCart({ id: product.id, name: product.name, price: product.price, image: product.image })}}

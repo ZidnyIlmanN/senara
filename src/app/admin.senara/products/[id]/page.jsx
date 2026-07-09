@@ -24,11 +24,14 @@ export default function ProductForm({ params }) {
     short_desc: '',
     desc: '',
     price: '',
+    price_reseller: '',
+    price_agen: '',
+    price_distributor: '',
     stock: 100,
     image: '',
     badge: '',
     badge_style: '',
-    type: '',
+    type: 'Satuan',
     conditions: '', // Stored as comma-separated string in form, array in DB
     ingredients: '', // Stored as comma-separated string in form, array in DB
     volume: '',
@@ -80,6 +83,9 @@ export default function ProductForm({ params }) {
       const payload = {
         ...formData,
         price: parseInt(formData.price) || 0,
+        price_reseller: parseInt(formData.price_reseller) || null,
+        price_agen: parseInt(formData.price_agen) || null,
+        price_distributor: parseInt(formData.price_distributor) || null,
         stock: parseInt(formData.stock) || 0,
         conditions: formData.conditions ? formData.conditions.split(',').map(s => s.trim()).filter(Boolean) : [],
         ingredients: formData.ingredients ? formData.ingredients.split(',').map(s => s.trim()).filter(Boolean) : [],
@@ -175,7 +181,29 @@ export default function ProductForm({ params }) {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
             </div>
           </div>
-          <div>
+          
+          {/* Role-based pricing for Paket */}
+          {formData.type === 'Paket' && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-gray-100 mt-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Harga Reseller</label>
+                <input type="number" name="price_reseller" value={formData.price_reseller} onChange={handleChange} min="0"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Harga Agen</label>
+                <input type="number" name="price_agen" value={formData.price_agen} onChange={handleChange} min="0"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Harga Distributor</label>
+                <input type="number" name="price_distributor" value={formData.price_distributor} onChange={handleChange} min="0"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
+              </div>
+            </div>
+          )}
+
+          <div className="mt-6">
             <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.products.shortDesc')}</label>
             <input type="text" name="short_desc" value={formData.short_desc || ''} onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
@@ -205,8 +233,12 @@ export default function ProductForm({ params }) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.products.productType')}</label>
-              <input type="text" name="type" value={formData.type || ''} onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all" />
+              <select name="type" value={formData.type || 'Satuan'} onChange={handleChange}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#56b4a2] focus:border-transparent outline-none transition-all bg-white"
+              >
+                <option value="Satuan">Satuan (Produk Reguler)</option>
+                <option value="Paket">Paket (Bundle/Package)</option>
+              </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.products.volume')}</label>

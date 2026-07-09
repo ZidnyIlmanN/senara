@@ -2,24 +2,68 @@
 
 import React, { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
+import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
+import { supabase } from '../lib/supabaseClient';
 
 export default function CartModal() {
-  const { isCartOpen, closeCart, cartItems, updateQuantity, removeFromCart, totalPrice } = useCart();
+  const { isCartOpen, closeCart, cartItems, updateQuantity, removeFromCart, subtotalPrice, discountAmount, totalPrice, minOrder, role, totalItems } = useCart();
+  const { userProfile } = useAuth();
   const { t } = useLanguage();
   const [mounted, setMounted] = useState(false);
 
-  const handleCheckout = () => {
-    if (cartItems.length === 0) return;
+  const isCheckoutDisabled = cartItems.length === 0 || totalItems < minOrder;
 
-    let message = "Halo SENARA, saya ingin melakukan pemesanan untuk produk berikut:\n\n";
-    cartItems.forEach(item => {
-      message += `- ${item.name} (x${item.qty})\n`;
-    });
-    message += `\nTotal Pesanan: Rp ${totalPrice.toLocaleString('id-ID')}\n\nMohon informasi selanjutnya untuk proses pembayaran dan pengiriman. Terima kasih.`;
+  const [isProcessing, setIsProcessing] = useState(false);
 
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/6281318141050?text=${encodedMessage}`, '_blank');
+  const handleCheckout = async () => {
+    if (isCheckoutDisabled || isProcessing) return;
+    setIsProcessing(true);
+
+    try {
+      const customerName = userProfile?.full_name || 'Customer';
+      const customerRole = role !== 'customer' ? `(${role.toUpperCase()})` : '';
+      const customerAddress = userProfile?.address ? `\nAlamat: ${userProfile.address}, ${userProfile.city}, ${userProfile.province}` : '';
+      const storeInfo = userProfile?.store_name ? `\nToko: ${userProfile.store_name}` : '';
+
+      // Hitung total paket
+      const packageAmount = cartItems.reduce((total, item) => total + item.qty, 0);
+
+      // Simpan ke database jika user sudah login
+      if (userProfile?.id) {
+        const { error } = await supabase
+          .from('orders')
+          .insert([
+            {
+              user_id: userProfile.id,
+              package_amount: packageAmount,
+              total_price: totalPrice,
+              status: 'pending',
+              items: cartItems,
+            }
+          ]);
+        
+        if (error) {
+          console.error("Gagal menyimpan pesanan:", error);
+          // Tetap lanjutkan ke WA meskipun gagal simpan DB agar user tidak terblokir
+        }
+      }
+
+      let message = `Halo SENARA, saya *${customerName}* ${customerRole} ingin melakukan pemesanan untuk produk berikut:\n\n`;
+      cartItems.forEach(item => {
+        message += `- ${item.name} (x${item.qty})\n`;
+      });
+      message += `\nTotal Pesanan: *Rp ${totalPrice.toLocaleString('id-ID')}*`;
+      message += `\n${storeInfo}${customerAddress}`;
+      message += `\n\nMohon informasi selanjutnya untuk proses pembayaran dan pengiriman. Terima kasih.`;
+
+      const encodedMessage = encodeURIComponent(message);
+      window.open(`https://wa.me/6281318141050?text=${encodedMessage}`, '_blank');
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   useEffect(() => {
@@ -102,8 +146,14 @@ export default function CartModal() {
           <div className="space-y-3">
             <div className="flex justify-between text-sm font-semibold text-[#434842]">
               <span>{t('cart.subtotal')}</span>
-              <span>Rp {totalPrice.toLocaleString('id-ID')}</span>
+              <span>Rp {subtotalPrice?.toLocaleString('id-ID')}</span>
             </div>
+            {discountAmount > 0 && (
+              <div className="flex justify-between text-sm font-semibold text-[#18281a]">
+                <span>Diskon Spesial (10%)</span>
+                <span>- Rp {discountAmount?.toLocaleString('id-ID')}</span>
+              </div>
+            )}
             <div className="flex justify-between text-sm font-semibold text-[#434842]">
               <span>{t('cart.shipping')}</span>
               <span className="italic text-[#a5a49f]">{t('cart.shippingCalc')}</span>
@@ -113,9 +163,20 @@ export default function CartModal() {
               <span className="font-serif text-2xl text-[#18281a]">Rp {totalPrice.toLocaleString('id-ID')}</span>
             </div>
           </div>
+          
+          {totalItems > 0 && totalItems < minOrder && (
+            <div className="bg-red-50 border border-red-200 text-red-600 p-3 rounded-md text-xs font-semibold text-center">
+              Minimum pembelian untuk {role === 'distributor' ? 'Distributor' : role === 'agent' ? 'Agen' : 'Reseller'} adalah {minOrder} paket/produk.
+            </div>
+          )}
+
           <div className="space-y-4">
-            <button onClick={handleCheckout} className="w-full bg-[#18281a] text-white text-sm font-semibold py-5 tracking-widest uppercase hover:bg-[#18281a]/90 transition-all active:scale-[0.98] shadow-sm">
-              {t('cart.checkout')}
+            <button 
+              onClick={handleCheckout} 
+              disabled={isCheckoutDisabled || isProcessing}
+              className={`w-full text-white text-sm font-semibold py-5 tracking-widest uppercase transition-all shadow-sm ${isCheckoutDisabled || isProcessing ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#18281a] hover:bg-[#18281a]/90 active:scale-[0.98]'}`}
+            >
+              {isProcessing ? 'Memproses...' : t('cart.checkout')}
             </button>
             <button onClick={closeCart} className="w-full text-center py-2 group">
               <span className="text-sm font-semibold text-[#434842] group-hover:text-[#815513] transition-colors inline-flex items-center gap-2 cursor-pointer">

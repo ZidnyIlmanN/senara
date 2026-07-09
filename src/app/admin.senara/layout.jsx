@@ -61,6 +61,7 @@ export default function AdminLayout({ children }) {
   const navItems = [
     { name: t('admin.nav.dashboard'), href: '/admin.senara', icon: 'dashboard' },
     { name: t('admin.nav.products'), href: '/admin.senara/products', icon: 'inventory_2' },
+    { name: 'Manajemen Pengguna', href: '/admin.senara/users', icon: 'group' },
     { name: t('admin.nav.aboutContent'), href: '/admin.senara/about', icon: 'description' },
     { name: t('admin.nav.timeline'), href: '/admin.senara/timeline', icon: 'history' },
   ];

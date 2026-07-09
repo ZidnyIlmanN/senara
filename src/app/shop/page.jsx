@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Icon } from '../../components/ui';
 import { useCart } from '../../components/CartContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { useAuth } from '../../context/AuthContext';
 import Navbar from '../../components/Navbar';
 
 import { supabase } from '../../lib/supabaseClient';
@@ -13,6 +14,7 @@ import { allProducts as localProducts } from '../../data/products';
 export default function ShopPage() {
   const { totalItems, openCart, addToCart } = useCart();
   const { language, setLanguage, t } = useLanguage();
+  const { userProfile } = useAuth();
   const [openFilters, setOpenFilters] = useState({
     'filter-type': true,
     'filter-condition': true,
@@ -75,6 +77,7 @@ export default function ShopPage() {
     { value: 'serums', label: t('shop.filters.serums') },
     { value: 'toners', label: t('shop.filters.toners') },
     { value: 'moisturizers', label: t('shop.filters.moisturizers') },
+    { value: 'Paket', label: 'Paket / Bundle' },
   ];
   const conditionOptions = [
     { value: 'hyperpigmentation', label: t('shop.filters.hyperpigmentation') },
@@ -263,6 +266,15 @@ export default function ShopPage() {
               ) : (
                 filteredProducts.map(product => {
                   const badgeLabel = product.badge === 'Bestseller' ? t('store.title_highlight') : (product.badge === 'New Arrival' ? 'New' : product.badge);
+                  
+                  // Hitung harga sesuai role
+                  let displayPrice = product.price;
+                  if (product.type === 'Paket' && userProfile?.role) {
+                    if (userProfile.role === 'reseller' && product.price_reseller) displayPrice = product.price_reseller;
+                    if (userProfile.role === 'agen' && product.price_agen) displayPrice = product.price_agen;
+                    if (userProfile.role === 'distributor' && product.price_distributor) displayPrice = product.price_distributor;
+                  }
+                  
                   return (
                     <article key={product.id} className={`group relative bg-surface-container-low border border-outline-variant/30 overflow-hidden ${viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'}`}>
                       {product.badge && (
@@ -284,11 +296,11 @@ export default function ShopPage() {
                         </p>
                         <div className="flex items-center justify-between mt-auto pt-3 border-t border-outline-variant/20">
                           <div className="flex items-baseline gap-2">
-                            <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {product.price.toLocaleString('id-ID')}</span>
-                            <span className={`font-label-sm text-outline line-through ${viewMode === 'list' ? 'text-[11px] sm:text-[13px]' : 'text-[12px]'}`}>Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>
+                            <span className={`font-label-md text-primary font-bold ${viewMode === 'list' ? 'text-[13px] sm:text-[16px]' : 'text-label-md'}`}>Rp {displayPrice.toLocaleString('id-ID')}</span>
+                            <span className={`font-label-sm text-outline line-through ${viewMode === 'list' ? 'text-[11px] sm:text-[13px]' : 'text-[12px]'}`}>Rp {(displayPrice + Math.floor(displayPrice * 0.35 / 1000) * 1000).toLocaleString('id-ID')}</span>
                           </div>
                           {product.stock > 0 ? (
-                            <button onClick={(e) => { e.preventDefault(); addToCart({ id: product.id, name: product.name, price: product.price, image: product.image, stock: product.stock }); }} className="bg-[#18281a] text-white w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-[#815513] transition-colors flex-shrink-0 ml-4">
+                            <button onClick={(e) => { e.preventDefault(); addToCart({ id: product.id, name: product.name, price: displayPrice, image: product.image, stock: product.stock, type: product.type }); }} className="bg-[#18281a] text-white w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-[#815513] transition-colors flex-shrink-0 ml-4">
                               <span className="material-symbols-outlined text-[20px] sm:text-[24px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24" }}>add</span>
                             </button>
                           ) : (

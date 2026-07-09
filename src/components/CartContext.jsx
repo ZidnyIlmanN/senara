@@ -9,7 +9,7 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, role } = useAuth();
   const router = useRouter();
 
   const toggleCart = () => setIsCartOpen(prev => !prev);
@@ -55,7 +55,21 @@ export function CartProvider({ children }) {
   };
 
   const totalItems = useMemo(() => cartItems.reduce((acc, item) => acc + item.qty, 0), [cartItems]);
-  const totalPrice = useMemo(() => cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0), [cartItems]);
+  const subtotalPrice = useMemo(() => cartItems.reduce((acc, item) => acc + (item.price * item.qty), 0), [cartItems]);
+  
+  const minOrder = useMemo(() => {
+    switch (role) {
+      case 'distributor': return 300;
+      case 'agent': return 20;
+      case 'reseller': return 3;
+      default: return 1;
+    }
+  }, [role]);
+
+  // Apply 10% discount if total items >= 10
+  const discountPercentage = totalItems >= 10 ? 10 : 0;
+  const discountAmount = Math.floor((subtotalPrice * discountPercentage) / 100);
+  const totalPrice = subtotalPrice - discountAmount;
 
   return (
     <CartContext.Provider value={{
@@ -68,7 +82,11 @@ export function CartProvider({ children }) {
       updateQuantity,
       removeFromCart,
       totalItems,
-      totalPrice
+      subtotalPrice,
+      discountAmount,
+      totalPrice,
+      minOrder,
+      role
     }}>
       {children}
     </CartContext.Provider>

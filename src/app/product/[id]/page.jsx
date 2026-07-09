@@ -7,12 +7,14 @@ import { notFound, useRouter } from 'next/navigation';
 import { supabase } from '../../../lib/supabaseClient';
 import { useCart } from '../../../components/CartContext';
 import { useLanguage } from '../../../context/LanguageContext';
+import { useAuth } from '../../../context/AuthContext';
 import Navbar from '../../../components/Navbar';
 
 export default function ProductDetailPage({ params }) {
   const { id } = params;
   const { addToCart } = useCart();
   const { t } = useLanguage();
+  const { userProfile } = useAuth();
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('about');
   const [quantity, setQuantity] = useState(1);
@@ -49,13 +51,22 @@ export default function ProductDetailPage({ params }) {
   };
 
   const handleAddToCart = () => {
+    // Hitung harga sesuai role
+    let displayPrice = product.price;
+    if (product.type === 'Paket' && userProfile?.role) {
+      if (userProfile.role === 'reseller' && product.price_reseller) displayPrice = product.price_reseller;
+      if (userProfile.role === 'agen' && product.price_agen) displayPrice = product.price_agen;
+      if (userProfile.role === 'distributor' && product.price_distributor) displayPrice = product.price_distributor;
+    }
+
     addToCart({ 
       id: product.id, 
       name: product.name, 
-      price: product.price, 
+      price: displayPrice, 
       image: product.image,
       quantity: quantity,
-      stock: product.stock
+      stock: product.stock,
+      type: product.type
     });
   };
 
@@ -117,10 +128,26 @@ export default function ProductDetailPage({ params }) {
 
             <div className="flex items-baseline gap-3 mb-6">
               <p className="text-xl font-semibold text-[#bd8033]">
-                Rp {product.price.toLocaleString('id-ID')}
+                {(() => {
+                  let displayPrice = product.price;
+                  if (product.type === 'Paket' && userProfile?.role) {
+                    if (userProfile.role === 'reseller' && product.price_reseller) displayPrice = product.price_reseller;
+                    if (userProfile.role === 'agen' && product.price_agen) displayPrice = product.price_agen;
+                    if (userProfile.role === 'distributor' && product.price_distributor) displayPrice = product.price_distributor;
+                  }
+                  return `Rp ${displayPrice.toLocaleString('id-ID')}`;
+                })()}
               </p>
               <p className="text-[14px] text-gray-400 line-through">
-                Rp {(product.price + Math.floor(product.price * 0.35 / 1000) * 1000).toLocaleString('id-ID')}
+                {(() => {
+                  let displayPrice = product.price;
+                  if (product.type === 'Paket' && userProfile?.role) {
+                    if (userProfile.role === 'reseller' && product.price_reseller) displayPrice = product.price_reseller;
+                    if (userProfile.role === 'agen' && product.price_agen) displayPrice = product.price_agen;
+                    if (userProfile.role === 'distributor' && product.price_distributor) displayPrice = product.price_distributor;
+                  }
+                  return `Rp ${(displayPrice + Math.floor(displayPrice * 0.35 / 1000) * 1000).toLocaleString('id-ID')}`;
+                })()}
               </p>
             </div>
             
@@ -242,17 +269,17 @@ export default function ProductDetailPage({ params }) {
         <div className="flex flex-col items-center mb-24 border-b border-gray-200 pb-16 max-w-2xl mx-auto">
           <p className="text-sm text-[#bd8033] mb-2">{t('pdp.shopNow')}</p>
           <div className="flex items-center gap-4">
-            <span className="text-[#56b4a2] text-4xl font-bold">{product.rating.toFixed(1)}</span>
+            <span className="text-[#56b4a2] text-4xl font-bold">{(product.rating || 0).toFixed(1)}</span>
             <span className="text-2xl text-gray-300">/ 5</span>
             <div className="flex flex-col ml-4">
               <div className="flex gap-1 text-[#56b4a2]">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <span key={star} className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>
-                    {star <= Math.round(product.rating) ? 'star' : 'star_border'}
+                    {star <= Math.round(product.rating || 0) ? 'star' : 'star_border'}
                   </span>
                 ))}
               </div>
-              <span className="text-xs text-gray-500 mt-1">{product.reviewsCount} {t('pdp.reviews')}</span>
+              <span className="text-xs text-gray-500 mt-1">{product.reviewsCount || 0} {t('pdp.reviews')}</span>
             </div>
           </div>
         </div>

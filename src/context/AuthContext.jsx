@@ -30,6 +30,8 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
+    role: user?.user_metadata?.role || 'customer',
+    userProfile: user ? { id: user.id, ...(user.user_metadata || {}) } : {},
     loading,
     signOut: () => supabase.auth.signOut(),
   };

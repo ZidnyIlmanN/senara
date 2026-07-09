@@ -15,9 +15,17 @@ function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const { totalItems, openCart } = useCart()
   const { language, setLanguage, t } = useLanguage()
-  const { user, signOut } = useAuth()
-
+  const { user, userProfile, role, signOut } = useAuth()
   const pathname = usePathname()
+
+  const getRoleDisplayName = (r) => {
+    switch (r) {
+      case 'distributor': return 'Distributor';
+      case 'agent': return 'Agen';
+      case 'reseller': return 'Reseller';
+      default: return 'Customer';
+    }
+  }
 
   const navLinks = [
     { name: t('nav.home'), href: '/' },
@@ -72,9 +80,22 @@ function Navbar() {
             <span className="cursor-pointer flex items-center group relative h-full">
               <Icon name="user"/>
               {user ? (
-                <div className="absolute right-0 top-full w-32 pt-2 hidden group-hover:block z-50">
-                  <div className="bg-white shadow-lg rounded-md overflow-hidden border border-gray-100">
-                    <button onClick={() => signOut()} className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope']">Logout</button>
+                <div className="absolute right-0 top-full w-48 pt-2 hidden group-hover:block z-50">
+                  <div className="bg-white shadow-lg rounded-md overflow-hidden border border-gray-100 flex flex-col">
+                    <div className="px-4 py-3 border-b border-gray-100 bg-gray-50/50">
+                      <p className="text-sm font-bold text-gray-800 font-['Manrope'] truncate">
+                        {userProfile?.full_name || user.email?.split('@')[0]}
+                      </p>
+                      {role !== 'customer' && (
+                        <span className="inline-block mt-1 px-2 py-0.5 bg-[#bd8033]/10 text-[#bd8033] text-[10px] font-bold uppercase tracking-wider rounded-sm font-['Manrope']">
+                          {getRoleDisplayName(role)}
+                        </span>
+                      )}
+                    </div>
+                    <Link href="/profile" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope'] transition-colors border-b border-gray-50">
+                      Lihat Profil
+                    </Link>
+                    <button onClick={() => signOut()} className="block w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-gray-50 font-['Manrope'] transition-colors">Logout</button>
                   </div>
                 </div>
               ) : (
@@ -123,12 +144,31 @@ function Navbar() {
         ))}
         <div className="mt-4 flex flex-col items-center gap-4">
           {user ? (
-            <button 
-              onClick={() => { signOut(); setMobileMenuOpen(false); }}
-              className="font-['Manrope'] text-sm tracking-widest text-[#18281a] border border-[#18281a] rounded-full px-6 py-2 hover:bg-[#18281a] hover:text-white transition-colors"
-            >
-              LOGOUT
-            </button>
+            <div className="flex flex-col items-center gap-4">
+              <div className="text-center">
+                <p className="font-['Manrope'] font-bold text-[#18281a] text-lg">
+                  {userProfile?.full_name || user.email?.split('@')[0]}
+                </p>
+                {role !== 'customer' && (
+                  <span className="inline-block mt-1 px-3 py-1 bg-[#bd8033]/10 text-[#bd8033] text-[10px] font-bold uppercase tracking-wider rounded-sm font-['Manrope']">
+                    {getRoleDisplayName(role)}
+                  </span>
+                )}
+              </div>
+              <Link 
+                href="/profile"
+                onClick={() => setMobileMenuOpen(false)}
+                className="font-['Manrope'] text-sm tracking-widest text-[#18281a] border border-[#18281a] rounded-full px-6 py-2 hover:bg-[#18281a] hover:text-white transition-colors"
+              >
+                LIHAT PROFIL
+              </Link>
+              <button 
+                onClick={() => { signOut(); setMobileMenuOpen(false); }}
+                className="font-['Manrope'] text-sm tracking-widest text-red-600 border border-red-600 rounded-full px-6 py-2 hover:bg-red-600 hover:text-white transition-colors"
+              >
+                LOGOUT
+              </button>
+            </div>
           ) : (
             <>
               <Link 

@@ -58,6 +58,34 @@ export default function TimelineAdmin() {
     }
   };
 
+  const handleAddNew = async () => {
+    try {
+      setSaving('new');
+      const newOrderIndex = events.length > 0 ? Math.max(...events.map(e => e.order_index || 0)) + 1 : 1;
+      const newId = crypto.randomUUID();
+      const { data, error } = await supabase.from('timeline_events').insert([{
+        id: newId,
+        title: 'New Timeline Event',
+        order_index: newOrderIndex
+      }]).select();
+      
+      if (error) throw error;
+      toast.success(t('admin.common.createSuccess') || 'Event added successfully');
+      
+      // Update local state to avoid immediate refetch delay
+      if (data && data.length > 0) {
+        setEvents([...events, data[0]]);
+        setTimeout(() => {
+          handleScrollTo(data[0].id);
+        }, 100);
+      }
+    } catch (err) {
+      toast.error((t('admin.common.createFailed') || 'Failed to add event') + ': ' + err.message);
+    } finally {
+      setSaving(null);
+    }
+  };
+
   const handleDelete = async (id) => {
     if (!await confirm(t('admin.common.confirmDelete'))) return;
     try {
@@ -94,6 +122,14 @@ export default function TimelineAdmin() {
           <h1 className="text-2xl font-bold text-[#18281a]">{t('admin.timeline.title')}</h1>
           <p className="text-gray-500 text-sm mt-1">{t('admin.timeline.subtitle')}</p>
         </div>
+        <button
+          onClick={handleAddNew}
+          disabled={saving === 'new'}
+          className="bg-[#18281a] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#2c4730] transition-colors flex items-center gap-2 disabled:opacity-50"
+        >
+          <span className="material-symbols-outlined text-[18px]">add</span>
+          {saving === 'new' ? 'Adding...' : 'Add Event'}
+        </button>
       </div>
 
       <div className="flex flex-col md:flex-row gap-8 items-start relative">
@@ -159,8 +195,40 @@ function EventEditor({ data, onSave, onDelete, isSaving, isOpen, onToggle }) {
     }));
   });
 
+  const [dateRange, setDateRange] = useState(() => {
+    return {
+      start: data.content?.date_start || '',
+      end: data.content?.date_end || ''
+    }
+  });
+
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleDateRangeChange = (field, value) => {
+    const newRange = { ...dateRange, [field]: value };
+    setDateRange(newRange);
+    
+    if (newRange.start) {
+      const startD = new Date(newRange.start);
+      if (!isNaN(startD)) {
+        if (!newRange.end) {
+          setFormData(prev => ({ ...prev, date: startD.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) }));
+        } else {
+          const endD = new Date(newRange.end);
+          if (!isNaN(endD)) {
+            if (startD.getMonth() === endD.getMonth() && startD.getFullYear() === endD.getFullYear()) {
+              setFormData(prev => ({ ...prev, date: `${startD.getDate()} - ${endD.getDate()} ${startD.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}` }));
+            } else if (startD.getFullYear() === endD.getFullYear()) {
+              setFormData(prev => ({ ...prev, date: `${startD.getDate()} ${startD.toLocaleDateString('id-ID', { month: 'long' })} - ${endD.getDate()} ${endD.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}` }));
+            } else {
+              setFormData(prev => ({ ...prev, date: `${startD.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })} - ${endD.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}` }));
+            }
+          }
+        }
+      }
+    }
   };
 
   const handleMediaChange = (index, field, value) => {
@@ -186,7 +254,7 @@ function EventEditor({ data, onSave, onDelete, isSaving, isOpen, onToggle }) {
     
     onSave({
         ...formData,
-        content: { ...data.content, media: cleanMediaList },
+        content: { ...data.content, media: cleanMediaList, date_start: dateRange.start, date_end: dateRange.end },
         image_captions: newCaptions
     });
   };
@@ -247,11 +315,48 @@ function EventEditor({ data, onSave, onDelete, isSaving, isOpen, onToggle }) {
               <textarea name="en_desc" rows="3" value={formData.en_desc} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none font-mono text-sm"></textarea>
             </div>
           </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.timeline.dateString')}</label>
-          <input type="text" name="date" value={formData.date} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none" />
+        <div className="md:col-span-2 bg-gray-50 p-4 rounded-xl border border-gray-200 mt-2">
+          <h3 className="text-sm font-semibold text-[#18281a] mb-3">{t('admin.timeline.dateString') || 'Pemilihan Tanggal Event'}</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-1">Mulai (Start Date)</label>
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">calendar_month</span>
+                <input 
+                  type="date" 
+                  value={dateRange.start} 
+                  onChange={(e) => handleDateRangeChange('start', e.target.value)} 
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none text-gray-700 font-sans text-sm" 
+                />
+              </div>
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-500 mb-1">Selesai (End Date) - Opsional</label>
+              <div className="relative">
+                <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">calendar_month</span>
+                <input 
+                  type="date" 
+                  value={dateRange.end} 
+                  min={dateRange.start}
+                  onChange={(e) => handleDateRangeChange('end', e.target.value)} 
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none text-gray-700 font-sans text-sm" 
+                />
+              </div>
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-medium text-gray-500 mb-1">Format Teks Akhir (Dapat diubah manual)</label>
+            <input 
+              type="text" 
+              name="date" 
+              value={formData.date} 
+              onChange={handleChange} 
+              placeholder="e.g., 2 - 3 Januari 2024"
+              className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none text-sm bg-white" 
+            />
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 mt-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin.timeline.year')}</label>
             <input type="text" name="year" value={formData.year} onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-[#56b4a2] outline-none" />

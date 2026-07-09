@@ -138,7 +138,14 @@ export default function ProductsList() {
                       </span>
                     </td>
                     <td className="px-6 py-4 text-gray-500 whitespace-nowrap">
-                      {product.type || '-'}
+                      {product.type === 'Paket' ? (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-purple-100 text-purple-700 border border-purple-200">
+                          <span className="material-symbols-outlined text-[14px]">package</span>
+                          Paket
+                        </span>
+                      ) : (
+                        <span className="text-gray-600">{product.type || 'Satuan'}</span>
+                      )}
                     </td>
                     <td className="px-6 py-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-2">

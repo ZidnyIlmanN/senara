@@ -96,7 +96,7 @@ function Navbar() {
                       Lihat Profil
                     </Link>
                     <Link href="/history" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope'] transition-colors border-b border-gray-50">
-                      {t('historyPage?.title') || 'Riwayat Transaksi'}
+                      {t('historyPage.title') || 'Riwayat Transaksi'}
                     </Link>
                     <button onClick={() => signOut()} className="block w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-gray-50 font-['Manrope'] transition-colors">Logout</button>
                   </div>
@@ -170,7 +170,7 @@ function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full text-center py-2 px-6 text-[#18281a] font-['Manrope'] border border-[#c3c8c0]/30 rounded-full hover:bg-[#ebe8e4] transition-colors"
               >
-                {t('historyPage?.title') || 'Riwayat Transaksi'}
+                {t('historyPage.title') || 'Riwayat Transaksi'}
               </Link>
               <button 
                 onClick={() => { signOut(); setMobileMenuOpen(false); }}

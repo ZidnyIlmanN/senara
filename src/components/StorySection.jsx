@@ -3,6 +3,7 @@
 import React from 'react'
 import { Button } from './ui'
 import { useLanguage } from '../context/LanguageContext'
+import Link from 'next/link'
 
 function StorySection() {
   const { t } = useLanguage()
@@ -14,7 +15,7 @@ function StorySection() {
       <div className="gold-line"/>
       <p>{t('story.p1')}</p>
       <p>{t('story.p2')}</p>
-      <Button outline>{t('story.cta')}</Button>
+      <Link href="/ingredients"><Button outline>{t('story.cta')}</Button></Link>
     </div>
     <div className="story-visual">
       <img src="/images/senara-story.png" alt="Pineapple and clinical glassware"/>

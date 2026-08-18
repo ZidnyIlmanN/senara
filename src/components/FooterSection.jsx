@@ -4,6 +4,8 @@ import React from 'react'
 import { Logo } from './ui'
 import Link from 'next/link'
 import { useLanguage } from '../context/LanguageContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram, faFacebookF, faTiktok, faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 function FooterList({ title, links }) {
   return <div className="footer-list"><h4>{title}</h4>{links.map(link => <Link key={link} href={link === 'Products' ? '/shop' : '#'}>{link}</Link>)}</div>
@@ -20,7 +22,12 @@ function FooterSection() {
       <div className="brand-col">
         <Logo light/>
         <p>{t('footer.tagline').split('\n')[0]}<br/>{t('footer.tagline').split('\n')[1]}<br/>{t('footer.tagline').split('\n')[2]}</p>
-        <div className="social-round"><span>ig</span><span>f</span><span>tk</span><span>yt</span></div>
+        <div className="social-round">
+            <span><FontAwesomeIcon icon={faInstagram} className="text-2xl" /></span>
+            <span><FontAwesomeIcon icon={faFacebookF} className="text-2xl" /></span>
+            <span><FontAwesomeIcon icon={faTiktok} className="text-2xl" /></span>
+            <span><FontAwesomeIcon icon={faYoutube} className="text-2xl" /></span>
+        </div>
       </div>
       <FooterList title={t('footer.quickLinks')} links={t('footer.quickLinksItems')}/>
       <FooterList title={t('footer.customerCare')} links={t('footer.customerCareItems')}/>

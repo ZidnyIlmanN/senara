@@ -22,9 +22,14 @@ export function Logo({ light = false }) {
 }
 
 export function Arrow() {
-  return <span className="arrow">{'\u2192'}</span>
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  )
 }
 
 export function Button({ children, outline = false }) {
-  return <button className={outline ? 'btn btn-outline' : 'btn'}>{children}<Arrow /></button>
+  return <button className={outline ? 'btn btn-outline group' : 'btn group'}>{children}<Arrow /></button>
 }

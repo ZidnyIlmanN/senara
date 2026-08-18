@@ -125,20 +125,7 @@ export default function CartModal() {
             ))
           )}
 
-          {/* Suggested Addition (Micro-Interaction) */}
-          <div className="mt-12 bg-[#f0ede9] p-6 border border-[#18281a]/5 rounded-lg">
-            <p className="text-xs text-[#815513] uppercase tracking-widest mb-3 font-semibold">{t('cart.completeRitual')}</p>
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white rounded-full flex-shrink-0 flex items-center justify-center border border-[#c3c8c0]/20">
-                <img alt="Mini Mist" className="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc0HOC06NVd2ZgM-Y-PPHfzf-owyI9CbAFuAidjFB_0r0AYnv9GUAteHjp3NRFn9_TUICxKg2TF-VQhwY0r3wVLi2FEdzyxmItDsDrjz1qUKTYebZszo9ZHcFHP-Bxa7JltTiA9gZCtDJEIif-_MO8_EvYitYRpuHhLOTTD9Y_dqp300Cj02pOOrpipN_XSulkhdPgX7Ga605NLEBvTpYutXswXY0PakATI_ikrfgQdh3IAKfe96adJm-GwcDwzX-jXpOl8i-kkVY" />
-              </div>
-              <div className="flex-1">
-                <p className="text-sm font-semibold text-[#18281a]">{t('cart.sampleProduct')}</p>
-                <p className="text-xs text-[#434842]">{t('cart.gift')}</p>
-              </div>
-              <button className="text-sm font-semibold text-[#18281a] underline underline-offset-4 hover:text-[#815513] transition-colors">{t('cart.add')}</button>
-            </div>
-          </div>
+
         </div>
 
         {/* Summary Section */}

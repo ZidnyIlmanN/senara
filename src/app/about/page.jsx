@@ -261,8 +261,17 @@ export default function AboutPage() {
 
     if (loading) {
         return (
-            <div className="bg-[#fcf9f5] min-h-screen text-[#1c1c19] flex items-center justify-center">
-                <span className="material-symbols-outlined animate-spin text-[40px] text-[#56b4a2]">progress_activity</span>
+            <div className="bg-[#fcf9f5] min-h-screen text-[#1c1c19] flex flex-col">
+                <Navbar />
+                <div className="flex-1 flex flex-col items-center justify-center gap-6 pb-[96px]">
+                    <div className="relative w-16 h-16 flex items-center justify-center">
+                        <div className="absolute inset-0 border-2 border-[#e1d2bc] rounded-full opacity-50"></div>
+                        <div className="absolute inset-0 border-2 border-[#bd8033] rounded-full border-t-transparent animate-[spin_1.2s_cubic-bezier(0.5,0.1,0.4,0.9)_infinite]"></div>
+                    </div>
+                    <p className="text-[#a58661] font-['Playfair_Display'] text-lg tracking-widest italic animate-pulse">
+                        Memuat...
+                    </p>
+                </div>
             </div>
         );
     }

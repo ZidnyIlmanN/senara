@@ -275,6 +275,27 @@ const id = {
     privacy: 'Kebijakan Privasi',
   },
 
+  historyPage: {
+    title: 'Riwayat Transaksi',
+    subtitle: 'Pantau pesanan dan pengiriman produk SENARA Anda.',
+    emptyState: 'Belum ada transaksi',
+    emptyDesc: 'Anda belum melakukan pemesanan apa pun. Mulai jelajahi produk kami sekarang.',
+    startShopping: 'Mulai Belanja',
+    columns: {
+      orderId: 'ID Pesanan',
+      date: 'Tanggal',
+      items: 'Jumlah Produk',
+      total: 'Total Harga',
+      status: 'Status',
+    },
+    status: {
+      pending: 'Menunggu',
+      processing: 'Diproses',
+      completed: 'Selesai',
+      cancelled: 'Dibatalkan',
+    },
+  },
+
   // ============ CART MODAL ============
   cart: {
     title: 'Keranjang Belanja Anda',
@@ -408,6 +429,48 @@ const id = {
       placeholder: 'Masukkan alamat email Anda',
       subscribe: 'Berlangganan Sekarang',
     },
+  },
+
+  // ============ INGREDIENTS PAGE ============
+  ingredientsPage: {
+    hero: {
+      badge: 'Bahan Baku Pilihan',
+      headline: 'Kekuatan Alam,',
+      headlineBr: 'Disempurnakan oleh Sains',
+      subtitle: 'Mengenal lebih dekat keajaiban botani Nusantara yang menjadi rahasia di balik efektivitas rangkaian produk perawatan kulit premium SENARA.',
+    },
+    star: {
+      label: 'BINTANG UTAMA',
+      title: 'Ekstrak Nanas (Bromelain)',
+      desc1: 'Jantung dari inovasi SENARA terletak pada enzim Bromelain yang diekstrak secara eksklusif dari tanaman nanas pilihan.',
+      desc2: 'Melalui proses ekstraksi dingin yang presisi, enzim ajaib ini mempertahankan kemampuannya sebagai eksfoliator alami yang sangat lembut. Ia mengangkat sel kulit mati, meredakan peradangan, dan memudarkan hiperpigmentasi tanpa merusak lapisan pelindung alami kulit Anda.',
+      benefits: ['Mengeksfoliasi tanpa iritasi', 'Mencerahkan kulit kusam', 'Anti-inflamasi alami'],
+    },
+    grid: {
+      label: 'BOTANI PENDUKUNG',
+      title: 'Harmoni Bahan Alam Berstandar Klinis',
+      moringa: {
+        title: 'Ekstrak Daun Kelor (Moringa oleifera)',
+        desc: 'Sering dijuluki sebagai "pohon ajaib", kaya akan antioksidan, vitamin C, dan E yang melindungi kulit dari radikal bebas dan penuaan dini.',
+      },
+      olive: {
+        title: 'Minyak Zaitun (Oleum olivarum)',
+        desc: 'Emolien alami yang meresap sempurna, memberikan kelembapan intensif sekaligus menjaga elastisitas tanpa menyumbat pori-pori.',
+      },
+      habbat: {
+        title: 'Habbatussauda (Nigella sativa)',
+        desc: 'Minyak jintan hitam legendaris yang memiliki sifat anti-bakteri dan pemulihan, sangat efektif menenangkan kulit kemerahan dan sensitif.',
+      },
+      bidara: {
+        title: 'Ekstrak Bidara (Ziziphus mauritiana)',
+        desc: 'Membantu mempercepat regenerasi sel, memberikan efek sejuk (soothing), dan menjaga kekenyalan kulit secara menyeluruh.',
+      },
+    },
+    philosophy: {
+      title: 'Filosofi Formulasi Kami',
+      desc: 'Semua bahan yang kami pilih bukan sekadar tren. Setiap tetesnya telah melalui uji stabilitas dan efikasi di laboratorium di bawah pengawasan ketat apoteker ahli. Kami menjamin setiap produk bebas dari bahan kimia keras yang dapat memicu iritasi.',
+      cta: 'Temukan Koleksi Kami',
+    }
   },
 
   // ============ SHOP PAGE ============

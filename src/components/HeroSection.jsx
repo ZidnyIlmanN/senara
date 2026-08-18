@@ -13,8 +13,8 @@ function HeroSection() {
     <Navbar />
     <div className="container hero-grid pt-[96px] pb-[64px]">
       <div className="hero-copy">
-        <h1>{t('hero.headline1')}<br />{t('hero.headline2')}</h1>
-        <div className="gold-line" />
+        <h1 className="mb-6">{t('hero.headline1')}<br />{t('hero.headline2')}</h1>
+
         <p>{t('hero.subtitle').split('\n')[0]}<br />{t('hero.subtitle').split('\n')[1]}</p>
         <Link href="/shop"><Button>{t('hero.cta')}</Button></Link>
         <div className="benefits">

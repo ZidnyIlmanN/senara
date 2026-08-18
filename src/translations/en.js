@@ -275,6 +275,27 @@ const en = {
     privacy: 'Privacy Policy',
   },
 
+  historyPage: {
+    title: 'Transaction History',
+    subtitle: 'Track your SENARA product orders and shipments.',
+    emptyState: 'No transactions yet',
+    emptyDesc: 'You haven\'t placed any orders yet. Start exploring our products now.',
+    startShopping: 'Start Shopping',
+    columns: {
+      orderId: 'Order ID',
+      date: 'Date',
+      items: 'Items',
+      total: 'Total Amount',
+      status: 'Status',
+    },
+    status: {
+      pending: 'Pending',
+      processing: 'Processing',
+      completed: 'Completed',
+      cancelled: 'Cancelled',
+    },
+  },
+
   // ============ CART MODAL ============
   cart: {
     title: 'Your Shopping Cart',
@@ -408,6 +429,48 @@ const en = {
       placeholder: 'Enter your email address',
       subscribe: 'Subscribe Now',
     },
+  },
+
+  // ============ INGREDIENTS PAGE ============
+  ingredientsPage: {
+    hero: {
+      badge: 'Premium Botanical Ingredients',
+      headline: 'Nature\'s Power,',
+      headlineBr: 'Perfected by Science',
+      subtitle: 'Discover the botanical wonders of the archipelago that power the effectiveness of SENARA\'s premium skincare line.',
+    },
+    star: {
+      label: 'STAR INGREDIENT',
+      title: 'Pineapple Extract (Bromelain)',
+      desc1: 'The heart of SENARA\'s innovation lies in the Bromelain enzyme, exclusively extracted from carefully selected pineapple plants.',
+      desc2: 'Through precise cold extraction, this miraculous enzyme retains its ability as an exceptionally gentle natural exfoliator. It lifts dead skin cells, soothes inflammation, and fades hyperpigmentation without compromising your skin\'s natural barrier.',
+      benefits: ['Exfoliates without irritation', 'Brightens dull skin', 'Natural anti-inflammatory'],
+    },
+    grid: {
+      label: 'SUPPORTING BOTANICALS',
+      title: 'Harmonious Clinically-Standard Natural Ingredients',
+      moringa: {
+        title: 'Moringa Leaf Extract (Moringa oleifera)',
+        desc: 'Often dubbed the "miracle tree", rich in antioxidants, vitamins C and E, protecting the skin from free radicals and premature aging.',
+      },
+      olive: {
+        title: 'Olive Oil (Oleum olivarum)',
+        desc: 'A perfectly absorbing natural emollient providing intensive moisture while maintaining elasticity without clogging pores.',
+      },
+      habbat: {
+        title: 'Black Seed (Nigella sativa)',
+        desc: 'The legendary black cumin oil with antibacterial and restorative properties, highly effective for soothing red and sensitive skin.',
+      },
+      bidara: {
+        title: 'Bidara Extract (Ziziphus mauritiana)',
+        desc: 'Accelerates cell regeneration, provides a cooling (soothing) effect, and maintains overall skin suppleness.',
+      },
+    },
+    philosophy: {
+      title: 'Our Formulation Philosophy',
+      desc: 'The ingredients we choose are more than just a trend. Every drop goes through rigorous stability and efficacy testing in the laboratory under the supervision of expert pharmacists. We guarantee every product is free from harsh chemicals that can trigger irritation.',
+      cta: 'Explore Our Collection',
+    }
   },
 
   // ============ SHOP PAGE ============

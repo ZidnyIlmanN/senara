@@ -31,7 +31,7 @@ function Navbar() {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.shop'), href: '/shop' },
     { name: t('nav.about'), href: '/about' },
-    { name: t('nav.ingredients'), href: '#' },
+    { name: t('nav.ingredients'), href: '/ingredients' },
     { name: t('nav.contact'), href: '/contact' }
   ]
 
@@ -94,6 +94,9 @@ function Navbar() {
                     </div>
                     <Link href="/profile" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope'] transition-colors border-b border-gray-50">
                       Lihat Profil
+                    </Link>
+                    <Link href="/history" className="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 font-['Manrope'] transition-colors border-b border-gray-50">
+                      {t('historyPage?.title') || 'Riwayat Transaksi'}
                     </Link>
                     <button onClick={() => signOut()} className="block w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-gray-50 font-['Manrope'] transition-colors">Logout</button>
                   </div>
@@ -158,9 +161,16 @@ function Navbar() {
               <Link 
                 href="/profile"
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-['Manrope'] text-sm tracking-widest text-[#18281a] border border-[#18281a] rounded-full px-6 py-2 hover:bg-[#18281a] hover:text-white transition-colors"
+                className="w-full text-center py-2 px-6 text-[#18281a] font-['Manrope'] border border-[#c3c8c0]/30 rounded-full hover:bg-[#ebe8e4] transition-colors"
               >
-                LIHAT PROFIL
+                Lihat Profil
+              </Link>
+              <Link 
+                href="/history"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full text-center py-2 px-6 text-[#18281a] font-['Manrope'] border border-[#c3c8c0]/30 rounded-full hover:bg-[#ebe8e4] transition-colors"
+              >
+                {t('historyPage?.title') || 'Riwayat Transaksi'}
               </Link>
               <button 
                 onClick={() => { signOut(); setMobileMenuOpen(false); }}
